@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Version="6.7" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="Ïî óìîë÷àíèþ" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="44104,6201517824" ReportOptions.Description.Text="" ReportOptions.Name="Êîíòðîëü âîçìîæíîñòè ðàçäåëåíèÿ.fr3 ÂÊÇ ¹ 0574/5-10" ReportOptions.LastChange="44104,6396957176" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;begin&#13;&#10;&#13;&#10;end." StoreInDFM="False">
+  <Datasets>
+    <item DataSet="VKZfrxDS" DataSetName="ÂÊÇ"/>
+    <item DataSet="OUTDATA" DataSetName="OUTDATA"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000">
+    <TfrxERQuery Name="OUTDATA" UserName="OUTDATA" CloseDataSource="True" FieldAliases.Text="" BCDToCurrency="False" Master="VKZfrxDS" IgnoreDupParams="False" SQL.Text="SELECT        &#13;&#10;	P_VKZ.Key_VKZ_Izdel,	&#13;&#10;	T1.Key_VKZ,&#13;&#10;	dbo.P_VKZ_GetTree(T1.Key_VKZ) VKZ,&#13;&#10;	T1.Key_Pasport, &#13;&#10;	Pr_Pasp.Cod_Pasp,&#13;&#10;	T_VPredm.Cod_Predm,&#13;&#10;	T_VPredm.Name_Predm,&#13;&#10;&#13;&#10;	T1.Key_VKZ_To, &#13;&#10;	dbo.P_VKZ_GetTree(Key_VKZ_To) VKZ_TO,&#13;&#10;	T1.Key_VKZ_Izdel_To&#13;&#10;&#13;&#10;&#13;&#10;FROM            &#13;&#10;	dbo.P_VKZ_OUTER( :Key_VKZ ) AS T1&#13;&#10;	&#13;&#10;	INNER JOIN Pr_Pasp&#13;&#10;		ON Pr_Pasp.Key_Pasport = T1.Key_Pasport&#13;&#10;	INNER JOIN T_VPredm&#13;&#10;		ON T_VPredm.Key_Predm = Pr_Pasp.Key_Predm&#13;&#10;&#13;&#10;	INNER JOIN P_VKZ&#13;&#10;		ON P_VKZ.Key_VKZ = T1.Key_VKZ&#13;&#10;ORDER BY VKZ	  " PropData="05704C6566740388000470546F7002380A506172616D657465727301010C24000000204E616D653D224B65795F564B5A222044617461547970653D226674556E6B6E6F776E220000"/>
+  </TfrxDataPage>
+  <TfrxReportPage Name="Page1" Orientation="poLandscape" PaperWidth="297" PaperHeight="210" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" Frame.Typ="0" MirrorMode="0" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="39,685065" Left="0" Top="18,89765" Width="1046,92981">
+      <TfrxMemoView Name="Memo2" Align="baWidth" AllowVectorExport="True" Left="0" Top="0" Width="1046,92981" Height="39,685065" Font.Charset="1" Font.Color="0" Font.Height="-21" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="ÐžÑˆÐ¸Ð±ÐºÐ¸ Ð¿ÐµÑ€ÐµÐ½Ð¾ÑÐ° / Ñ€Ð°Ð·Ð´ÐµÐ»ÐµÐ½Ð¸Ñ"/>
+    </TfrxReportTitle>
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="20,787415" Left="0" Top="183,307205" Width="1046,92981" ColumnWidth="0" ColumnGap="0" DataSet="OUTDATA" DataSetName="OUTDATA" RowCount="0" Stretched="True">
+      <TfrxMemoView Name="OUTDATAKey_VKZ_Izdel" IndexTag="1" AllowVectorExport="True" Left="442,20501" Top="0" Width="103,937075" Height="18,89765" StretchMode="smMaxHeight" DataSet="OUTDATA" DataSetName="OUTDATA" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" Text="[OUTDATA.&#34;Key_VKZ_Izdel&#34;]/[OUTDATA.&#34;Key_VKZ&#34;]&#13;&#10;[OUTDATA.&#34;Key_VKZ_Izdel_To&#34;]/[OUTDATA.&#34;Key_VKZ_To&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="OUTDATAVKZ" IndexTag="1" AllowVectorExport="True" Left="546,142085" Top="0" Width="500,787725" Height="18,89765" StretchMode="smMaxHeight" DataSet="OUTDATA" DataSetName="OUTDATA" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" Text="[OUTDATA.&#34;VKZ&#34;]&#13;&#10;[OUTDATA.&#34;VKZ_TO&#34;]"/>
+      <TfrxMemoView Name="OUTDATACod_Pasp" IndexTag="1" AllowVectorExport="True" Left="0" Top="0" Width="162,51979" Height="18,89765" StretchMode="smMaxHeight" DataField="Cod_Pasp" DataSet="OUTDATA" DataSetName="OUTDATA" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="[OUTDATA.&#34;Cod_Pasp&#34;]"/>
+      <TfrxMemoView Name="OUTDATACod_Predm" IndexTag="1" AllowVectorExport="True" Left="162,51979" Top="0" Width="279,68522" Height="18,89765" StretchMode="smMaxHeight" DataSet="OUTDATA" DataSetName="OUTDATA" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" VAlign="vaCenter" Text="[OUTDATA.&#34;Cod_Predm&#34;] [OUTDATA.&#34;Name_Predm&#34;]"/>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="22,67718" Left="0" Top="264,5671" Width="1046,92981">
+      <TfrxMemoView Name="Memo1" Align="baRight" AllowVectorExport="True" Left="971,33921" Top="0" Width="75,5906" Height="18,89765" Frame.Typ="0" HAlign="haRight" Text="[Page#]"/>
+    </TfrxPageFooter>
+    <TfrxHeader Name="Header1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="41,57483" Left="0" Top="119,055195" Width="1046,92981" ReprintOnNewPage="True" Stretched="True">
+      <TfrxMemoView Name="Memo3" IndexTag="1" AllowVectorExport="True" Left="442,20501" Top="0" Width="103,937075" Height="18,89765" StretchMode="smMaxHeight" DataSet="OUTDATA" DataSetName="OUTDATA" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="#Ð˜Ð·Ð´ÐµÐ»Ð¸Ðµ/#ÐŸÐ¾Ð·">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo4" IndexTag="1" AllowVectorExport="True" Left="546,142085" Top="0" Width="500,787725" Height="18,89765" StretchMode="smMaxHeight" DataSet="OUTDATA" DataSetName="OUTDATA" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="ÐŸÑƒÑ‚ÑŒ">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo5" IndexTag="1" AllowVectorExport="True" Left="0" Top="0" Width="162,51979" Height="18,89765" StretchMode="smMaxHeight" DataSet="OUTDATA" DataSetName="OUTDATA" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="ÐŸÐ°ÑÐ¿Ð¾Ñ€Ñ‚"/>
+      <TfrxMemoView Name="Memo6" IndexTag="1" AllowVectorExport="True" Left="162,51979" Top="0" Width="279,68522" Height="18,89765" StretchMode="smMaxHeight" DataSet="OUTDATA" DataSetName="OUTDATA" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Ð”Ð¡Ð•">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxHeader>
+  </TfrxReportPage>
+</TfrxReport>

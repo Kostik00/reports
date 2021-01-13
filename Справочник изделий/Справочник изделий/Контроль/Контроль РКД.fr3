@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Version="5.5.2" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="Ïî óìîë÷àíèþ" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="42850,6320806713" ReportOptions.Description.Text="" ReportOptions.Name="Êîíòðîëü ÐÊÄ.fr3 Ñïðàâî÷íèê èçäåëèé" ReportOptions.LastChange="42852,6816459375" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;procedure MasterData1OnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;  RKDQryDate_Reg.Color:=clNone;&#13;&#10;  if &#60;RKDQry.&#34;Date_Reg&#34;&#62; &#62; 0 then&#13;&#10;    if &#60;RKDQry.&#34;DataRKD&#34;&#62; &#62; &#60;RKDQry.&#34;Date_Reg&#34;&#62; then&#13;&#10;       RKDQryDate_Reg.Color:=$0080FF80&#13;&#10;    else&#13;&#10;       RKDQryDate_Reg.Color:=$008080FF&#13;&#10;&#13;&#10;end;&#13;&#10;&#13;&#10;procedure DialogPage1OnActivate(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;  DateFrom.Date:=Date;&#13;&#10;  DateTo.Date:=Date;&#13;&#10;&#13;&#10;end;&#13;&#10;&#13;&#10;begin&#13;&#10;&#13;&#10;end." StoreInDFM="False">
+  <Datasets>
+    <item DataSet="RKDQry" DataSetName="RKDQry"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000">
+    <TfrxERQuery Name="RKDQry" UserName="RKDQry" CloseDataSource="True" FieldAliases.Text="" BCDToCurrency="False" IgnoreDupParams="False" SQL.Text="&#13;&#10;SELECT        &#13;&#10;	T_VPredm.Cod_Predm, &#13;&#10;	T_VPredm.Name_Predm, &#13;&#10;	Min(P_VKZ.DataRKD) DataRKD, &#13;&#10;	B_Doc.Key_Doc, &#13;&#10;	B_Doc.Cod_Vid_Doc, &#13;&#10;	B_Doc.Inv_Num, &#13;&#10;	B_Doc.Date_Reg&#13;&#10;FROM            &#13;&#10;    P_VKZ&#13;&#10;	LEFT JOIN B_Doc &#13;&#10;	  &#13;&#10;		ON B_Doc.Key_Predm = P_VKZ.Key_Predm &#13;&#10;	INNER JOIN T_VPredm &#13;&#10;		ON P_VKZ.Key_Predm = T_VPredm.Key_Predm&#13;&#10;WHERE        &#13;&#10;	    (P_VKZ.Key_VKZ_Master IS NULL) &#13;&#10;	AND (P_VKZ.DataRKD IS NOT NULL) &#13;&#10;	AND (B_Doc.Cod_Vid_Doc = '!!!')&#13;&#10;GROUP BY 	&#13;&#10;	T_VPredm.Cod_Predm, &#13;&#10;	T_VPredm.Name_Predm, &#13;&#10;	--Min(P_VKZ.DataRKD) DataRKD, &#13;&#10;	B_Doc.Key_Doc, &#13;&#10;	B_Doc.Cod_Vid_Doc, &#13;&#10;	B_Doc.Inv_Num, &#13;&#10;	B_Doc.Date_Reg&#13;&#10;HAVING Min(P_VKZ.DataRKD) BETWEEN :DateFrom AND :DateTo                                                                                        &#13;&#10;  &#13;&#10;ORDER BY DataRKD  " PropData="05704C65667403B4000470546F70025C0A506172616D657465727301010C41000000204E616D653D224461746546726F6D222044617461547970653D2266744461746554696D65222045787072657373696F6E3D224461746546726F6D2E446174652200010C3D000000204E616D653D2244617465546F222044617461547970653D2266744461746554696D65222045787072657373696F6E3D2244617465546F2E44617465220000"/>
+  </TfrxDataPage>
+  <TfrxDialogPage Name="DialogPage1" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Tahoma" Font.Style="0" Height="200" ClientHeight="161" Left="300" Top="124" Width="300" ClientWidth="284" OnActivate="DialogPage1OnActivate">
+    <TfrxDateEditControl Name="DateFrom" Left="116" Top="36" Width="145" Height="21" ShowHint="True" Color="-16777211" Date="42852" Time="42852" WeekNumbers="False"/>
+    <TfrxDateEditControl Name="DateTo" Left="116" Top="72" Width="145" Height="21" ShowHint="True" Color="-16777211" Date="42852,9999884259" Time="42852,9999884259" WeekNumbers="False"/>
+    <TfrxButtonControl Name="Button1" Left="184" Top="124" Width="75" Height="25" ShowHint="True" Caption="OK" ModalResult="1"/>
+  </TfrxDialogPage>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="56,69295" Left="0" Top="18,89765" Width="718,1107">
+      <TfrxMemoView Name="Memo6" Align="baWidth" Left="0" Top="0" Width="718,1107" Height="56,69295" Font.Charset="1" Font.Color="0" Font.Height="-19" Font.Name="Times New Roman" Font.Style="0" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="ÐžÑ‚Ñ‡ÐµÑ‚ Ð¾ ÑÐ²Ð¾ÐµÐ²Ñ€ÐµÐ¼ÐµÐ½Ð½Ð¾ÑÑ‚Ð¸ Ð¿Ð¾Ð´Ð³Ð¾Ñ‚Ð¾Ð²ÐºÐ¸ Ð ÐšÐ”&#13;&#10;Ð·Ð° Ð¿ÐµÑ€Ð¸Ð¾Ð´ Ñ [DateFrom.Date] and [DateTo.Date]">
+        <Formats>
+          <item FormatStr="dd.mm.yyyy" Kind="fkDateTime"/>
+          <item FormatStr="dd.mm.yyyy" Kind="fkDateTime"/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxReportTitle>
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="22,67718" Left="0" Top="196,53556" Width="718,1107" OnBeforePrint="MasterData1OnBeforePrint" ColumnWidth="0" ColumnGap="0" DataSet="RKDQry" DataSetName="RKDQry" RowCount="0" Stretched="True">
+      <TfrxMemoView Name="RKDQryCod_Predm" Left="0" Top="0" Width="415,7483" Height="22,67718" StretchMode="smMaxHeight" DataSet="RKDQry" DataSetName="RKDQry" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" VAlign="vaCenter" Text="[RKDQry.&#34;Cod_Predm&#34;] - [RKDQry.&#34;Name_Predm&#34;]"/>
+      <TfrxMemoView Name="RKDQryDataRKD" Left="415,7483" Top="0" Width="94,48818898" Height="22,67718" StretchMode="smMaxHeight" DataField="DataRKD" DataSet="RKDQry" DataSetName="RKDQry" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="[RKDQry.&#34;DataRKD&#34;]"/>
+      <TfrxMemoView Name="RKDQryInv_Num" Left="604,7248" Top="0" Width="113,3859" Height="22,67718" StretchMode="smMaxHeight" DataField="Inv_Num" DataSet="RKDQry" DataSetName="RKDQry" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="[RKDQry.&#34;Inv_Num&#34;]"/>
+      <TfrxMemoView Name="RKDQryDate_Reg" Left="510,23655" Top="0" Width="94,48818898" Height="22,67718" StretchMode="smMaxHeight" DataField="Date_Reg" DataSet="RKDQry" DataSetName="RKDQry" DisplayFormat.FormatStr="dd.mm.yyyy" DisplayFormat.Kind="fkDateTime" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" Fill.BackColor="8421631" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="[RKDQry.&#34;Date_Reg&#34;]"/>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="22,67718" Left="0" Top="279,68522" Width="718,1107">
+      <TfrxMemoView Name="Memo1" Left="642,5201" Top="0" Width="75,5906" Height="18,89765" HAlign="haRight" Text="[Page#]"/>
+    </TfrxPageFooter>
+    <TfrxHeader Name="Header1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="37,7953" Left="0" Top="136,06308" Width="718,1107" ReprintOnNewPage="True">
+      <TfrxMemoView Name="Memo2" Left="0" Top="0" Width="415,7483" Height="37,79527559" StretchMode="smMaxHeight" DataSet="RKDQry" DataSetName="RKDQry" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" VAlign="vaCenter" Text="Ð˜Ð·Ð´ÐµÐ»Ð¸Ðµ">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo3" Left="415,7483" Top="0" Width="94,48818898" Height="37,79527559" StretchMode="smMaxHeight" DataSet="RKDQry" DataSetName="RKDQry" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Ð”Ð°Ñ‚Ð° Ð ÐšÐ”"/>
+      <TfrxMemoView Name="Memo4" Left="604,7248" Top="0" Width="113,3859" Height="37,79527559" StretchMode="smMaxHeight" DataSet="RKDQry" DataSetName="RKDQry" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Ð˜Ð½Ð². â„–"/>
+      <TfrxMemoView Name="Memo5" Left="510,23655" Top="0" Width="94,48818898" Height="37,79527559" StretchMode="smMaxHeight" DataSet="RKDQry" DataSetName="RKDQry" DisplayFormat.FormatStr="dd.mm.yyyy" DisplayFormat.Kind="fkDateTime" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" Fill.BackColor="8421631" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Ð”Ð°Ñ‚Ð° ÑÐ´Ð°Ñ‡Ð¸ Ð² Ð°Ñ€Ñ…Ð¸Ð²"/>
+    </TfrxHeader>
+  </TfrxReportPage>
+</TfrxReport>

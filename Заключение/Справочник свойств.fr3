@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Version="4.15" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="По умолчанию" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="42046,3430155787" ReportOptions.Description.Text="" ReportOptions.Name="Справочник свойств.fr3 Заключение № 683от 23.08.2005" ReportOptions.LastChange="42095,6019029051" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;begin&#13;&#10;&#13;&#10;end." StoreInDFM="False" PropData="044C65667403800203546F70022008446174617365747301010C2A00000020446174615365743D2245525175657279312220446174615365744E616D653D224552517565727931220000095661726961626C65730100055374796C650100">
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000">
+    <TfrxERQuery Name="ERQuery1" UserName="ERQuery1" CloseDataSource="True" FieldAliases.Text="" BCDToCurrency="False" IgnoreDupParams="False" SQL.Text="SELECT     T_TechTreb.Cod_TT, T_TechTreb.Name_TT, T_Sert_Attr.Attr, T_Sert_Attr_TT.OrderPos&#13;&#10;FROM         T_TechTreb LEFT OUTER JOIN&#13;&#10;                      T_Sert_Attr_TT ON T_Sert_Attr_TT.Cod_TT = T_TechTreb.Cod_TT LEFT OUTER JOIN&#13;&#10;                      T_Sert_Attr ON T_Sert_Attr.Key_Sert_Attr = T_Sert_Attr_TT.Key_Sert_Attr&#13;&#10;ORDER BY T_TechTreb.Cod_TT, T_Sert_Attr_TT.OrderPos  " PropData="05704C65667402440470546F7002380A506172616D65746572730100"/>
+  </TfrxDataPage>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" Height="22,67718" Left="0" Top="18,89765" Width="718,1107"/>
+    <TfrxMasterData Name="MasterData1" Height="18,89765" Left="0" Top="147,40167" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="ERQuery1" DataSetName="ERQuery1" RowCount="0">
+      <TfrxMemoView Name="ERQuery1Attr" Left="75,5906" Top="0" Width="529,1342" Height="18,89765" ShowHint="False" AllowHTMLTags="True" DataField="Attr" DataSet="ERQuery1" DataSetName="ERQuery1" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[ERQuery1.&#34;Attr&#34;]"/>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" Height="22,67718" Left="0" Top="226,7718" Width="718,1107">
+      <TfrxMemoView Name="Memo1" Left="642,5201" Top="0" Width="75,5906" Height="18,89765" ShowHint="False" HAlign="haRight" Text="[Page#]"/>
+    </TfrxPageFooter>
+    <TfrxGroupHeader Name="GroupHeader1" Height="22,67718" Left="0" Top="102,04731" Width="718,1107" Condition="ERQuery1.&#34;Cod_TT&#34;">
+      <TfrxMemoView Name="ERQuery1Name_TT" Align="baWidth" Left="0" Top="0" Width="718,1107" Height="18,89765" ShowHint="False" Color="13434879" DataSet="ERQuery1" DataSetName="ERQuery1" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[ERQuery1.&#34;Cod_TT&#34;] - [ERQuery1.&#34;Name_TT&#34;]"/>
+    </TfrxGroupHeader>
+  </TfrxReportPage>
+</TfrxReport>

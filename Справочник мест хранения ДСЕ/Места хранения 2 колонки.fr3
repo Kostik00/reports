@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Version="5.5.2" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="По умолчанию" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="41172,7219212269" ReportOptions.Description.Text="" ReportOptions.Name="Места хранения 3 колонки.fr3 Справочник мест хранения ДСЕ" ReportOptions.LastChange="43437,6233936458" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;procedure GroupHeader2OnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;    if Engine.FreeSpace &#60; (2* MasterData1.Height) then Engine.NewPage;                                                                                                           end;&#13;&#10;&#13;&#10;procedure Button1OnClick(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;  GroupHeader1.Visible:= not PrintAll.Checked;&#13;&#10;  GroupHeader2.Visible:= not PrintAll.Checked;&#13;&#10;end;&#13;&#10;&#13;&#10;procedure DialogPage1OnActivate(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;  MyRestoreString('FilterStr',FilterEdit.Text);&#13;&#10;&#13;&#10;end;&#13;&#10;&#13;&#10;procedure DialogPage1OnDeactivate(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;  MySaveString('FilterStr',FilterEdit.Text);&#13;&#10;&#13;&#10;end;&#13;&#10;&#13;&#10;begin&#13;&#10;&#13;&#10;end." StoreInDFM="False">
+  <Datasets>
+    <item DataSet="ERQuery1" DataSetName="ERQuery1"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000">
+    <TfrxERQuery Name="ERQuery1" UserName="ERQuery1" CloseDataSource="True" FieldAliases.Text="" BCDToCurrency="False" IgnoreDupParams="False" SQL.Text="SELECT     *&#13;&#10;FROM         Pr_Pasp_Place&#13;&#10;WHERE&#13;&#10;  Cod_Pasp_Place like :Cod&#13;&#10;  AND ((DataLength(Cod_Pasp_Place) &#60;= 2) OR ( :PrintAll = 0))                                                                       &#13;&#10;ORDER BY &#13;&#10;       SUBSTRING(Cod_Pasp_Place,1,7) DESC, SUBSTRING(Cod_Pasp_Place,8,5)                            &#13;&#10;  " PropData="05704C65667402480470546F7002400A506172616D657465727301010C3C000000204E616D653D22436F64222044617461547970653D226674537472696E67222045787072657373696F6E3D2246696C746572456469742E546578742200010C43000000204E616D653D225072696E74416C6C222044617461547970653D226674496E7465676572222045787072657373696F6E3D225072696E74416C6C2E436865636B6564220000"/>
+  </TfrxDataPage>
+  <TfrxDialogPage Name="DialogPage1" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Tahoma" Font.Style="0" Height="201" ClientHeight="162" Left="356" Top="129" Width="300" ClientWidth="284" OnActivate="DialogPage1OnActivate" OnDeactivate="DialogPage1OnDeactivate">
+    <TfrxCheckBoxControl Name="PrintAll" Left="32" Top="80" Width="209" Height="17" ShowHint="True" Caption="Печатать   верхний уровень " Color="-16777201"/>
+    <TfrxEditControl Name="FilterEdit" Left="144" Top="28" Width="121" Height="21" ShowHint="True" Color="-16777211" MaxLength="0" PasswordChar="0" Text="%"/>
+    <TfrxLabelControl Name="Label1" Left="28" Top="32" Width="80" Height="13" ShowHint="True" Caption="Подразделение" Color="-16777201"/>
+    <TfrxButtonControl Name="Button1" Left="188" Top="124" Width="75" Height="25" ShowHint="True" Caption="Button1" ModalResult="1" OnClick="Button1OnClick"/>
+  </TfrxDialogPage>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="170,07885" Left="0" Top="222,99227" Width="718,1107" Columns="2" ColumnWidth="359,055118110236" ColumnGap="0" DataSet="ERQuery1" DataSetName="ERQuery1" KeepHeader="True" RowCount="0">
+      <TfrxBarCodeView Name="BarCode1" Left="34,01577" Top="22,67718" Width="284" Height="34,01577" BarType="bcCode39" CalcCheckSum="True" Expression="'1 4 '+IntToStr(&#60;ERQuery1.&#34;Key_Pasp_Place&#34;&#62;)" Rotation="0" ShowText="False" Text="12345678" WideBarRatio="2" Zoom="2" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0"/>
+      <TfrxMemoView Name="ERQuery1F_Name_Sub" Left="0" Top="68,03154" Width="359,05535" Height="56,69295" DataSet="ERQuery1" DataSetName="ERQuery1" Font.Charset="1" Font.Color="-16777208" Font.Height="-29" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="[ERQuery1.&#34;Cod_Pasp_Place&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="20" Left="0" Top="453,5436" Width="718,1107">
+      <TfrxMemoView Name="Memo1" Align="baCenter" Left="321,26005" Top="0" Width="75,5906" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[Page#]"/>
+    </TfrxPageFooter>
+    <TfrxGroupHeader Name="GroupHeader1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="22,67718" Left="0" Top="132,28355" Width="718,1107" Condition="Copy(&#60;ERQuery1.&#34;Cod_Pasp_Place&#34;&#62;,1,2)">
+      <TfrxMemoView Name="ERQuery1Name_Sub" Left="0" Top="0" Width="718,1107" Height="22,67718" DataSet="ERQuery1" DataSetName="ERQuery1" Font.Charset="1" Font.Color="-16777208" Font.Height="-19" Font.Name="Arial" Font.Style="6" Frame.Typ="15" Fill.BackColor="16774348" ParentFont="False" VAlign="vaCenter" Text="[ERQuery1.&#34;Name_Pasp_Place&#34;]"/>
+    </TfrxGroupHeader>
+    <TfrxReportTitle Name="ReportTitle1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="52,91342" Left="0" Top="18,89765" Width="718,1107">
+      <TfrxMemoView Name="Memo3" Align="baWidth" Left="0" Top="3,77953" Width="718,1107" Height="34,01577" Font.Charset="1" Font.Color="0" Font.Height="-19" Font.Name="Times New Roman" Font.Style="0" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="РЎРїСЂР°РІРѕС‡РЅРёРє РјРµСЃС‚ С…СЂР°РЅРµРЅРёСЏ"/>
+    </TfrxReportTitle>
+    <TfrxGroupHeader Name="GroupHeader2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="22,67718" Left="0" Top="177,63791" Width="718,1107" OnBeforePrint="GroupHeader2OnBeforePrint" Condition="Copy(&#60;ERQuery1.&#34;Cod_Pasp_Place&#34;&#62;,1,4)" KeepTogether="True">
+      <TfrxMemoView Name="Memo4" Left="0" Top="0" Width="718,1107" Height="22,67718" DataSet="ERQuery1" DataSetName="ERQuery1" Font.Charset="1" Font.Color="-16777208" Font.Height="-19" Font.Name="Arial" Font.Style="6" Frame.Typ="15" Fill.BackColor="16774348" ParentFont="False" VAlign="vaCenter" Text="[Copy(&#60;ERQuery1.&#34;Cod_Pasp_Place&#34;&#62;,1,4)]"/>
+    </TfrxGroupHeader>
+  </TfrxReportPage>
+</TfrxReport>

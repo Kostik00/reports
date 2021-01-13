@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Version="5.5.2" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="TSC TTP-343C" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="42458,6101259722" ReportOptions.Description.Text="" ReportOptions.Name="�����  �������� 1.fr3 ������ �������" ReportOptions.LastChange="42954,6357232407" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;begin&#13;&#10;&#13;&#10;end." StoreInDFM="False">
+  <Datasets>
+    <item DataSet="MainFrxDS" DataSetName="MainDS"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="75" PaperHeight="53" PaperSize="256" LeftMargin="2" RightMargin="2" TopMargin="2" BottomMargin="2" ColumnWidth="0" ColumnPositions.Text="" LargeDesignHeight="True" HGuides.Text="" VGuides.Text="">
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="177,63791" Left="0" Top="18,89765" Width="268,34663" OnBeforePrint="MasterData1OnBeforePrint" ColumnWidth="0" ColumnGap="0" RowCount="1">
+      <TfrxMemoView Name="Memo1" Align="baWidth" Left="0" Top="0" Width="268,34663" Height="177,63791" StretchMode="smActualHeight" AllowHTMLTags="True" Font.Charset="1" Font.Color="0" Font.Height="-15" Font.Name="Times New Roman" Font.Style="0" LineSpacing="6" ParentFont="False" Text="&#60;B&#62;Contact Name:&#60;/B&#62;   lian xingmin&#13;&#10;        tel: 13828880849&#13;&#10;&#60;B&#62;Street Address:&#60;/B&#62; xiandaizhichuang &#13;&#10;    B  tower 27A huaqiangbei road futian &#13;&#10;    district&#13;&#10;&#60;B&#62;City:&#60;/B&#62;   shen zhen shi  &#13;&#10;&#60;B&#62;State/Province/Region:&#60;/B&#62; guang dong sheng&#13;&#10;&#60;B&#62;Country: CHINA &#60;/B&#62;&#13;&#10;&#60;B&#62;Zip/Postal Code: 518131&#60;/B&#62;"/>
+    </TfrxMasterData>
+    <TfrxMasterData Name="MasterData2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="177,63791" Left="0" Top="219,21274" Width="268,34663" OnBeforePrint="MasterData1OnBeforePrint" ColumnWidth="0" ColumnGap="0" RowCount="1">
+      <TfrxMemoView Name="Memo2" Align="baWidth" Left="0" Top="0" Width="268,34663" Height="177,63791" StretchMode="smActualHeight" AllowHTMLTags="True" Font.Charset="1" Font.Color="0" Font.Height="-15" Font.Name="Times New Roman" Font.Style="0" LineSpacing="6" ParentFont="False" Text="&#60;B&#62;Contact name:&#60;/B&#62; Константин Юрьевич  &#13;&#10;    Заровный&#13;&#10;    tel: +7(918)552-61-65&#13;&#10;&#60;B&#62;Street Address:&#60;/B&#62;  Зеленый 2&#13;&#10;&#13;&#10;&#60;B&#62;City:&#60;/B&#62; Волгодонск &#13;&#10;&#60;B&#62;State/Province/Region:&#60;/B&#62; Ростовская обл.&#13;&#10;&#60;B&#62;Country: RUSSIA&#60;/B&#62;&#13;&#10;&#60;B&#62;Zip/Postal Code: 347375&#60;/B&#62;"/>
+    </TfrxMasterData>
+  </TfrxReportPage>
+</TfrxReport>

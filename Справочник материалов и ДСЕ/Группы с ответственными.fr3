@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Version="6.8.6" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="Ïî óìîë÷àíèþ" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="44175,4612868866" ReportOptions.Description.Text="" ReportOptions.LastChange="44175,4634023032" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;begin&#13;&#10;&#13;&#10;end." StoreInDFM="False">
+  <Datasets>
+    <item DataSet="GrQRY" DataSetName="Ãðóïïû"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000">
+    <TfrxERQuery Name="GrQRY" UserName="Ãðóïïû" CloseDataSource="True" FieldAliases.Text="" BCDToCurrency="False" IgnoreDupParams="False" SQL.Text="select Gr_Groups.* , S_ALL_Sub.Name_Sub&#13;&#10;FROM Gr_Groups&#13;&#10;	LEFT JOIN S_ALL_Sub&#13;&#10;		ON  S_ALL_Sub.Key_Sub_Ver = dbo.Gr_GetOtvSnabOnGr(Cod_Gr)&#13;&#10;WHERE Gr_Groups.Key_Sub_Ver_Snab IS NOT NULL                                                                                          &#13;&#10;order by Cod_Gr  " PropData="05704C65667402780470546F7002200A506172616D65746572730100"/>
+  </TfrxDataPage>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" Frame.Typ="0" MirrorMode="0" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="22,67718" Left="0" Top="16" Width="718,1107"/>
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="18,89765" Left="0" Top="60" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="GrQRY" DataSetName="Ãðóïïû" RowCount="0">
+      <TfrxMemoView Name="Memo2" IndexTag="1" AllowVectorExport="True" Left="0" Top="0" Width="96,378015" Height="18,89765" DataField="Cod_Gr" DataSet="GrQRY" DataSetName="Ãðóïïû" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" Text="[Ð“Ñ€ÑƒÐ¿Ð¿Ñ‹.&#34;Cod_Gr&#34;]"/>
+      <TfrxMemoView Name="Memo3" IndexTag="1" AllowVectorExport="True" Left="96,378015" Top="0" Width="444,094775" Height="18,89765" DataField="FullNameGr" DataSet="GrQRY" DataSetName="Ãðóïïû" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" Text="[Ð“Ñ€ÑƒÐ¿Ð¿Ñ‹.&#34;FullNameGr&#34;]"/>
+      <TfrxMemoView Name="Memo4" IndexTag="1" AllowVectorExport="True" Left="540,47279" Top="0" Width="177,63791" Height="18,89765" DataField="Name_Sub" DataSet="GrQRY" DataSetName="Ãðóïïû" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" Text="[Ð“Ñ€ÑƒÐ¿Ð¿Ñ‹.&#34;Name_Sub&#34;]"/>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="22,67718" Left="0" Top="100" Width="718,1107">
+      <TfrxMemoView Name="Memo1" AllowVectorExport="True" Left="642,5201" Top="0" Width="75,5906" Height="18,89765" Frame.Typ="0" HAlign="haRight" Text="[Page#]"/>
+    </TfrxPageFooter>
+  </TfrxReportPage>
+</TfrxReport>

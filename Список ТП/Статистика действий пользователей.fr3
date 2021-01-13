@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Version="5.5.2" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="По умолчанию" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="42831,608181169" ReportOptions.Description.Text="" ReportOptions.Name="Статистика действий пользователей.fr3 Список ТП" ReportOptions.LastChange="42831,6137329051" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;begin&#13;&#10;&#13;&#10;end." StoreInDFM="False">
+  <Datasets>
+    <item DataSet="ERQuery1" DataSetName="Статистика"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000">
+    <TfrxERQuery Name="ERQuery1" UserName="Статистика" CloseDataSource="True" FieldAliases.Text="" BCDToCurrency="False" IgnoreDupParams="False" SQL.Text="/****** Script for SelectTopNRows command from SSMS  ******/&#13;&#10;SELECT  &#13;&#10;	S_Subjects.Name_Sub,&#13;&#10;     DatePart(yy,[LogDate]) Y, &#13;&#10;	 DatePart(ww,[LogDate]) ww,&#13;&#10;	 AdData , Count([Key_Docum])  Cnt      &#13;&#10;    &#13;&#10;  FROM &#13;&#10;	 Sys_Log&#13;&#10;	INNER JOIN S_Subjects&#13;&#10;		ON S_Subjects.Cod_Sub= Sys_Log.UserName&#13;&#10;		AND S_Subjects.Key_Class=5&#13;&#10;&#13;&#10;  where &#13;&#10;	Docum like 'Тех. процесс'  &#13;&#10;	AND AdData like 'Изменение состояния ТП%'&#13;&#10; AND LogDate &#62;= '20170101'                                               &#13;&#10;GROUP BY &#13;&#10;S_Subjects.Name_Sub,&#13;&#10;DatePart(yy,[LogDate]),&#13;&#10;DatePart(ww,[LogDate]),&#13;&#10;AdData&#13;&#10;ORDER BY S_Subjects.Name_Sub, AdData, Y,ww    " PropData="05704C656674024C0470546F7002340A506172616D65746572730100"/>
+  </TfrxDataPage>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="20" Left="0" Top="18,89765" Width="718,1107"/>
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="20" Left="0" Top="181,41744" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="ERQuery1" DataSetName="Статистика" RowCount="0">
+      <TfrxMemoView Name="Memo2" Left="37,7953" Top="0" Width="113,3859" Height="18,89765" DataSet="ERQuery1" DataSetName="Статистика" Text="[РЎС‚Р°С‚РёСЃС‚РёРєР°.&#34;Y&#34;]  [РЎС‚Р°С‚РёСЃС‚РёРєР°.&#34;ww&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo4" Left="226,7718" Top="0" Width="79,37013" Height="18,89765" DataField="Cnt" DataSet="ERQuery1" DataSetName="Статистика" Text="[РЎС‚Р°С‚РёСЃС‚РёРєР°.&#34;Cnt&#34;]"/>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="20" Left="0" Top="260,78757" Width="718,1107">
+      <TfrxMemoView Name="Memo1" Left="642,5201" Top="0" Width="75,5906" Height="18,89765" HAlign="haRight" Text="[Page#]"/>
+    </TfrxPageFooter>
+    <TfrxGroupHeader Name="GroupHeader1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="18,89765" Left="0" Top="98,26778" Width="718,1107" Condition="Статистика.&#34;Name_Sub&#34;">
+      <TfrxMemoView Name="Memo3" Left="11,33859" Top="0" Width="400,63018" Height="18,89765" DataField="Name_Sub" DataSet="ERQuery1" DataSetName="Статистика" Text="[РЎС‚Р°С‚РёСЃС‚РёРєР°.&#34;Name_Sub&#34;]"/>
+    </TfrxGroupHeader>
+    <TfrxGroupHeader Name="GroupHeader2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="18,89765" Left="0" Top="139,84261" Width="718,1107" Condition="Статистика.&#34;AdData&#34;">
+      <TfrxMemoView Name="Memo5" Left="37,7953" Top="0" Width="400,63018" Height="18,89765" DataField="AdData" DataSet="ERQuery1" DataSetName="Статистика" Text="[РЎС‚Р°С‚РёСЃС‚РёРєР°.&#34;AdData&#34;]"/>
+    </TfrxGroupHeader>
+  </TfrxReportPage>
+</TfrxReport>

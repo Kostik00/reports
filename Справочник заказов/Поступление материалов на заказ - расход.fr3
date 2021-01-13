@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Version="5.6.18" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.OutlineExpand="False" PreviewOptions.OutlineVisible="True" PreviewOptions.OutlineWidth="500" PreviewOptions.Zoom="1" PrintOptions.Printer="Ïî óìîë÷àíèþ" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="38513,0822621875" ReportOptions.Description.Text="" ReportOptions.Name="Ïîñòóïëåíèå ìàòåðèàëîâ íà çàêàç - ðàñõîä.fr3 Ñïðàâî÷íèê çàêàçîâ" ReportOptions.LastChange="43739,4358910069" ScriptLanguage="PascalScript" ScriptText.Text="uses 'CommonEN.pas';&#13;&#10;Var&#13;&#10;  RootLevelTemp: Integer;&#13;&#10;  sLevelTemp:    String;&#13;&#10;&#13;&#10;&#13;&#10;function FnOst:double;&#13;&#10;var&#13;&#10;  RZ:double;&#13;&#10;begin&#13;&#10;  RZ:=&#60;Rashod.&#34;Rezerv&#34;&#62;-&#60;Rashod.&#34;TmpRashod&#34;&#62;;&#13;&#10;  if RZ&#60;0 then RZ:=0;&#13;&#10;&#13;&#10;  Result:=&#60;Rashod.&#34;Ost&#34;&#62;- RZ - &#60;Rashod.&#34;TmpRashod&#34;&#62;;&#13;&#10;  if Result&#60;0 then result:=0;&#13;&#10;end;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;function fnPrice:double;&#13;&#10;begin&#13;&#10;  RashodKolvo.Color:= clRed ;&#13;&#10;  Result:=0;&#13;&#10;  if   &#60;Rashod.&#34;Kolvo&#34;&#62; &#62; 0 then&#13;&#10;  begin&#13;&#10;    result:=&#60;Rashod.&#34;Sm&#34;&#62; / &#60;Rashod.&#34;Kolvo&#34;&#62;;&#13;&#10;    RashodKolvo.Color:= clNone;&#13;&#10;  end;&#13;&#10;end;&#13;&#10;&#13;&#10;procedure GroupHeader1OnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;  Outline.LevelRoot;&#13;&#10;  RootLevelTemp:=&#60;Line&#62;;&#13;&#10;  Outline.AddItem(IntToStr(&#60;Line&#62;)+'. '+&#60;Rashod.&#34;FullNameGr&#34;&#62;);&#13;&#10;end;&#13;&#10;&#13;&#10;procedure MasterData1OnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;  if &#60;Line&#62; &#62; 1 then Outline.LevelUp;&#13;&#10;  sLevelTemp:=IntToStr(RootLevelTemp)+'.'+IntToStr(&#60;Line&#62;);&#13;&#10;  Outline.AddItem(sLevelTemp+'. '+IntToStr(&#60;Rashod.&#34;Key_Predm&#34;&#62;)+' '+&#60;Rashod.&#34;Name_Predm&#34;&#62;+' '+&#60;Rashod.&#34;Sortam&#34;&#62;+' '+&#60;Rashod.&#34;Type_NTD_Sortam&#34;&#62;+' '+&#60;Rashod.&#34;Name_NTD_Sortam&#34;&#62;+' '&#13;&#10;  +&#60;Rashod.&#34;Marka&#34;&#62;+' '+&#60;Rashod.&#34;Type_NTD_Marka&#34;&#62;+' '+&#60;Rashod.&#34;Name_NTD_Marka&#34;&#62;);&#13;&#10;{[Rashod.&#34;Name_Predm&#34;] [Rashod.&#34;Sortam&#34;] [Rashod.&#34;Type_NTD_Sortam&#34;] [Rashod.&#34;Name_NTD_Sortam&#34;]&#13;&#10;[Rashod.&#34;Marka&#34;] [Rashod.&#34;Type_NTD_Marka&#34;][Rashod.&#34;Name_NTD_Marka&#34;]}&#13;&#10;end;&#13;&#10;&#13;&#10;procedure DialogPage1OnActivate(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;  CodZak.Text:=&#60;MainDS.&#34;Cod_Zak&#34;&#62;;&#13;&#10;end;&#13;&#10;&#13;&#10;procedure Label2OnClick(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;&#13;&#10;end;&#13;&#10;&#13;&#10;begin&#13;&#10;  RootLevelTemp:=0;&#13;&#10;  sLevelTemp:='';&#13;&#10;end." StoreInDFM="False">
+  <Datasets>
+    <item DataSet="MainFrxDS" DataSetName="MainDS"/>
+    <item DataSet="Rashod" DataSetName="Rashod"/>
+    <item DataSet="DocumQRY" DataSetName="Äîêóìåíòû"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000">
+    <TfrxERQuery Name="Rashod" UserName="Rashod" CloseDataSource="True" FieldAliases.Text="" BCDToCurrency="False" IgnoreDupParams="False" SQL.Text=" exec dbo.A_SkladPrihodM1   &#13;&#10;        @Cod_Zak=:Cod_Zak ,  &#13;&#10;        @Filter = :Filter                                           " PropData="05704C65667402780470546F7002440A506172616D657465727301010C3C000000204E616D653D22436F645F5A616B222044617461547970653D226674537472696E67222045787072657373696F6E3D22436F645A616B2E546578742200010C42000000204E616D653D2246696C746572222044617461547970653D226674496E7465676572222045787072657373696F6E3D22436865636B426F78312E436865636B6564220000"/>
+    <TfrxERQuery Name="DocumQRY" UserName="Äîêóìåíòû" CloseDataSource="True" FieldAliases.Text="" BCDToCurrency="False" Master="Rashod" IgnoreDupParams="False" SQL.Text="SELECT DISTINCT                &#13;&#10;       A_Nacl.Num_Nacl, &#13;&#10;       A_Nacl.Data_Nacl,&#13;&#10;       A_Nacl.Osnovanie,  &#13;&#10;       A_Nacl_Str.Key_ID_Mat, &#13;&#10;--       (A_Nacl_Str.Sm/A_Nacl_Str.KolvoInBaseEd)* A_Nacl_Str_LZK.Kolvo Sm,&#13;&#10;--       A_Nacl_Str_LZK.Kolvo,&#13;&#10;       S_Subjects.Name_Sub,&#13;&#10;       S_All_Sub.Name_Sub Name_Sub_MOL                                            &#13;&#10;FROM &#13;&#10;    A_Nacl&#13;&#10;    INNER JOIN S_SubVer&#13;&#10;           ON S_SubVer.Key_Sub_Ver = A_Nacl.Key_Sub_Ver_From&#13;&#10;    INNER JOIN S_Subjects&#13;&#10;           ON S_SubVer.Key_Sub=S_Subjects.Key_Sub&#13;&#10;    INNER JOIN A_Nacl_Str &#13;&#10;           ON A_Nacl.Key_Nacl = A_Nacl_Str.Key_Nacl &#13;&#10;    INNER JOIN A_Nacl_Str_LZK &#13;&#10;           ON A_Nacl_Str.Key_Nacl_Str = A_Nacl_Str_LZK.Key_Nacl_Str &#13;&#10;    INNER JOIN A_LZK &#13;&#10;           ON A_Nacl_Str_LZK.Key_LZK = A_LZK.Key_LZK&#13;&#10;    LEFT JOIN  S_All_Sub                                                           &#13;&#10;           ON S_All_Sub.Key_Sub_Ver = A_Nacl.Key_Sub_Ver_MOL_From&#13;&#10;           &#13;&#10;WHERE     &#13;&#10;           (S_Subjects.Key_Class = 2 ) &#13;&#10;       AND (A_LZK.Cod_Zak = :Cod_Zak)&#13;&#10;       AND A_Nacl_Str.KolvoInBaseEd    &#60;&#62;      0&#13;&#10;       AND A_Nacl_Str.Key_ID_Mat       =       :Key_ID_Mat                          " PropData="05704C65667403C4000470546F7002440A506172616D657465727301010C53000000204E616D653D22436F645F5A616B222044617461547970653D226674537472696E67222045787072657373696F6E3D22262336303B4D61696E44532E262333343B436F645F5A616B262333343B262336323B2200010C27000000204E616D653D224B65795F49445F4D6174222044617461547970653D226674556E6B6E6F776E220000"/>
+  </TfrxDataPage>
+  <TfrxDialogPage Name="DialogPage1" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Tahoma" Font.Style="0" Height="241" ClientHeight="210" Left="325" Top="129" Width="283" ClientWidth="275" OnActivate="DialogPage1OnActivate">
+    <TfrxButtonControl Name="Button1" Left="184" Top="172" Width="75" Height="25" ShowHint="True" Caption="ÎÊ" ModalResult="1"/>
+    <TfrxEditControl Name="CodZak" Left="140" Top="52" Width="121" Height="21" ShowHint="True" Color="-16777211" MaxLength="0" PasswordChar="0" Text="CodZak"/>
+    <TfrxLabelControl Name="Label1" Left="28" Top="56" Width="29" Height="13" ShowHint="True" Caption="Çàêàç" Color="-16777201"/>
+    <TfrxLabelControl Name="Label2" Left="28" Top="84" Width="231" Height="13" ShowHint="True" Caption="Ìîæíî èñïîëüçîâàòü øàáëîí íàïðèìåð 343%" Color="-16777201" OnClick="Label2OnClick"/>
+    <TfrxCheckBoxControl Name="CheckBox1" Left="28" Top="120" Width="237" Height="17" ShowHint="True" Visible="False" Caption="Ñêðûâàòü ìàòåðèàëû åñëè íåò äâèæåíèÿ" Checked="True" State="cbChecked" Color="-16777201"/>
+  </TfrxDialogPage>
+  <TfrxReportPage Name="Page1" Orientation="poLandscape" PaperWidth="297" PaperHeight="210" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="18,89765" Left="0" Top="151,1812" Width="1046,92981" OnBeforePrint="MasterData1OnBeforePrint" ColumnWidth="0" ColumnGap="0" DataSet="Rashod" DataSetName="Rashod" PrintIfDetailEmpty="True" RowCount="0" Stretched="True">
+      <TfrxMemoView Name="RashodKolvo" Left="706,77211" Top="0" Width="56,69295" Height="18,89765" StretchMode="smMaxHeight" DataSet="Rashod" DataSetName="Rashod" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haRight" ParentFont="False" VAlign="vaCenter" Text="[Rashod.&#34;Kolvo&#34;]">
+        <Formats>
+          <item FormatStr="%2.2n" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="RashodName_Predm" Left="52,91342" Top="0" Width="200,31509" Height="18,89765" StretchMode="smMaxHeight" DataSet="Rashod" DataSetName="Rashod" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" VAlign="vaCenter" Text="[Rashod.&#34;Name_Predm&#34;] [Rashod.&#34;Sortam&#34;] [Rashod.&#34;Type_NTD_Sortam&#34;] [Rashod.&#34;Name_NTD_Sortam&#34;] &#13;&#10;[Rashod.&#34;Marka&#34;] [Rashod.&#34;Type_NTD_Marka&#34;][Rashod.&#34;Name_NTD_Marka&#34;] ([Rashod.&#34;Key_ID_Mat&#34;])">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="RashodName_K_Ed" Left="680,3154" Top="0" Width="26,45671" Height="18,89765" StretchMode="smMaxHeight" DataField="Name_K_Ed" DataSet="Rashod" DataSetName="Rashod" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="[Rashod.&#34;Name_K_Ed&#34;]"/>
+      <TfrxMemoView Name="Memo2" Left="253,22851" Top="0" Width="132,28355" Height="18,89765" StretchMode="smMaxHeight" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" VAlign="vaCenter" Text="[Rashod.&#34;VidSert&#34;] â„–[Rashod.&#34;N_Sert&#34;] Ð¾Ñ‚ [Rashod.&#34;Date_Sert&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+          <item FormatStr="dd.mm.yy" Kind="fkDateTime"/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxSubreport Name="Subreport1" Left="385,51206" Top="0" Width="294,80334" Height="18,89765" Page="Page2" PrintOnParent="True"/>
+      <TfrxMemoView Name="Memo4" Left="385,51206" Top="0" Width="294,80334" Height="18,89765" StretchMode="smMaxHeight" DisplayFormat.DecimalSeparator="," Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo15" Left="763,46506" Top="0" Width="56,69295" Height="18,89765" StretchMode="smMaxHeight" DataField="Kolvo1" DataSet="Rashod" DataSetName="Rashod" DisplayFormat.FormatStr="%2.2n" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haRight" ParentFont="False" VAlign="vaCenter" Text="[Rashod.&#34;Kolvo1&#34;]"/>
+      <TfrxMemoView Name="Memo22" Left="820,15801" Top="0" Width="56,69295" Height="18,89765" StretchMode="smMaxHeight" DataSet="Rashod" DataSetName="Rashod" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haRight" ParentFont="False" VAlign="vaCenter" Text="[Rashod.&#34;KolvoR&#34;]">
+        <Formats>
+          <item FormatStr="%2.2n" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo23" Left="876,85096" Top="0" Width="56,69295" Height="18,89765" StretchMode="smMaxHeight" DataSet="Rashod" DataSetName="Rashod" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haRight" ParentFont="False" VAlign="vaCenter" Text="[&#60;Rashod.&#34;Kolvo&#34;&#62;-&#60;Rashod.&#34;KolvoR&#34;&#62;]">
+        <Formats>
+          <item FormatStr="%2.2n" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo1" Left="933,54391" Top="0" Width="56,69295" Height="18,89765" StretchMode="smMaxHeight" DataSet="Rashod" DataSetName="Rashod" DisplayFormat.FormatStr="%2.2n" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haRight" ParentFont="False" VAlign="vaCenter" Text="[&#60;Rashod.&#34;Kolvo1&#34;&#62;-&#60;Rashod.&#34;KolvoR&#34;&#62;]"/>
+      <TfrxMemoView Name="Memo18" Left="0" Top="0" Width="52,91342" Height="18,89765" StretchMode="smMaxHeight" DataSet="Rashod" DataSetName="Rashod" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" Text="&#13;&#10; [Rashod.&#34;Key_Predm&#34;]"/>
+      <TfrxMemoView Name="mLevelTemp" Left="0" Top="0" Width="52,91342" Height="18,89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-11" Font.Name="Arial" Font.Style="0" ParentFont="False" Text=" [sLevelTemp]"/>
+      <TfrxMemoView Name="RashodOst1" Left="990,23686" Top="0" Width="56,69295" Height="18,89765" StretchMode="smMaxHeight" DataSet="Rashod" DataSetName="Rashod" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haRight" ParentFont="False" VAlign="vaCenter" Text="[Rashod.&#34;Ost&#34;]&#13;&#10;([FnOst])">
+        <Formats>
+          <item FormatStr="%2.2f" Kind="fkNumeric"/>
+          <item FormatStr="%2.2f" Kind="fkNumeric"/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxMasterData>
+    <TfrxFooter Name="Footer1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="18,89765" Left="0" Top="192,75603" Width="1046,92981"/>
+    <TfrxHeader Name="Header1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="68,03154" Left="0" Top="18,89765" Width="1046,92981" ReprintOnNewPage="True">
+      <TfrxMemoView Name="Memo6" Left="52,91342" Top="30,23624" Width="200,31509" Height="37,79527559" StretchMode="smMaxHeight" DataSet="Rashod" DataSetName="Rashod" DisplayFormat.DecimalSeparator="," Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Ð¡Ð¾Ñ€Ñ‚Ð°Ð¼ÐµÐ½Ñ‚ &#13;&#10;ÐœÐ°Ñ€ÐºÐ°"/>
+      <TfrxMemoView Name="Memo7" Left="680,3154" Top="30,23624" Width="26,45671" Height="37,79527559" StretchMode="smMaxHeight" DataSet="Rashod" DataSetName="Rashod" Font.Charset="1" Font.Color="-16777208" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Ð•Ð´. Ð¸Ð·Ð¼."/>
+      <TfrxMemoView Name="Memo9" Left="253,22851" Top="30,23624" Width="132,28355" Height="37,79527559" StretchMode="smMaxHeight" DisplayFormat.DecimalSeparator="," Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Ð¡ÐµÑ€Ñ‚Ð¸Ñ„Ð¸ÐºÐ°Ñ‚"/>
+      <TfrxMemoView Name="Memo10" Left="385,51206" Top="30,23624" Width="294,80334" Height="37,79527559" StretchMode="smMaxHeight" DisplayFormat.DecimalSeparator="," Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Ð”Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚Ñ‹"/>
+      <TfrxMemoView Name="MainDSCod_Zak" Left="3,77953" Top="7,55906" Width="676,53587" Height="18,89765" DataSet="MainFrxDS" DataSetName="MainDS" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="ÐŸÐ¾ÑÑ‚ÑƒÐ¿Ð»ÐµÐ½Ð¸Ðµ Ð¼Ð°Ñ‚ÐµÑ€Ð¸Ð°Ð»Ð¾Ð² Ð½Ð° Ð·Ð°ÐºÐ°Ð· â„– [CodZak.Text]"/>
+      <TfrxMemoView Name="Memo16" Left="706,77211" Top="30,23624" Width="56,69295" Height="37,79527559" StretchMode="smMaxHeight" DataSet="Rashod" DataSetName="Rashod" Font.Charset="1" Font.Color="-16777208" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Ð›Ð¸Ð¼Ð¸Ñ‚"/>
+      <TfrxMemoView Name="Memo17" Left="763,46506" Top="30,23624" Width="56,69295" Height="37,79527559" StretchMode="smMaxHeight" DataSet="Rashod" DataSetName="Rashod" Font.Charset="1" Font.Color="-16777208" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Ð£ÑÐ»Ð¾Ð²Ð½Ð¾"/>
+      <TfrxMemoView Name="Memo26" Left="820,15801" Top="0" Width="56,69295" Height="68,03151559" StretchMode="smMaxHeight" DataSet="Rashod" DataSetName="Rashod" Font.Charset="1" Font.Color="-16777208" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Ð Ð°ÑÑ…Ð¾Ð´"/>
+      <TfrxMemoView Name="Memo27" Left="876,85096" Top="30,23624" Width="56,69295" Height="37,79527559" StretchMode="smMaxHeight" DataSet="Rashod" DataSetName="Rashod" Font.Charset="1" Font.Color="-16777208" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Ð¿Ð¾ Ð»Ð¸Ð¼Ð¸Ñ‚Ñƒ"/>
+      <TfrxMemoView Name="Memo8" Left="933,54391" Top="30,23624" Width="56,69295" Height="37,79527559" StretchMode="smMaxHeight" DataSet="Rashod" DataSetName="Rashod" Font.Charset="1" Font.Color="-16777208" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="ÑƒÑÐ»Ð¾Ð²Ð½Ð¾"/>
+      <TfrxMemoView Name="Memo5" Left="706,77211" Top="0" Width="113,3859" Height="30,23621559" DataSet="Rashod" DataSetName="Rashod" Font.Charset="1" Font.Color="-16777208" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="ÐŸÑ€Ð¸Ñ…Ð¾Ð´"/>
+      <TfrxMemoView Name="Memo11" Left="876,85096" Top="0" Width="170,07885" Height="30,23621559" DataSet="Rashod" DataSetName="Rashod" Font.Charset="1" Font.Color="-16777208" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="ÐžÑÑ‚Ð°Ñ‚Ð¾Ðº"/>
+      <TfrxMemoView Name="Memo12" Left="0" Top="30,23624" Width="52,91342" Height="37,79527559" StretchMode="smMaxHeight" DataSet="Rashod" DataSetName="Rashod" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="ÐÐ¾Ð¼. â„–"/>
+      <TfrxMemoView Name="Memo20" Left="990,23686" Top="30,23624" Width="56,69295" Height="37,79527559" StretchMode="smMaxHeight" DataSet="Rashod" DataSetName="Rashod" Font.Charset="1" Font.Color="-16777208" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="ÐÐ° ÑÐºÐ»Ð°Ð´Ð°Ñ…"/>
+    </TfrxHeader>
+    <TfrxGroupHeader Name="GroupHeader1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="18,89765" Left="0" Top="109,60637" Width="1046,92981" OnBeforePrint="GroupHeader1OnBeforePrint" Condition="Rashod.&#34;Cod_Gr&#34;">
+      <TfrxMemoView Name="RashodFullNameGr" Left="0" Top="0" Width="1046,92981" Height="18,89765" DataSet="Rashod" DataSetName="Rashod" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" Fill.BackColor="10218495" ParentFont="False" Text="    [Rashod.&#34;FullNameGr&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="mRootLevelTemp" Left="0" Top="0" Width="64,25201" Height="18,89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-11" Font.Name="Arial" Font.Style="0" ParentFont="False" Text=" [Line]."/>
+    </TfrxGroupHeader>
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="22,67718" Left="0" Top="272,12616" Width="1046,92981">
+      <TfrxMemoView Name="Memo13" Left="952,44156" Top="3,77953" Width="94,48825" Height="18,89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haRight" ParentFont="False" Text="[Page]"/>
+      <TfrxMemoView Name="Memo14" Left="3,77953" Top="3,77953000000002" Width="336,37817" Height="18,89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="ÐžÑ‚Ñ‡ÐµÑ‚ ÑÑ„Ð¾Ñ€Ð¼Ð¸Ñ€Ð¾Ð²Ð°Ð½ Ð¿Ð¾ ÑÐ¾ÑÑ‚Ð¾ÑÐ½Ð¸ÑŽ Ð½Ð° [Date]"/>
+    </TfrxPageFooter>
+  </TfrxReportPage>
+  <TfrxReportPage Name="Page2" Orientation="poLandscape" PaperWidth="297" PaperHeight="210" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxMasterData Name="MasterData2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="18,89765" Left="0" Top="18,89765" Width="1046,92981" ColumnWidth="0" ColumnGap="0" DataSet="DocumQRY" DataSetName="Äîêóìåíòû" RowCount="0" Stretched="True">
+      <TfrxMemoView Name="Memo3" Left="0" Top="0" Width="294,80312031" Height="18,89765" StretchMode="smActualHeight" Font.Charset="1" Font.Color="-16777208" Font.Height="-12" Font.Name="Arial" Font.Style="0" Frame.Typ="7" ParentFont="False" Text="[Ð”Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚Ñ‹.&#34;Name_Sub_MOL&#34;] [Ð”Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚Ñ‹.&#34;Name_Sub&#34;] ÐÐ°ÐºÐ». â„– [Ð”Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚Ñ‹.&#34;Num_Nacl&#34;]&#13;&#10;Ð¾Ñ‚  [Ð”Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚Ñ‹.&#34;Data_Nacl&#34;] ([Ð”Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚Ñ‹.&#34;Osnovanie&#34;]) ">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxMasterData>
+  </TfrxReportPage>
+</TfrxReport>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Version="5.6.18" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="Ïî óìîë÷àíèþ" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="38513,0822621875" ReportOptions.Description.Text="" ReportOptions.Name="Ñîñòîÿíèå ÏÊ 2.fr3 ÏÊ 1" ReportOptions.LastChange="43956,9017561458" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;function FnAC:string;&#13;&#10;begin&#13;&#10;  Result:='';&#13;&#10;  if &#60;ÑîñòÏÊ.&#34;IsAc&#34;&#62; =1 then Result:='(+)';&#13;&#10;&#13;&#10;end;&#13;&#10;//Test&#13;&#10;&#13;&#10;procedure DialogPage1OnActivate(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;  DateFrom.Date:=Date-7;&#13;&#10;  DateTo.Date:=Date+7;&#13;&#10;&#13;&#10;end;&#13;&#10;&#13;&#10;procedure ShowSZOnClick(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;&#13;&#10;end;&#13;&#10;&#13;&#10;procedure HideAcOnClick(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;&#13;&#10;end;&#13;&#10;&#13;&#10;begin&#13;&#10;&#13;&#10;end." StoreInDFM="False">
+  <Datasets>
+    <item DataSet="KontrQRY" DataSetName="KontrQRY"/>
+    <item DataSet="MainFrxDS" DataSetName="MainDS"/>
+    <item DataSet="IzdelQRY" DataSetName="Èçäåëèÿ"/>
+    <item DataSet="BadStrPK" DataSetName="Îøèá ñòðîêè"/>
+    <item DataSet="BatTPStr" DataSetName="Îøèá.Ñòð."/>
+    <item DataSet="BadTP" DataSetName="Îøèá.ÒÏ."/>
+    <item DataSet="SostPK" DataSetName="ÑîñòÏÊ"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000">
+    <TfrxERQuery Name="SostPK" UserName="ÑîñòÏÊ" CloseDataSource="True" FieldAliases.Text="Key_VKZ_Izdel=Key_VKZ_Izdel&#13;&#10;Key_Pr_PK=Key_Pr_PK&#13;&#10;Cod_PK=Cod_PK&#13;&#10;Key_Pk_Str=Key_Pk_Str&#13;&#10;Cod_Pk_Str=Cod_Pk_Str&#13;&#10;Cod_Pk_Str_Sort=Cod_Pk_Str_Sort&#13;&#10;Pk_Str_Txt=Pk_Str_Txt&#13;&#10;Cod_Predm=Cod_Predm&#13;&#10;OrderCod_Predm=OrderCod_Predm&#13;&#10;Name_Predm=Name_Predm&#13;&#10;CntByVKZ=CntByVKZ&#13;&#10;Key_TP=Key_TP&#13;&#10;Cod_TP=Cod_TP&#13;&#10;Key_TPRows=Key_TPRows&#13;&#10;N_OPER_MK=N_OPER_MK&#13;&#10;N_OPER_TP=N_OPER_TP&#13;&#10;Name_K_OperByPK=Name_K_OperByPK&#13;&#10;Key_VKZ_Zap=Key_VKZ_Zap&#13;&#10;KolvoZap=KolvoZap&#13;&#10;Key_Pasport=Key_Pasport&#13;&#10;Cod_Pasp=Cod_Pasp&#13;&#10;PaspKolvo=PaspKolvo&#13;&#10;Name_Pasp_Status=Name_Pasp_Status&#13;&#10;Date_Pasp_Status=Date_Pasp_Status&#13;&#10;Key_Pasp_Rows=Key_Pasp_Rows&#13;&#10;N_Oper_Sm=N_Oper_Sm&#13;&#10;Name_K_Oper=Name_K_Oper&#13;&#10;Name_Status_Oper=Name_Status_Oper&#13;&#10;AcDate=AcDate&#13;&#10;PrevCnt=PrevCnt&#13;&#10;PrevTrud=PrevTrud&#13;&#10;SMZ=SMZ&#13;&#10;Notes=Notes&#13;&#10;KontrCntAll=KontrCntAll&#13;&#10;KontrCntAc=KontrCntAc&#13;&#10;IsAc=IsAc&#13;&#10;AcNote=AcNote&#13;&#10;SubAc=SubAc" BCDToCurrency="False" Master="MainFrxDS" IgnoreDupParams="False" SQL.Text="&#13;&#10;&#13;&#10;DECLARE @Key_Pr_Pk int&#13;&#10;DECLARE @HideAc int&#13;&#10;DECLARE @ShowSZ int&#13;&#10;&#13;&#10;DECLARE @DateFrom DateTime&#13;&#10;DECLARE @DateTo DateTime&#13;&#10;&#13;&#10;&#13;&#10;SET @Key_Pr_Pk = :Key_Pr_Pk  &#13;&#10;SET @HideAc = :HideAc     &#13;&#10;SET @ShowSZ = :ShowSZ   &#13;&#10;&#13;&#10;SET @DateFrom = :DateFrom&#13;&#10;SET @DateTo = :DateTo&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;SELECT &#13;&#10;       Pr_Pk_SmData.*,  &#13;&#10;       dbo.Pr_PK_OperSZ (Pr_Pk_SmData.Key_Pasp_Rows  , '20010101'  , '29990101'  ) SMZ ,   &#13;&#10;       dbo.Pr_Pasp_GetNotes(Pr_Pk_SmData.Key_Pasport) Notes,&#13;&#10;       TCntKontr.CntAll KontrCntAll,&#13;&#10;       TCntKontrAc.CntAc KontrCntAc,&#13;&#10;       Pr_Pk_Str_PaspRows.IsAc, &#13;&#10;       Pr_Pk_Str_PaspRows.AcNote,&#13;&#10;&#13;&#10;  Convert(text, '&#60;?xml version=&#34;1.0&#34; encoding =&#34;windows-1251&#34;?&#62;' +&#13;&#10;	(&#13;&#10;		SELECT * FROM &#13;&#10;		(&#13;&#10;&#13;&#10;				SELECT &#13;&#10;	&#13;&#10;					Isnull(Pr_Pk_Str_Sub.Cod_Pk_Str_Type,'') Cod_Pk_Str_Type, &#13;&#10;					Isnull(Pr_Pk_Str_Sub.IsAc,0) IsAc,&#13;&#10;					S_ALL_Sub.Name_Sub	 &#13;&#10;				FROM &#13;&#10;					Pr_Pk_Sub&#13;&#10;&#13;&#10;					INNER JOIN S_ALL_Sub&#13;&#10;						ON S_ALL_Sub.Key_Sub_Ver = Pr_Pk_Sub.Key_Sub_Ver&#13;&#10;&#13;&#10;					LEFT  JOIN Pr_Pk_Str_Sub&#13;&#10;						ON Pr_Pk_Str_Sub.Key_Sub_Ver = Pr_Pk_Sub.Key_Sub_Ver&#13;&#10;						AND Pr_Pk_Str_Sub.Key_Pk_Str = Pr_Pk_SmData.Key_Pk_Str     &#13;&#10;&#13;&#10;				WHERE &#13;&#10;					Pr_Pk_Sub.Key_Pr_Pk = Pr_Pk_SmData.Key_Pr_Pk&#13;&#10;				&#13;&#10;		) Instrum&#13;&#10;		ORDER BY  	 Name_Sub&#13;&#10;		FOR XML AUTO , ROOT('SubAc')&#13;&#10; &#13;&#10;	)) SubAc&#13;&#10;         &#13;&#10;FROM &#13;&#10;       (&#13;&#10;	   &#13;&#10;			SELECT &#13;&#10;				Pr_Pk_Izdel.Key_VKZ Key_VKZ_Izdel,&#13;&#10;				Pr_PK.Key_Pr_PK,&#13;&#10;				Pr_PK.Cod_PK,&#13;&#10;&#13;&#10;				Pr_Pk_Str.Key_Pk_Str,&#13;&#10;				Pr_Pk_Str.Cod_Pk_Str,&#13;&#10;				dbo.T_OrderSortam( Pr_Pk_Str.Cod_Pk_Str)  Cod_Pk_Str_Sort,&#13;&#10;				Pr_Pk_Str.Pk_Str_Txt,&#13;&#10;&#13;&#10;				T_VPredm.Cod_Predm,&#13;&#10;				T_VPredm.OrderCod_Predm,&#13;&#10;				T_VPredm.Name_Predm,&#13;&#10;				CntTbl.CntByVKZ,&#13;&#10;&#13;&#10;				T_TP.Key_TP,&#13;&#10;				T_TP.Cod_TP,&#13;&#10;&#13;&#10;				T_TPRows.Key_TPRows,&#13;&#10;				T_TPRows.N_OPER_MK,&#13;&#10;				T_TPRows.N_OPER_TP,&#13;&#10;				T_OperByPK.Name_Oper Name_K_OperByPK,&#13;&#10;&#13;&#10;				P_Vkz_Zap.Key_VKZ_Zap,&#13;&#10;				P_Vkz_Zap.KolvoZap,&#13;&#10;&#13;&#10;&#13;&#10;				Pr_Pasp.Key_Pasport,&#13;&#10;				Pr_Pasp.Cod_Pasp,&#13;&#10;				Pr_Pasp.PaspKolvo,&#13;&#10;&#13;&#10;				Pr_Pasp_Status.Name_Pasp_Status,&#13;&#10;				Pr_Pasp.Date_Pasp_Status,&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;				Pr_Pasp_Rows.Key_Pasp_Rows,&#13;&#10;				Pr_Pasp_Rows.N_Oper_Sm,&#13;&#10;&#13;&#10;				T_Oper.Name_Oper Name_K_Oper,&#13;&#10;				Pr_Status_Oper.Name_Status_Oper,&#13;&#10;				Pr_Pasp_Rows.AcDate,&#13;&#10;&#13;&#10;				Pr_Pasp_Rows.PrevCnt, &#13;&#10;				Pr_Pasp_Rows.PrevTrud&#13;&#10;&#13;&#10;&#13;&#10;			FROM &#13;&#10;				Pr_PK&#13;&#10;				INNER JOIN Pr_Pk_Izdel&#13;&#10;					ON Pr_Pk_Izdel.Key_Pr_Pk = Pr_PK.Key_Pr_PK&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;				LEFT JOIN Pr_Pk_Str&#13;&#10;					ON Pr_Pk_Str.Key_Pr_PK = Pr_PK.Key_Pr_PK&#13;&#10;&#13;&#10;				LEFT JOIN &#13;&#10;				(&#13;&#10;					SELECT &#13;&#10; 						Pr_Pk_Str.Key_Pk_Str,&#13;&#10;						T_SP.Key_Predm&#13;&#10;					FROM &#13;&#10;						Pr_Pk_Str&#13;&#10;						INNER JOIN  Pr_Pk_Str_TP&#13;&#10;							ON Pr_Pk_Str_TP.Key_Pk_Str = Pr_Pk_Str.Key_Pk_Str&#13;&#10;						INNER JOIN T_TP&#13;&#10;							ON T_TP.Key_TP = Pr_Pk_Str_TP.Key_TP &#13;&#10;						INNER JOIN T_SP	&#13;&#10;							ON T_Sp.Key_SP=T_TP.Key_SP&#13;&#10;					WHERE Pr_Pk_Str.Key_Pr_PK = @Key_Pr_Pk&#13;&#10;					UNION &#13;&#10;					SELECT &#13;&#10;						Pr_Pk_Str.Key_Pk_Str,&#13;&#10;						Pr_Pk_Str_Predm.Key_Predm&#13;&#10;					FROM &#13;&#10;						Pr_Pk_Str&#13;&#10;						INNER JOIN  Pr_Pk_Str_Predm&#13;&#10;							ON Pr_Pk_Str_Predm.Key_Pk_Str = Pr_Pk_Str.Key_Pk_Str	&#13;&#10;					WHERE Pr_Pk_Str.Key_Pr_PK = @Key_Pr_Pk&#13;&#10;				) Pr_Pk_Str_Predm&#13;&#10;					ON Pr_Pk_Str_Predm.Key_Pk_Str = Pr_Pk_Str.Key_Pk_Str&#13;&#10;&#13;&#10;				LEFT JOIN T_VPredm&#13;&#10;					ON T_VPredm.Key_Predm = Pr_Pk_Str_Predm.Key_Predm&#13;&#10;&#13;&#10;&#13;&#10;				INNER JOIN &#13;&#10;				(&#13;&#10;&#13;&#10;					SELECT     &#13;&#10;						Pr_Pk_Izdel.Key_Pr_Pk,&#13;&#10;						Pr_Pk_Izdel.Key_VKZ, &#13;&#10;						P_VKZ.Key_Predm, &#13;&#10;						SUM(P_VKZ.Kolvo) AS CntByVKZ&#13;&#10;					FROM         &#13;&#10;						Pr_Pk_Izdel &#13;&#10;						INNER JOIN P_VKZ &#13;&#10;							ON Pr_Pk_Izdel.Key_VKZ = P_VKZ.Key_VKZ_Izdel&#13;&#10;					WHERE Pr_Pk_Izdel.Key_Pr_PK = @Key_Pr_Pk&#13;&#10;&#13;&#10;					GROUP BY Pr_Pk_Izdel.Key_Pr_Pk, P_VKZ.Key_Predm ,&#13;&#10;						Pr_Pk_Izdel.Key_VKZ&#13;&#10;				) CntTbl&#13;&#10;				ON   CntTbl.Key_Pr_Pk = Pr_PK.Key_Pr_PK&#13;&#10;				AND  CntTbl.Key_Predm = T_VPredm.Key_Predm&#13;&#10;				AND  CntTbl.Key_VKZ = Pr_Pk_Izdel.Key_VKZ&#13;&#10;				AND CntTbl.CntByVKZ &#62; 0&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;				LEFT JOIN &#13;&#10;				(&#13;&#10;					SELECT &#13;&#10; 						Pr_Pk_Str.Key_Pk_Str,&#13;&#10;						T_SP.Key_Predm, &#13;&#10;						Pr_Pk_Str_TP.Key_TP&#13;&#10;&#13;&#10;					FROM &#13;&#10;						Pr_Pk_Str&#13;&#10;						INNER JOIN  Pr_Pk_Str_TP&#13;&#10;							ON Pr_Pk_Str_TP.Key_Pk_Str = Pr_Pk_Str.Key_Pk_Str&#13;&#10;						INNER JOIN T_TP&#13;&#10;							ON T_TP.Key_TP = Pr_Pk_Str_TP.Key_TP &#13;&#10;						INNER JOIN T_SP	&#13;&#10;							ON T_Sp.Key_SP=T_TP.Key_SP&#13;&#10;					WHERE Pr_Pk_Str.Key_Pr_PK = @Key_Pr_Pk&#13;&#10;&#13;&#10;				) Pr_Pk_Str_TP&#13;&#10;					ON Pr_Pk_Str_TP.Key_Pk_Str = Pr_Pk_Str.Key_Pk_Str&#13;&#10;					AND Pr_Pk_Str_TP.Key_Predm = Pr_Pk_Str_Predm.Key_Predm&#13;&#10;&#13;&#10;				LEFT JOIN T_TP&#13;&#10;					ON T_TP.Key_TP=Pr_Pk_Str_TP.Key_TP&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;				LEFT JOIN &#13;&#10;				(&#13;&#10;					SELECT Pr_Pk_Str_TProws.* ,T_TPRows.Key_TP&#13;&#10;					FROM &#13;&#10;						Pr_Pk_Str_TProws&#13;&#10;						INNER JOIN T_TPRows&#13;&#10;							ON T_TPRows.Key_TPRows = Pr_Pk_Str_TProws.Key_TPRows&#13;&#10;					&#13;&#10;&#13;&#10;				) Pr_Pk_Str_TProws&#13;&#10;					ON Pr_Pk_Str_TProws.Key_Pk_Str = Pr_Pk_Str.Key_Pk_Str&#13;&#10;					AND Pr_Pk_Str_TProws.Key_TP = Pr_Pk_Str_TP.Key_TP&#13;&#10;&#13;&#10;				LEFT JOIN T_TPRows&#13;&#10;					ON T_TPRows.Key_TPRows = Pr_Pk_Str_TProws.Key_TPRows&#13;&#10;				LEFT JOIN T_Oper T_OperByPK&#13;&#10;					ON T_OperByPK.Cod_Oper = T_TPRows.Cod_Oper&#13;&#10;&#13;&#10;				LEFT JOIN P_VKZ_Zap&#13;&#10;					ON P_Vkz_Zap.Key_VKZ_Izdel = Pr_Pk_Izdel.Key_VKZ&#13;&#10;					AND P_VKZ_Zap.Key_Predm = Pr_Pk_Str_Predm.Key_Predm&#13;&#10;&#13;&#10;				LEFT JOIN Pr_Pasp&#13;&#10;					ON Pr_Pasp.Key_VKZ_Zap = P_VKZ_Zap.Key_VKZ_Zap&#13;&#10;&#13;&#10;				LEFT JOIN Pr_Pasp_Status&#13;&#10;					ON Pr_Pasp_Status.Key_Pasp_Status = Pr_Pasp.Key_Pasp_Status&#13;&#10;&#13;&#10;				LEFT JOIN Pr_Pasp_Rows&#13;&#10;					ON Pr_Pasp_Rows.Key_Pasport = Pr_Pasp.Key_Pasport&#13;&#10;					AND Pr_Pasp_Rows.Key_TPRows = Pr_Pk_Str_TProws.Key_TPRows&#13;&#10;&#13;&#10;				LEFT JOIN Pr_Status_Oper&#13;&#10;					ON Pr_Status_Oper.Status_Oper = Pr_Pasp_Rows.Status_Oper&#13;&#10;				LEFT JOIN T_Oper&#13;&#10;					ON T_Oper.Cod_Oper = Pr_Pasp_Rows.Cod_Oper	   &#13;&#10;	   )&#13;&#10;	   Pr_Pk_SmData&#13;&#10;	INNER JOIN&#13;&#10;       (&#13;&#10;            SELECT Pr_Pk_Str.Key_Pk_Str, COUNT( Pr_Pk_Str_Sub.Key_Pk_Str) CntAll&#13;&#10;            FROM Pr_Pk_Str&#13;&#10;            	LEFT JOIN Pr_Pk_Str_Sub&#13;&#10;            		ON Pr_Pk_Str_Sub.Key_Pk_Str = Pr_Pk_Str.Key_Pk_Str&#13;&#10;            WHERE Pr_Pk_Str.Key_Pr_PK = @Key_Pr_Pk&#13;&#10;            GROUP BY Pr_Pk_Str.Key_Pk_Str  &#13;&#10;         &#13;&#10;       ) TCntKontr&#13;&#10;       ON TCntKontr.Key_Pk_Str = Pr_Pk_SmData.Key_Pk_Str&#13;&#10;	INNER JOIN&#13;&#10;       (&#13;&#10;            SELECT Pr_Pk_Str.Key_Pk_Str, COUNT( Pr_Pk_Str_Sub.Key_Pk_Str) CntAc  &#13;&#10;            FROM Pr_Pk_Str&#13;&#10;            	LEFT JOIN Pr_Pk_Str_Sub&#13;&#10;            		 ON Pr_Pk_Str_Sub.Key_Pk_Str = Pr_Pk_Str.Key_Pk_Str&#13;&#10;               AND Pr_Pk_Str_Sub.IsAc=1                &#13;&#10;            WHERE Pr_Pk_Str.Key_Pr_PK = @Key_Pr_Pk&#13;&#10;            GROUP BY Pr_Pk_Str.Key_Pk_Str  &#13;&#10;         &#13;&#10;       ) TCntKontrAc    &#13;&#10;       ON TCntKontrAc.Key_Pk_Str = Pr_Pk_SmData.Key_Pk_Str&#13;&#10;&#13;&#10;  LEFT JOIN Pr_Pk_Str_PaspRows&#13;&#10;       ON &#13;&#10;                       Pr_Pk_Str_PaspRows.Key_Pk_Str    =  Pr_Pk_SmData.Key_Pk_Str                            &#13;&#10;               AND     Pr_Pk_Str_PaspRows.Key_TPRows    =  Pr_Pk_SmData.Key_TPRows      &#13;&#10;               AND     &#13;&#10;               (&#13;&#10;                       (Pr_Pk_Str_PaspRows.Key_Pasp_Rows =  Pr_Pk_SmData.Key_Pasp_Rows)&#13;&#10;                       OR&#13;&#10;                       ((Pr_Pk_Str_PaspRows.Key_Pasp_Rows IS NULL) AND   (Pr_Pk_SmData.Key_Pasp_Rows IS NULL))                             &#13;&#10;               )                                            &#13;&#10;  &#13;&#10;WHERE &#13;&#10;       Key_Pr_Pk=@Key_Pr_Pk&#13;&#10;       AND ((Pr_Pk_SmData.Key_Pk_Str in (select Key_Pk_Str from Pr_Pk_Str_Sub where Isnull(IsAc,0) = 0) ) OR ( @HideAc = 0))&#13;&#10;       AND ((dbo.Pr_PK_OperSZ (Pr_Pk_SmData.Key_Pasp_Rows  , @DateFrom  , @DateTo  ) &#60;&#62; '' ) OR ( @ShowSZ = 0  ))                                                           &#13;&#10;&#13;&#10;ORDER BY  Cod_PK,  Cod_Pk_Str_Sort ,   OrderCod_Predm, dbo.T_OrderSortam(Cod_TP), dbo.T_OrderSortam(Cod_Pasp)                      " PropData="05704C65667402280470546F7002600A506172616D657465727301010C26000000204E616D653D224B65795F50725F506B222044617461547970653D226674556E6B6E6F776E2200010C3F000000204E616D653D22486964654163222044617461547970653D226674496E7465676572222045787072657373696F6E3D224869646541632E436865636B65642200010C3F000000204E616D653D2253686F77535A222044617461547970653D226674496E7465676572222045787072657373696F6E3D2253686F77535A2E436865636B65642200010C41000000204E616D653D224461746546726F6D222044617461547970653D2266744461746554696D65222045787072657373696F6E3D224461746546726F6D2E446174652200010C3D000000204E616D653D2244617465546F222044617461547970653D2266744461746554696D65222045787072657373696F6E3D2244617465546F2E44617465220000"/>
+    <TfrxERQuery Name="IzdelQRY" UserName="Èçäåëèÿ" CloseDataSource="True" FieldAliases.Text="" BCDToCurrency="False" Master="MainFrxDS" IgnoreDupParams="False" SQL.Text="SELECT     &#13;&#10;	Pr_Pk_Izdel.Key_Pr_Pk,&#13;&#10; P_VKZ.Cod_Zak,                                          &#13;&#10;	P_VKZ.Key_VKZ, &#13;&#10;	P_VKZ.Kolvo,&#13;&#10;	T_VPredm.Cod_Predm, &#13;&#10;	T_VPredm.Name_Predm, &#13;&#10;	P_VKZ.KLB,&#13;&#10; S_ALL_Sub.F_Name_Sub                             &#13;&#10;FROM         Pr_Pk_Izdel INNER JOIN&#13;&#10;                      P_VKZ ON Pr_Pk_Izdel.Key_VKZ = P_VKZ.Key_VKZ INNER JOIN&#13;&#10;                      T_VPredm ON P_VKZ.Key_Predm = T_VPredm.Key_Predm LEFT OUTER JOIN&#13;&#10;                      S_ALL_Sub ON P_VKZ.Key_Sub_Ver_AES = S_ALL_Sub.Key_Sub_Ver&#13;&#10;WHERE Pr_Pk_Izdel.Key_Pr_Pk = :Key_Pr_Pk                                      " PropData="05704C65667402280470546F7002180A506172616D657465727301010C26000000204E616D653D224B65795F50725F506B222044617461547970653D226674556E6B6E6F776E220000"/>
+    <TfrxERQuery Name="BadStrPK" UserName="Îøèá ñòðîêè" CloseDataSource="True" FieldAliases.Text="" BCDToCurrency="False" Master="MainFrxDS" IgnoreDupParams="False" SQL.Text="select * &#13;&#10;FROM &#13;&#10;	Pr_Pk_Str&#13;&#10;	LEFT JOIN Pr_Pk_Str_Predm&#13;&#10;		ON Pr_Pk_Str_Predm.Key_Pk_Str = Pr_Pk_Str.Key_Pk_Str&#13;&#10;WHERE &#13;&#10;	Pr_Pk_Str.Key_Pr_PK = :Key_Pr_PK&#13;&#10;	AND Pr_Pk_Str_Predm.Key_Predm IS NULL&#13;&#10;  " PropData="05704C65667402280470546F7003D0000A506172616D657465727301010C26000000204E616D653D224B65795F50725F504B222044617461547970653D226674556E6B6E6F776E220000"/>
+    <TfrxERQuery Name="BadTP" UserName="Îøèá.ÒÏ." CloseDataSource="True" FieldAliases.Text="" BCDToCurrency="False" Master="MainFrxDS" IgnoreDupParams="False" SQL.Text="SELECT     Pr_Pk_Str.*, Pr_Pk_Str_TP.Key_TP, T_TP.Cod_TP, T_VPredm.Cod_Predm, Name_Predm                                                           &#13;&#10;FROM         &#13;&#10;	Pr_Pk_Str&#13;&#10;	INNER JOIN Pr_Pk_Str_TP &#13;&#10;		ON Pr_Pk_Str_TP.Key_Pk_Str=Pr_Pk_Str.Key_Pk_Str&#13;&#10;	INNER JOIN T_TP &#13;&#10;		ON Pr_Pk_Str_TP.Key_TP = T_TP.Key_TP &#13;&#10;&#13;&#10;	INNER JOIN T_SP &#13;&#10;		ON T_TP.Key_SP = T_SP.Key_SP &#13;&#10;	INNER JOIN T_VPredm&#13;&#10;		ON T_VPredm.Key_Predm = T_SP.Key_Predm&#13;&#10;&#13;&#10;	LEFT OUTER JOIN Pr_Pk_Str_Predm &#13;&#10;		ON Pr_Pk_Str_TP.Key_Pk_Str = Pr_Pk_Str_Predm.Key_Pk_Str &#13;&#10;		AND T_SP.Key_Predm = Pr_Pk_Str_Predm.Key_Predm&#13;&#10;&#13;&#10;&#13;&#10;WHERE &#13;&#10;	Pr_Pk_Str.Key_Pr_PK = :Key_Pr_PK  &#13;&#10;	AND Pr_Pk_Str_Predm.Key_Predm IS   NULL  " PropData="05704C65667402240470546F700318010A506172616D657465727301010C26000000204E616D653D224B65795F50725F504B222044617461547970653D226674556E6B6E6F776E220000"/>
+    <TfrxERQuery Name="BatTPStr" UserName="Îøèá.Ñòð." CloseDataSource="True" FieldAliases.Text="" BCDToCurrency="False" Master="MainFrxDS" IgnoreDupParams="False" SQL.Text="SELECT  T1.* , Pr_Pk_Str.Pk_Str_Txt&#13;&#10;&#13;&#10;FROM&#13;&#10;(&#13;&#10;SELECT   DISTINCT  &#13;&#10;	Pr_Pk_Str.Key_Pk_Str, &#13;&#10;	Pr_Pk_Str.Key_Pr_PK, &#13;&#10;	Pr_Pk_Str.Cod_Pk_Str,&#13;&#10; T_TPRows.N_OPER_MK, T_TPRows.N_OPER_TP,     &#13;&#10; &#13;&#10;	T_TP.Cod_TP &#13;&#10;FROM         &#13;&#10;	Pr_Pk_Str &#13;&#10;&#13;&#10;	INNER JOIN Pr_Pk_Str_TProws &#13;&#10;		ON Pr_Pk_Str_TProws.Key_Pk_Str = Pr_Pk_Str.Key_Pk_Str &#13;&#10;	INNER JOIN T_TPRows &#13;&#10;		ON Pr_Pk_Str_TProws.Key_TPRows = T_TPRows.Key_TPRows &#13;&#10;	INNER JOIN T_TP &#13;&#10;		ON T_TPRows.Key_TP = T_TP.Key_TP &#13;&#10;	 &#13;&#10;		&#13;&#10;	LEFT OUTER JOIN Pr_Pk_Str_TP &#13;&#10;		ON T_TP.Key_TP = Pr_Pk_Str_TP.Key_TP &#13;&#10;		AND Pr_Pk_Str.Key_Pk_Str = Pr_Pk_Str_TP.Key_Pk_Str&#13;&#10;WHERE &#13;&#10;	Pr_Pk_Str.Key_Pr_PK = :Key_Pr_PK  &#13;&#10;	AND Pr_Pk_Str_TP.Key_Pk_Str IS NULL&#13;&#10;) T1&#13;&#10;	INNER JOIN Pr_Pk_Str&#13;&#10;		ON Pr_Pk_Str.Key_Pk_Str =T1.Key_Pk_Str&#13;&#10;&#13;&#10;ORDER BY Cod_Pk_Str, Cod_TP, N_OPER_MK,   N_OPER_TP                " PropData="05704C65667402240470546F700358010A506172616D657465727301010C26000000204E616D653D224B65795F50725F504B222044617461547970653D226674556E6B6E6F776E220000"/>
+    <TfrxXMLDS Name="KontrQRY" UserName="KontrQRY" CloseDataSource="False" FieldAliases.Text="" Master="SostPK" XMLField="SubAc" ProbeXML.Text="&#60;?xml version=&#34;1.0&#34; encoding =&#34;windows-1251&#34;?&#62;&#60;SubAc&#62;&#60;Instrum Cod_Pk_Str_Type=&#34;&#34; IsAc=&#34;0&#34; Name_Sub=&#34;ÀÑÝ&#34;/&#62;&#60;Instrum Cod_Pk_Str_Type=&#34;&#34; IsAc=&#34;0&#34; Name_Sub=&#34;ÁÀÝÊ&#34;/&#62;&#60;Instrum Cod_Pk_Str_Type=&#34;WP(R)&#34; IsAc=&#34;0&#34; Name_Sub=&#34;Áåçîïàñíîñòü&#34;/&#62;&#60;Instrum Cod_Pk_Str_Type=&#34;WP&#34; IsAc=&#34;1&#34; Name_Sub=&#34;ÇÀÝÑ&#34;/&#62;&#60;/SubAc&#62;" PropData="05704C65667403B8000470546F700268"/>
+  </TfrxDataPage>
+  <TfrxDialogPage Name="DialogPage1" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Tahoma" Font.Style="0" Height="216" ClientHeight="185" Left="278" Top="124" Width="361" ClientWidth="353" OnActivate="DialogPage1OnActivate">
+    <TfrxButtonControl Name="Button1" Left="264" Top="136" Width="75" Height="25" ShowHint="True" Caption="OK" ModalResult="1"/>
+    <TfrxCheckBoxControl Name="HideAc" Left="32" Top="24" Width="209" Height="17" ShowHint="True" Caption="Íå ïå÷àòàòü çàêðûòûå òî÷êè ÏÊ" Color="-16777201" OnClick="HideAcOnClick"/>
+    <TfrxCheckBoxControl Name="ShowSZ" Left="32" Top="60" Width="305" Height="17" ShowHint="True" Caption="Îòðàæàòü òîëüêî îïåðàöèè ïðè íàëè÷èè ÑÇ íà÷èíàÿ ñ" Color="-16777201" OnClick="ShowSZOnClick"/>
+    <TfrxDateEditControl Name="DateFrom" Left="236" Top="84" Width="105" Height="21" ShowHint="True" Color="-16777211" Date="43946" Time="43946" WeekNumbers="False"/>
+    <TfrxDateEditControl Name="DateTo" Left="24" Top="140" Width="105" Height="21" ShowHint="True" Visible="False" Color="-16777211" Date="401518,999988426" Time="401518,999988426" WeekNumbers="False"/>
+  </TfrxDialogPage>
+  <TfrxReportPage Name="Page1" Orientation="poLandscape" PaperWidth="420" PaperHeight="297" PaperSize="8" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="19,77953" Left="0" Top="347,71676" Width="1511,812" ColumnWidth="0" ColumnGap="0" DataSet="SostPK" DataSetName="ÑîñòÏÊ" RowCount="0" Stretched="True">
+      <TfrxMemoView Name="Memo5" Left="956,22109" Top="0" Width="185,19697" Height="18,89765" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HideZeros="True" ParentFont="False" Text="[Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;N_Oper_Sm&#34;] - [Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;Name_K_Oper&#34;]&#13;&#10;[Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;Name_Status_Oper&#34;] [Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;AcDate&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+          <item FormatStr="dd.mm.yyyy" Kind="fkDateTime"/>
+        </Formats>
+        <Highlights>
+          <item ApplyFont="False" Font.Charset="1" Font.Color="255" Font.Height="-13" Font.Name="Arial" Font.Style="0" Condition="&#60;ÑîñòÏÊ.&#34;N_Oper_Sm&#34;&#62; = ''" FillType="ftBrush" Fill.BackColor="4643583"/>
+          <item ApplyFont="False" Font.Charset="1" Font.Color="255" Font.Height="-13" Font.Name="Arial" Font.Style="0" Condition="&#60;ÑîñòÏÊ.&#34;Name_Status_Oper&#34;&#62; = 'Âûïîëíåíî'" FillType="ftBrush" Fill.BackColor="10944422"/>
+        </Highlights>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo6" Left="1141,41806" Top="0" Width="79,37013" Height="18,89765" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" Text="[Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;PrevCnt&#34;] ([Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;PrevTrud&#34;])"/>
+      <TfrxMemoView Name="Memo3" Left="226,7718" Top="0" Width="226,7718" Height="18,89765" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" SuppressRepeated="True" Text="[Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;Cod_Predm&#34;] [Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;Name_Predm&#34;] ([Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;CntByVKZ&#34;]ÑˆÑ‚.)">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo4" Left="763,46506" Top="0" Width="192,75603" Height="18,89765" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" SuppressRepeated="True" Text="[IIF(&#60;Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;Key_Pasport&#34;&#62; &#62; 0, &#60;Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;Cod_Pasp&#34;&#62;, 'ÐŸÐ— #'+IntToStr(&#60;Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;Key_VKZ_Zap&#34;&#62;))] ([IIF(&#60;Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;Key_Pasport&#34;&#62; &#62; 0, &#60;Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;PaspKolvo&#34;&#62;, &#60;Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;KolvoZap&#34;&#62;)]ÑˆÑ‚.)&#13;&#10;[Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;Name_Pasp_Status&#34;] [Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;Date_Pasp_Status&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+          <item FormatStr="dd.mm.yy" Kind="fkDateTime"/>
+        </Formats>
+        <Highlights>
+          <item ApplyFont="False" Font.Charset="1" Font.Color="255" Font.Height="-13" Font.Name="Arial" Font.Style="0" Condition="&#60;ÑîñòÏÊ.&#34;Key_Pasport&#34;&#62;  = 0" FillType="ftBrush" Fill.BackColor="4643583"/>
+          <item ApplyFont="False" Font.Charset="1" Font.Color="255" Font.Height="-13" Font.Name="Arial" Font.Style="0" Condition="&#60;ÑîñòÏÊ.&#34;Name_Pasp_Status&#34;&#62; = 'Èçãîòîâëåíî'" FillType="ftBrush" Fill.BackColor="10944422"/>
+        </Highlights>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo7" Left="1220,78819" Top="0" Width="177,63791" Height="18,89765" StretchMode="smMaxHeight" DataField="SMZ" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" Text="[Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;SMZ&#34;]"/>
+      <TfrxMemoView Name="Memo8" Left="0" Top="0" Width="226,7718" Height="18,89765" StretchMode="smMaxHeight" DataField="Notes" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" SuppressRepeated="True" Text="[Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;Notes&#34;]"/>
+      <TfrxMemoView Name="Memo9" Left="453,5436" Top="0" Width="136,06308" Height="18,89765" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" Highlight.ApplyFont="False" Highlight.Font.Charset="1" Highlight.Font.Color="255" Highlight.Font.Height="-13" Highlight.Font.Name="Arial" Highlight.Font.Style="0" Highlight.Condition="Trim(&#60;ÑîñòÏÊ.&#34;Cod_TP&#34;&#62;) = ''" Highlight.FillType="ftBrush" Highlight.Fill.BackColor="4643583" Highlight.Fill.ForeColor="536870911" ParentFont="False" Text="[Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;Cod_TP&#34;]"/>
+      <TfrxMemoView Name="Memo17" Left="589,60668" Top="0" Width="173,85838" Height="18,89765" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" Highlight.ApplyFont="False" Highlight.Font.Charset="1" Highlight.Font.Color="255" Highlight.Font.Height="-13" Highlight.Font.Name="Arial" Highlight.Font.Style="0" Highlight.Condition="&#60;ÑîñòÏÊ.&#34;N_OPER_MK&#34;&#62;+&#60;ÑîñòÏÊ.&#34;N_OPER_TP&#34;&#62;=''" Highlight.FillType="ftBrush" Highlight.Fill.BackColor="4643583" Highlight.Fill.ForeColor="536870911" ParentFont="False" Text="[Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;N_OPER_MK&#34;][IIF(&#60;Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;N_OPER_TP&#34;&#62;&#60;&#62;'','\'+&#60;Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;N_OPER_TP&#34;&#62;,'')] [Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;Name_K_OperByPK&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo20" Left="1398,4261" Top="0" Width="113,3859" Height="18,89765" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" Highlight.ApplyFont="False" Highlight.Font.Charset="1" Highlight.Font.Color="255" Highlight.Font.Height="-13" Highlight.Font.Name="Arial" Highlight.Font.Style="0" Highlight.Condition="&#60;ÑîñòÏÊ.&#34;IsAc&#34;&#62; = 1" Highlight.FillType="ftBrush" Highlight.Fill.BackColor="10944422" ParentFont="False" Text="[FnAc] [Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;AcNote&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxMasterData>
+    <TfrxGroupHeader Name="GroupHeader2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="30,23624" Left="0" Top="294,80334" Width="1511,812" Condition="ÑîñòÏÊ.&#34;Cod_Pk_Str&#34;" Stretched="True">
+      <TfrxMemoView Name="Memo24" Left="226,7718" Top="0" Width="253,22834646" Height="30,23624" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="12" Fill.BackColor="16777180" HAlign="haCenter" ParentFont="False" SuppressRepeated="True" Text=""/>
+      <TfrxMemoView Name="Memo1" Left="0" Top="0" Width="226,7718" Height="30,23624" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" Fill.BackColor="16777180" ParentFont="False" Text="[Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;Cod_Pk_Str&#34;]  [Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;Pk_Str_Txt&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+        <Highlights>
+          <item ApplyFont="False" Font.Charset="1" Font.Color="255" Font.Height="-13" Font.Name="Arial" Font.Style="0" Condition="&#60;ÑîñòÏÊ.&#34;KontrCntAll&#34;&#62;  = 0" FillType="ftBrush" Fill.BackColor="4643583"/>
+          <item ApplyFont="False" Font.Charset="1" Font.Color="255" Font.Height="-13" Font.Name="Arial" Font.Style="0" Condition="&#60;ÑîñòÏÊ.&#34;KontrCntAll&#34;&#62; = &#60;ÑîñòÏÊ.&#34;KontrCntAc&#34;&#62;" FillType="ftBrush" Fill.BackColor="10944422"/>
+        </Highlights>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo26" Left="480,00031" Top="0" Width="253,22834646" Height="30,23624" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="12" Fill.BackColor="16777180" HAlign="haCenter" ParentFont="False" SuppressRepeated="True" Text=""/>
+      <TfrxMemoView Name="Memo27" Left="733,22882" Top="0" Width="253,22834646" Height="30,23624" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="12" Fill.BackColor="16777180" HAlign="haCenter" ParentFont="False" SuppressRepeated="True" Text=""/>
+      <TfrxMemoView Name="Memo28" Left="986,45733" Top="0" Width="253,22834646" Height="30,23624" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="12" Fill.BackColor="16777180" HAlign="haCenter" ParentFont="False" SuppressRepeated="True" Text=""/>
+      <TfrxMemoView Name="Memo29" Left="1239,68584" Top="0" Width="272,12599646" Height="30,23624" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="14" Fill.BackColor="16777180" HAlign="haCenter" ParentFont="False" SuppressRepeated="True" Text=""/>
+      <TfrxSubreport Name="Subreport1" Left="226,7718" Top="0" Width="94,48825" Height="18,89765" Page="Page2" PrintOnParent="True"/>
+    </TfrxGroupHeader>
+    <TfrxGroupHeader Name="GroupHeader3" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="49,13389" Left="0" Top="222,99227" Width="1511,812" Condition="1" ReprintOnNewPage="True" Stretched="True">
+      <TfrxMemoView Name="Memo30" Left="226,7718" Top="0" Width="253,22834646" Height="30,23624" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="12" Fill.BackColor="16777180" HAlign="haCenter" ParentFont="False" SuppressRepeated="True" Text=""/>
+      <TfrxMemoView Name="Memo10" Left="956,22109" Top="30,23624" Width="185,19697" Height="18,89765" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haCenter" ParentFont="False" Text="ÐžÐ¿ÐµÑ€Ð°Ñ†Ð¸Ñ&#13;&#10;Ð¡Ð¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo11" Left="1141,41806" Top="30,23624" Width="79,37013" Height="18,89765" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haCenter" ParentFont="False" Text="ÐŸÑ€ÐµÐ´. Ð¾Ð¿ÐµÑ€.&#13;&#10;ÐšÐ¾Ð»-Ð²Ð¾ (Ñ‚Ñ€ÑƒÐ´)"/>
+      <TfrxMemoView Name="Memo12" Left="226,7718" Top="30,23624" Width="226,7718" Height="18,89765" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haCenter" ParentFont="False" Text="Ð”Ð¡Ð•">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo13" Left="763,46506" Top="30,23624" Width="192,75603" Height="18,89765" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haCenter" ParentFont="False" Text="ÐŸÐ°ÑÐ¿Ð¾Ñ€Ñ‚ (ÐºÐ¾Ð»-Ð²Ð¾)">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo14" Left="1220,78819" Top="30,23624" Width="177,63791" Height="18,89765" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haCenter" ParentFont="False" Text="Ð¡Ð¼. Ð·Ð°Ð´Ð°Ð½Ð¸Ñ"/>
+      <TfrxMemoView Name="Memo15" Left="0" Top="30,23624" Width="226,7718" Height="18,89765" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haCenter" ParentFont="False" Text="Ð—Ð°Ð¼ÐµÑ‡Ð°Ð½Ð¸Ñ Ð¿Ð¾ Ð”Ð¡Ð•"/>
+      <TfrxMemoView Name="Memo16" Left="453,5436" Top="30,23624" Width="132,28355" Height="18,89765" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haCenter" ParentFont="False" Text="â„– Ð¢ÐŸ"/>
+      <TfrxMemoView Name="Memo18" Left="585,82715" Top="30,23624" Width="177,63791" Height="18,89765" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haCenter" ParentFont="False" Text="ÐžÐ¿ÐµÑ€. Ð¿Ð¾ Ð¢ÐŸ"/>
+      <TfrxMemoView Name="Memo19" Left="1398,4261" Top="30,23624" Width="113,3859" Height="18,89765" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haCenter" ParentFont="False" Text="ÐŸÑ€Ð¸Ð¼ÐµÑ‡."/>
+      <TfrxMemoView Name="Memo25" Left="0" Top="0" Width="226,7718" Height="30,23624" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" Fill.BackColor="16777180" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="ÐžÐ¿ÐµÑ€Ð°Ñ†Ð¸Ñ Ð¿Ð¾ ÐŸÐš"/>
+      <TfrxMemoView Name="Memo31" Left="480,00031" Top="0" Width="253,22834646" Height="30,23624" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="12" Fill.BackColor="16777180" HAlign="haCenter" ParentFont="False" SuppressRepeated="True" Text=""/>
+      <TfrxMemoView Name="Memo32" Left="733,22882" Top="0" Width="253,22834646" Height="30,23624" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="12" Fill.BackColor="16777180" HAlign="haCenter" ParentFont="False" SuppressRepeated="True" Text=""/>
+      <TfrxMemoView Name="Memo33" Left="986,45733" Top="0" Width="253,22834646" Height="30,23624" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="12" Fill.BackColor="16777180" HAlign="haCenter" ParentFont="False" SuppressRepeated="True" Text=""/>
+      <TfrxMemoView Name="Memo34" Left="1239,68584" Top="0" Width="272,12599646" Height="30,23624" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="14" Fill.BackColor="16777180" HAlign="haCenter" ParentFont="False" SuppressRepeated="True" Text=""/>
+      <TfrxSubreport Name="Subreport2" Left="226,7718" Top="0" Width="253,22851" Height="30,23624" Page="Page3" PrintOnParent="True"/>
+    </TfrxGroupHeader>
+    <TfrxMasterData Name="MasterData6" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="18,89765" Left="0" Top="136,06308" Width="1511,812" ColumnWidth="0" ColumnGap="0" DataSet="IzdelQRY" DataSetName="Èçäåëèÿ" RowCount="0" Stretched="True">
+      <TfrxMemoView Name="Memo23" Left="0" Top="0" Width="1111,18182" Height="18,89765" DataSet="IzdelQRY" DataSetName="Èçäåëèÿ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="Ð—Ð°ÐºÐ°Ð·: [Ð˜Ð·Ð´ÐµÐ»Ð¸Ñ.&#34;Cod_Zak&#34;]  Ð˜Ð·Ð´ÐµÐ»Ð¸Ðµ: [Ð˜Ð·Ð´ÐµÐ»Ð¸Ñ.&#34;Cod_Predm&#34;] [Ð˜Ð·Ð´ÐµÐ»Ð¸Ñ.&#34;Name_Predm&#34;] ([Ð˜Ð·Ð´ÐµÐ»Ð¸Ñ.&#34;Kolvo&#34;] ÑˆÑ‚.) [Ð˜Ð·Ð´ÐµÐ»Ð¸Ñ.&#34;KLB&#34;] ">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo43" Left="1111,18182" Top="0" Width="400,63018" Height="18,89765" DataField="F_Name_Sub" DataSet="IzdelQRY" DataSetName="Èçäåëèÿ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" HAlign="haRight" ParentFont="False" Text="[Ð˜Ð·Ð´ÐµÐ»Ð¸Ñ.&#34;F_Name_Sub&#34;]"/>
+    </TfrxMasterData>
+    <TfrxReportTitle Name="ReportTitle1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="56,69295" Left="0" Top="18,89765" Width="1511,812">
+      <TfrxMemoView Name="Memo2" Align="baWidth" Left="0" Top="22,67718" Width="1511,812" Height="18,89765" DataField="Cod_PK" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-19" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="[Ð¡Ð¾ÑÑ‚ÐŸÐš.&#34;Cod_PK&#34;]"/>
+    </TfrxReportTitle>
+    <TfrxFooter Name="Footer1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="22,67718" Left="0" Top="177,63791" Width="1511,812"/>
+    <TfrxMasterData Name="MasterData7" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="30,23624" Left="0" Top="442,20501" Width="1511,812" ColumnWidth="0" ColumnGap="0" DataSet="BadStrPK" DataSetName="Îøèá ñòðîêè" RowCount="0" Stretched="True">
+      <TfrxMemoView Name="Memo35" Align="baWidth" Left="0" Top="0" Width="1511,812" Height="30,23624" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" Fill.BackColor="7961087" ParentFont="False" Text="[ÐžÑˆÐ¸Ð± ÑÑ‚Ñ€Ð¾ÐºÐ¸.&#34;Cod_Pk_Str&#34;] [ÐžÑˆÐ¸Ð± ÑÑ‚Ñ€Ð¾ÐºÐ¸.&#34;Pk_Str_Txt&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxMasterData>
+    <TfrxHeader Name="Header1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="30,23624" Left="0" Top="389,29159" Width="1511,812">
+      <TfrxMemoView Name="Memo36" Align="baWidth" Left="0" Top="0" Width="1511,812" Height="30,23624" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" Fill.BackColor="7961087" ParentFont="False" VAlign="vaCenter" Text="Ð¡Ñ‚Ñ€Ð¾ÐºÐ¸ ÐŸÐš Ð±ÐµÐ· Ð¿Ñ€Ð¸Ð²ÑÐ·ÐºÐ¸ Ðº Ð”Ð¡Ð•">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxHeader>
+    <TfrxMasterData Name="MasterData8" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="18,89765" Left="0" Top="548,03185" Width="1511,812" ColumnWidth="0" ColumnGap="0" DataSet="BadTP" DataSetName="Îøèá.ÒÏ." RowCount="0" Stretched="True">
+      <TfrxMemoView Name="Memo38" Left="0" Top="0" Width="294,80321795" Height="18,89765" DataSet="BadTP" DataSetName="Îøèá.ÒÏ." Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" Fill.BackColor="7961087" ParentFont="False" SuppressRepeated="True" Text="[ÐžÑˆÐ¸Ð±.Ð¢ÐŸ..&#34;Cod_Pk_Str&#34;] [ÐžÑˆÐ¸Ð±.Ð¢ÐŸ..&#34;Pk_Str_Txt&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo41" Left="294,80334" Top="0" Width="1217,00853795" Height="18,89765" DataSet="BadTP" DataSetName="Îøèá.ÒÏ." Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" Fill.BackColor="7961087" ParentFont="False" Text="[ÐžÑˆÐ¸Ð±.Ð¢ÐŸ..&#34;Cod_TP&#34;]  [ÐžÑˆÐ¸Ð±.Ð¢ÐŸ..&#34;Cod_Predm&#34;] [ÐžÑˆÐ¸Ð±.Ð¢ÐŸ..&#34;Name_Predm&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxMasterData>
+    <TfrxHeader Name="Header2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="30,23624" Left="0" Top="495,11843" Width="1511,812">
+      <TfrxMemoView Name="Memo37" Align="baWidth" Left="0" Top="0" Width="1511,812" Height="30,23624" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" Fill.BackColor="7961087" ParentFont="False" VAlign="vaCenter" Text="Ð¢ÐŸ Ð’ÐºÐ»ÑŽÑ‡ÐµÐ½ Ð² ÐŸÐš Ð”Ð¡Ð• Ð¸ÑÐºÐ»ÑŽÑ‡ÐµÐ½Ð° Ð¸Ð· ÐŸÐš"/>
+    </TfrxHeader>
+    <TfrxMasterData Name="MasterData9" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="18,89765" Left="0" Top="642,5201" Width="1511,812" ColumnWidth="0" ColumnGap="0" DataSet="BatTPStr" DataSetName="Îøèá.Ñòð." RowCount="0" Stretched="True">
+      <TfrxMemoView Name="Memo40" Left="0" Top="0" Width="294,80321795" Height="18,89765" StretchMode="smMaxHeight" DataSet="BadTP" DataSetName="Îøèá.ÒÏ." Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" Fill.BackColor="7961087" ParentFont="False" SuppressRepeated="True" Text="[ÐžÑˆÐ¸Ð±.Ð¡Ñ‚Ñ€..&#34;Cod_Pk_Str&#34;] [ÐžÑˆÐ¸Ð±.Ð¡Ñ‚Ñ€..&#34;Pk_Str_Txt&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo42" Left="294,80334" Top="0" Width="188,97637795" Height="18,89765" StretchMode="smMaxHeight" DataSet="BadTP" DataSetName="Îøèá.ÒÏ." Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" Fill.BackColor="7961087" ParentFont="False" SuppressRepeated="True" Text="[ÐžÑˆÐ¸Ð±.Ð¡Ñ‚Ñ€..&#34;Cod_TP&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo44" Left="483,77984" Top="0" Width="1028,03149606" Height="18,89765" StretchMode="smMaxHeight" DataSet="BadTP" DataSetName="Îøèá.ÒÏ." Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" Fill.BackColor="7961087" ParentFont="False" Text="[ÐžÑˆÐ¸Ð±.Ð¡Ñ‚Ñ€..&#34;N_OPER_MK&#34;] / [ÐžÑˆÐ¸Ð±.Ð¡Ñ‚Ñ€..&#34;N_OPER_TP&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxMasterData>
+    <TfrxHeader Name="Header3" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="30,23624" Left="0" Top="589,60668" Width="1511,812">
+      <TfrxMemoView Name="Memo39" Align="baWidth" Left="0" Top="0" Width="1511,812" Height="30,23624" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" Fill.BackColor="7961087" ParentFont="False" VAlign="vaCenter" Text="Ð¡Ñ‚Ñ€Ð¾Ñ‡ÐºÐ¸ Ð¢ÐŸ Ð²ÐºÐ»ÑŽÑ‡ÐµÐ½Ñ‹Ðµ Ð² ÐŸÐš  Ð¿Ñ€Ð¸ ÑÑ‚Ð¾Ð¼ Ð¢ÐŸ Ð¸ÑÐºÐ»ÑŽÑ‡ÐµÐ½ Ð¸Ð· ÐŸÐš"/>
+    </TfrxHeader>
+  </TfrxReportPage>
+  <TfrxReportPage Name="Page2" Orientation="poLandscape" PaperWidth="420" PaperHeight="297" PaperSize="8" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxMasterData Name="MasterData2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="30,23624" Left="0" Top="18,89765" Width="1511,812" ColumnWidth="0" ColumnGap="0" RowCount="1" Stretched="True">
+      <TfrxCheckBoxView Name="CheckBox1" Left="162,51979" Top="0" Width="26,45671" Height="30,23624" CheckColor="0" CheckStyle="csCheck" DataField="IsAc" DataSet="KontrQRY" DataSetName="KontrQRY"/>
+      <TfrxMemoView Name="Memo22" Left="90,70872" Top="0" Width="71,81107" Height="30,23624" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="[KontrQRY.&#34;Cod_Pk_Str_Type&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxMasterData>
+    <TfrxMasterData Name="MasterData3" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="1046,92981" Left="22,67718" Top="0" Vertical="True" Width="253,22834646" ColumnWidth="0" ColumnGap="0" DataSet="KontrQRY" DataSetName="KontrQRY" RowCount="0"/>
+  </TfrxReportPage>
+  <TfrxReportPage Name="Page3" Orientation="poLandscape" PaperWidth="420" PaperHeight="297" PaperSize="8" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxMasterData Name="MasterData4" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="22,67718" Left="0" Top="18,89765" Width="1511,812" ColumnWidth="0" ColumnGap="0" RowCount="1">
+      <TfrxMemoView Name="Memo21" Left="90,70872" Top="0" Width="253,22834646" Height="22,67718" StretchMode="smMaxHeight" DataSet="SostPK" DataSetName="ÑîñòÏÊ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="[KontrQRY.&#34;Name_Sub&#34;]"/>
+    </TfrxMasterData>
+    <TfrxMasterData Name="MasterData5" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="1046,92981" Left="90,70872" Top="0" Vertical="True" Width="253,22834646" ColumnWidth="0" ColumnGap="0" DataSet="KontrQRY" DataSetName="KontrQRY" RowCount="0"/>
+  </TfrxReportPage>
+</TfrxReport>

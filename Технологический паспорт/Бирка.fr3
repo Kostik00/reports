@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Version="5.4" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="TSC TTP-343C" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="42458,6101259722" ReportOptions.Description.Text="" ReportOptions.Name="Бирка.fr3 Техн. пасп. № 02000.01101.44102/4" ReportOptions.LastChange="42494,6436058102" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;begin&#13;&#10;&#13;&#10;end." StoreInDFM="False">
+  <Datasets>
+    <item DataSet="MainFrxDS" DataSetName="MainDS"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="75" PaperHeight="53" PaperSize="256" LeftMargin="3" RightMargin="3" TopMargin="3" BottomMargin="3" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="167,40167" Left="0" Top="18,89765" Width="260,78757" ColumnWidth="0" ColumnGap="0" RowCount="1">
+      <TfrxMemoView Name="MainDSCod_Pasp" Left="0" Top="0" Width="260,78757" Height="30,23624" DataField="Cod_Pasp" DataSet="MainFrxDS" DataSetName="MainDS" Font.Charset="1" Font.Color="0" Font.Height="-16" Font.Name="Times New Roman" Font.Style="0" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="[MainDS.&#34;Cod_Pasp&#34;]"/>
+      <TfrxBarCodeView Name="BarCode2" Align="baCenter" Left="59,393785" Top="129,60637" Width="142" Height="30,23624" BarType="bcCode39Extended" CalcCheckSum="True" Expression="'0 02 '+IntToStr(&#60;MainDS.&#34;Key_Pasport&#34;&#62;)" HAlign="haRight" Rotation="0" ShowText="False" Text="12345678" WideBarRatio="2" Zoom="1" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0"/>
+      <TfrxMemoView Name="Memo1" Left="0" Top="30,23624" Width="260,78757" Height="52,91342" DataSet="MainFrxDS" DataSetName="MainDS" Font.Charset="1" Font.Color="0" Font.Height="-16" Font.Name="Times New Roman" Font.Style="0" HAlign="haCenter" ParentFont="False" Text="[MainDS.&#34;Name_Predm&#34;]"/>
+    </TfrxMasterData>
+  </TfrxReportPage>
+</TfrxReport>

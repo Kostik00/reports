@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Version="5.6.18" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="Ïî óìîë÷àíèþ" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="42767,7098851389" ReportOptions.Description.Text="" ReportOptions.Name="Îò÷åò ïî çàäàíèÿì çà ïåðèîä.fr3 Ñïèñîê çàäàíèé íà ïåðåìåùåíèå" ReportOptions.LastChange="43572,4612129745" ScriptLanguage="PascalScript" ScriptText.Text="function MyFn001:integer;&#13;&#10;begin&#13;&#10;  Result:=0;&#13;&#10;  if &#60;Çàäàíèÿ.&#34;FlCompl&#34;&#62; = 3 then&#13;&#10;  begin&#13;&#10;    if  &#60;Çàäàíèÿ.&#34;WTime&#34;&#62; &#60; 2 then&#13;&#10;     Result:=1;&#13;&#10;  end;&#13;&#10;end;&#13;&#10;&#13;&#10;&#13;&#10;function FnDif:double;&#13;&#10;begin&#13;&#10;  Result:=0;&#13;&#10;  if (&#60;Çàäàíèÿ.&#34;Date_Task&#34;&#62; &#62; 0) AND (&#60;Çàäàíèÿ.&#34;DtCompl&#34;&#62; &#62; 0) then&#13;&#10;  begin&#13;&#10;    Result:= (&#60;Çàäàíèÿ.&#34;DtCompl&#34;&#62; - &#60;Çàäàíèÿ.&#34;Date_Task&#34;&#62;) * 24;&#13;&#10;  end;&#13;&#10;&#13;&#10;end;&#13;&#10;&#13;&#10;&#13;&#10;function FnDif1:double;&#13;&#10;begin&#13;&#10;  Result:=0;&#13;&#10;  if (&#60;Çàäàíèÿ.&#34;DtZayavka&#34;&#62;  &#62; 0) AND (&#60;Çàäàíèÿ.&#34;DtCompl&#34;&#62; &#62; 0) then&#13;&#10;  begin&#13;&#10;    Result:= (&#60;Çàäàíèÿ.&#34;DtCompl&#34;&#62; - &#60;Çàäàíèÿ.&#34;DtZayavka&#34;&#62;) * 24;&#13;&#10;  end;&#13;&#10;&#13;&#10;end;&#13;&#10;&#13;&#10;&#13;&#10;procedure DialogPage1OnActivate(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;  DateFrom.Date:= &#60;Date&#62;;&#13;&#10;  DateTo.Date := &#60;Date&#62;;&#13;&#10;end;&#13;&#10;&#13;&#10;procedure ResultMemoOnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;  ResultMemo.Color:=$009B9BFF;&#13;&#10;  if MyFn001 = 1 then&#13;&#10;    ResultMemo.Color:=clNone ;&#13;&#10;end;&#13;&#10;&#13;&#10;begin&#13;&#10;&#13;&#10;end." StoreInDFM="False">
+  <Datasets>
+    <item DataSet="MTaskQRY" DataSetName="Çàäàíèÿ"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000">
+    <TfrxERQuery Name="MTaskQRY" UserName="Çàäàíèÿ" CloseDataSource="True" FieldAliases.Text="" BCDToCurrency="False" IgnoreDupParams="False" SQL.Text="SELECT&#13;&#10;	Pr_MTask.Key_MTask, &#13;&#10;	Pr_MTask.Name_Task, &#13;&#10;	Pr_MTask.Date_Task, &#13;&#10;	Pr_MTask.Date_Close, &#13;&#10;	Pr_MTask.Usr, &#13;&#10;	Pr_MTask.Status_MTask, &#13;&#10;	Pr_MTask_Detail.Key_Pasport, &#13;&#10;	Pr_MTask_Detail.Key_Pasp_Place, &#13;&#10;	Pr_MTask_Detail.Key_Pln_Pasp_Place, &#13;&#10;	Pr_MTask_Detail.Usr_PlnPlace, &#13;&#10;	Pr_MTask_Detail.DtCompl, &#13;&#10;	Pr_MTask_Detail.Key_MTask_Status FlCompl,&#13;&#10; Pr_MTask_Detail.DtZayavka,         &#13;&#10;	T_VPredm.Cod_Predm, &#13;&#10;	T_VPredm.Name_Predm, &#13;&#10;	Pr_Pasp.Cod_Pasp,&#13;&#10;&#13;&#10; Isp.Name_Sub Name_Sub_Isp,&#13;&#10; Pr_MTask_Detail.WTime,&#13;&#10;&#13;&#10; S_ALL_Sub.Name_Sub  Name_Sub_Z                                &#13;&#10;&#13;&#10;-- ,dbo.DtFn_CntWorkHours(Pr_MTask_Detail.DtZayavka, Pr_MTask_Detail.DtCompl) WHZayavka      &#13;&#10;     &#13;&#10;FROM            &#13;&#10;  Pr_MTask &#13;&#10;  INNER JOIN   Pr_MTask_Detail &#13;&#10;       ON Pr_MTask.Key_MTask = Pr_MTask_Detail.Key_MTask &#13;&#10;  INNER JOIN      Pr_Pasp &#13;&#10;       ON Pr_MTask_Detail.Key_Pasport = Pr_Pasp.Key_Pasport &#13;&#10;  INNER JOIN  T_VPredm &#13;&#10;       ON Pr_Pasp.Key_Predm = T_VPredm.Key_Predm&#13;&#10;         &#13;&#10;  LEFT JOIN S_Subjects Isp&#13;&#10;    ON ISP.Key_Sub = Pr_MTask_Detail.Key_Sub&#13;&#10;&#13;&#10;  LEFT JOIN S_Subjects S_ALL_Sub        &#13;&#10;  		ON S_ALL_Sub.cod_sub = Pr_MTask_Detail.Usr_PlnPlace&#13;&#10;       AND S_ALL_Sub.Key_Class=5                                                &#13;&#10;  &#13;&#10;                           &#13;&#10;WHERE&#13;&#10;  Pr_MTask_Detail.DtZayavka &#62;= :DateFrom&#13;&#10;  AND  Pr_MTask_Detail.DtZayavka &#60;= :DateTo&#13;&#10;ORDER BY  Name_Sub_Isp, Pr_MTask_Detail.DtCompl                                                " PropData="05704C65667402540470546F7002480A506172616D657465727301010C41000000204E616D653D224461746546726F6D222044617461547970653D2266744461746554696D65222045787072657373696F6E3D224461746546726F6D2E446174652200010C3D000000204E616D653D2244617465546F222044617461547970653D2266744461746554696D65222045787072657373696F6E3D2244617465546F2E44617465220000"/>
+  </TfrxDataPage>
+  <TfrxDialogPage Name="DialogPage1" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Tahoma" Font.Style="0" Height="200" ClientHeight="161" Left="347" Top="112" Width="300" ClientWidth="284" OnActivate="DialogPage1OnActivate">
+    <TfrxDateEditControl Name="DateFrom" Left="120" Top="44" Width="145" Height="21" ShowHint="True" Color="-16777211" Date="42767" Time="42767" WeekNumbers="False"/>
+    <TfrxDateEditControl Name="DateTo" Left="120" Top="80" Width="145" Height="21" ShowHint="True" Color="-16777211" Date="42767,9999884259" Time="42767,9999884259" WeekNumbers="False"/>
+    <TfrxLabelControl Name="Label1" Left="8" Top="16" Width="38" Height="13" ShowHint="True" Caption="Ïåðèîä" Color="-16777201"/>
+    <TfrxLabelControl Name="Label2" Left="44" Top="44" Width="7" Height="13" ShowHint="True" Caption="Ñ" Color="-16777201"/>
+    <TfrxLabelControl Name="Label3" Left="44" Top="84" Width="12" Height="13" ShowHint="True" Caption="ïî" Color="-16777201"/>
+    <TfrxButtonControl Name="Button1" Left="192" Top="124" Width="75" Height="25" ShowHint="True" Caption="OK" Default="True" ModalResult="1"/>
+  </TfrxDialogPage>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="60,47248" Left="0" Top="18,89765" Width="718,1107" Stretched="True">
+      <TfrxMemoView Name="Memo15" Left="0" Top="0" Width="718,1107" Height="60,47248" Font.Charset="1" Font.Color="0" Font.Height="-19" Font.Name="Arial" Font.Style="0" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Ð¡Ð¾ÑÑ‚Ð¾ÑÐ½Ð¸Ðµ Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ Ð·Ð°Ð´Ð°Ð½Ð¸Ð¹ &#13;&#10;Ð·Ð° Ð¿ÐµÑ€Ð¸Ð¾Ð´: Ñ [DateFrom.Date] Ð¿Ð¾ [DateTo.Date]">
+        <Formats>
+          <item FormatStr="dd.mm.yyyy" Kind="fkDateTime"/>
+          <item FormatStr="dd.mm.yyyy" Kind="fkDateTime"/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxReportTitle>
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="18,89765" Left="0" Top="268,34663" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="MTaskQRY" DataSetName="Çàäàíèÿ" RowCount="0" Stretched="True">
+      <TfrxMemoView Name="Memo3" Left="37,7953" Top="0" Width="355,27582" Height="18,89765" StretchMode="smMaxHeight" DataSet="MTaskQRY" DataSetName="Çàäàíèÿ" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" VAlign="vaCenter" Text="[Ð—Ð°Ð´Ð°Ð½Ð¸Ñ.&#34;Cod_Predm&#34;] [Ð—Ð°Ð´Ð°Ð½Ð¸Ñ.&#34;Name_Predm&#34;] [Ð—Ð°Ð´Ð°Ð½Ð¸Ñ.&#34;Cod_Pasp&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo4" Left="502,67749" Top="0" Width="83,1496063" Height="18,89765" StretchMode="smMaxHeight" DataSet="MTaskQRY" DataSetName="Çàäàíèÿ" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" VAlign="vaCenter" Text="[Ð—Ð°Ð´Ð°Ð½Ð¸Ñ.&#34;DtZayavka&#34;]">
+        <Formats>
+          <item FormatStr="dd.mm hh:mm" Kind="fkDateTime"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo5" Left="585,82715" Top="0" Width="83,14966" Height="18,89765" StretchMode="smMaxHeight" DataField="DtCompl" DataSet="MTaskQRY" DataSetName="Çàäàíèÿ" DisplayFormat.FormatStr="dd.mm hh:mm" DisplayFormat.Kind="fkDateTime" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" VAlign="vaCenter" Text="[Ð—Ð°Ð´Ð°Ð½Ð¸Ñ.&#34;DtCompl&#34;]"/>
+      <TfrxMemoView Name="ResultMemo" Left="668,97681" Top="0" Width="49,13389" Height="18,89765" OnBeforePrint="ResultMemoOnBeforePrint" StretchMode="smMaxHeight" DataSet="MTaskQRY" DataSetName="Çàäàíèÿ" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" Frame.Typ="15" Fill.BackColor="10198015" HAlign="haRight" HideZeros="True" ParentFont="False" VAlign="vaCenter" Text="[Ð—Ð°Ð´Ð°Ð½Ð¸Ñ.&#34;WTime&#34;]">
+        <Formats>
+          <item FormatStr="%2.2f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo8" Left="0" Top="0" Width="37,7953" Height="18,89765" StretchMode="smMaxHeight" DataSet="MTaskQRY" DataSetName="Çàäàíèÿ" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" VAlign="vaCenter" Text="[Line]">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo11" Left="393,07112" Top="0" Width="109,60632118" Height="18,89765" StretchMode="smMaxHeight" DataSet="MTaskQRY" DataSetName="Çàäàíèÿ" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" VAlign="vaCenter" Text="[Ð—Ð°Ð´Ð°Ð½Ð¸Ñ.&#34;Name_Sub_Z&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="22,67718" Left="0" Top="514,01608" Width="718,1107">
+      <TfrxMemoView Name="Memo1" Left="642,5201" Top="0" Width="75,5906" Height="18,89765" HAlign="haRight" Text="[Page#]"/>
+    </TfrxPageFooter>
+    <TfrxGroupHeader Name="GroupHeader1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="60,47248" Left="0" Top="139,84261" Width="718,1107" Condition="1" ReprintOnNewPage="True" Stretched="True">
+      <TfrxMemoView Name="Memo17" Left="0" Top="0" Width="393,07112" Height="60,47245559" StretchMode="smMaxHeight" DataSet="MTaskQRY" DataSetName="Çàäàíèÿ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="ÐžÐ±Ð¾Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ Ð½Ð°Ð¸Ð¼ÐµÐ½Ð¾Ð²Ð°Ð½Ð¸Ðµ Ð¿Ð°ÑÐ¿Ð¾Ñ€Ñ‚">
+        <Formats>
+          <item/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo18" Left="502,67749" Top="0" Width="83,14966" Height="60,47245559" StretchMode="smMaxHeight" DataSet="MTaskQRY" DataSetName="Çàäàíèÿ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Ð”Ð°Ñ‚Ð° Ð·Ð°ÑÐ²ÐºÐ¸"/>
+      <TfrxMemoView Name="Memo19" Left="585,82715" Top="0" Width="83,14966" Height="60,47245559" StretchMode="smMaxHeight" DataSet="MTaskQRY" DataSetName="Çàäàíèÿ" DisplayFormat.FormatStr="dd.mm.yyyy hh:mm" DisplayFormat.Kind="fkDateTime" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Ð”Ð°Ñ‚Ð° Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ"/>
+      <TfrxMemoView Name="Memo21" Left="668,97681" Top="22,67718" Width="49,13389" Height="37,79527559" StretchMode="smMaxHeight" DataSet="MTaskQRY" DataSetName="Çàäàíèÿ" DisplayFormat.FormatStr="%2.2f" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" HideZeros="True" ParentFont="False" Text="Ð’Ñ‹Ð¿. Ð·Ð°ÑÐ²."/>
+      <TfrxMemoView Name="Memo22" Left="668,97681" Top="0" Width="49,13389" Height="22,67715559" StretchMode="smMaxHeight" DataSet="MTaskQRY" DataSetName="Çàäàíèÿ" DisplayFormat.FormatStr="%2.2f" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" HideZeros="True" ParentFont="False" Text="Ð’Ñ€ÐµÐ¼Ñ"/>
+      <TfrxMemoView Name="Memo9" Left="393,07112" Top="0" Width="109,60637" Height="60,47245559" StretchMode="smMaxHeight" DataSet="MTaskQRY" DataSetName="Çàäàíèÿ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Ð—Ð°Ñ‚Ñ€ÐµÐ±Ð¾Ð²Ð°Ð»"/>
+    </TfrxGroupHeader>
+    <TfrxFooter Name="Footer1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="60,47248" Left="0" Top="393,07112" Width="718,1107">
+      <TfrxMemoView Name="Memo10" Left="279,68522" Top="0" Width="438,42548" Height="60,47248" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haRight" ParentFont="False" Text="Ð’ÑÐµÐ³Ð¾: [COUNT( MasterData1)]&#13;&#10;Ð’Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¾ Ð¼ÐµÐ½ÐµÐµ Ñ‡ÐµÐ¼ Ð·Ð° 2 Ñ‡Ð°ÑÐ° [SUM(MyFn001, MasterData1)]&#13;&#10;% ÑÐ²Ð¾ÐµÐ²Ñ€ÐµÐ¼ÐµÐ½Ð½Ð¾ÑÑ‚Ð¸ Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ Ð¿ÐµÑ€ÐµÐ¼ÐµÑ‰ÐµÐ½Ð¸Ð¹ [100*SUM(MyFn001, MasterData1)/COUNT( MasterData1)]">
+        <Formats>
+          <item/>
+          <item/>
+          <item FormatStr="%2.2f" Kind="fkNumeric"/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxFooter>
+    <TfrxGroupHeader Name="GroupHeader2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="22,67718" Left="0" Top="222,99227" Width="718,1107" Condition="Çàäàíèÿ.&#34;Name_Sub_Isp&#34;">
+      <TfrxMemoView Name="Memo2" Left="0" Top="0" Width="718,11062677" Height="22,67718" StretchMode="smMaxHeight" DataField="Name_Sub_Isp" DataSet="MTaskQRY" DataSetName="Çàäàíèÿ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" ParentFont="False" Text="[Ð—Ð°Ð´Ð°Ð½Ð¸Ñ.&#34;Name_Sub_Isp&#34;]"/>
+    </TfrxGroupHeader>
+    <TfrxGroupFooter Name="GroupFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="60,47248" Left="0" Top="309,92146" Width="718,1107">
+      <TfrxMemoView Name="Memo6" Left="279,68522" Top="0" Width="438,42548" Height="60,47248" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haRight" ParentFont="False" Text="Ð’ÑÐµÐ³Ð¾: [COUNT( MasterData1)]&#13;&#10;Ð’Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¾ Ð¼ÐµÐ½ÐµÐµ Ñ‡ÐµÐ¼ Ð·Ð° 2 Ñ‡Ð°ÑÐ° [SUM(MyFn001, MasterData1)]&#13;&#10;% ÑÐ²Ð¾ÐµÐ²Ñ€ÐµÐ¼ÐµÐ½Ð½Ð¾ÑÑ‚Ð¸ Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÐµÐ½Ð¸Ñ Ð¿ÐµÑ€ÐµÐ¼ÐµÑ‰ÐµÐ½Ð¸Ð¹ [100*SUM(MyFn001, MasterData1)/COUNT( MasterData1)]">
+        <Formats>
+          <item/>
+          <item/>
+          <item FormatStr="%2.2f" Kind="fkNumeric"/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo7" Left="0" Top="0" Width="718,11062677" Height="60,47248" StretchMode="smMaxHeight" DataSet="MTaskQRY" DataSetName="Çàäàíèÿ" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" ParentFont="False" Text="Ð˜Ñ‚Ð¾Ð³Ð¾ Ð¿Ð¾ Ð¸ÑÐ¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŽ: [Ð—Ð°Ð´Ð°Ð½Ð¸Ñ.&#34;Name_Sub_Isp&#34;]"/>
+    </TfrxGroupFooter>
+  </TfrxReportPage>
+</TfrxReport>

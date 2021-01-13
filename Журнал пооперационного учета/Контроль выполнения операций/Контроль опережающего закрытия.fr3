@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Version="5.6.18" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.AllowEdit="False" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="Ïî óìîë÷àíèþ" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="43892,6065680324" ReportOptions.Description.Text="" ReportOptions.Name="Êîíòðîëü îïåðåæàþùåãî çàêðûòèÿ.fr3 Æóðíàë ïîîïåðàöèîííîãî ó÷åòà" ReportOptions.LastChange="43892,6958803819" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;begin&#13;&#10;&#13;&#10;end." StoreInDFM="False">
+  <Datasets>
+    <item DataSet="OperQRY" DataSetName="Îïåðàöèè"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000">
+    <TfrxERQuery Name="OperQRY" UserName="Îïåðàöèè" CloseDataSource="True" FieldAliases.Text="" BCDToCurrency="False" IgnoreDupParams="False" SQL.Text="DECLARE @DateFrom datetime&#13;&#10;DECLARE @DateTo datetime&#13;&#10;DECLARE @DayKolvo int&#13;&#10;&#13;&#10;SET @DayKolvo=7&#13;&#10;&#13;&#10;SET @DateFrom='20200228'&#13;&#10;SET @DateTo = '20200302'&#13;&#10;&#13;&#10;&#13;&#10;SELECT &#13;&#10;	S_ALL_Sub.F_Name_Sub,&#13;&#10;	P_VKZ_Zap.Key_VKZ_Izdel,&#13;&#10;	P_VKZ_Oper.Key_Vkz_Oper,&#13;&#10;	Pr_Pln_Res.Name_Pln_Res,&#13;&#10;	Pr_Pasp.Cod_Pasp,&#13;&#10;&#13;&#10;	Pr_Pasp.Cod_Zak,&#13;&#10;	DSE.Cod_PRedm,&#13;&#10;	Pr_Pln_Res.Key_Pln_Res,&#13;&#10;	&#13;&#10;	&#13;&#10;	pr_pasp_rows.Key_Pasp_Rows,&#13;&#10;	pr_pasp_rows.N_Oper_Sm,&#13;&#10;	T_Oper.Name_Oper,&#13;&#10;	TDT.MaxDT AcDT,&#13;&#10;	pr_pasp_rows.DateVipUtv,&#13;&#10;	P_VKZ_Zap.Date_Vip Date_Vip_DSE,&#13;&#10;	PlnCr.DataVip DataVipIzdel,&#13;&#10;	Convert(Float,pr_pasp_rows.DateVipUtv - TDT.MaxDT) Dif,&#13;&#10;	pr_pasp_rows.TSm,&#13;&#10; &#13;&#10;	DSE.Name_Predm&#13;&#10;&#13;&#10;FROM &#13;&#10;	pr_pasp_rows&#13;&#10;	INNER JOIN T_Oper&#13;&#10;		ON T_Oper.Cod_Oper = pr_pasp_rows.Cod_Oper&#13;&#10;	LEFT JOIN P_VKZ_Oper&#13;&#10;		ON P_VKZ_Oper.Key_Pasp_Rows=pr_pasp_rows.Key_Pasp_Rows&#13;&#10;	LEFT JOIN P_VKZ_Zap	&#13;&#10;		ON P_VKZ_Zap.Key_VKZ_Zap=P_VKZ_Oper.Key_VKZ_Zap&#13;&#10;	&#13;&#10;	LEFT JOIN Pr_Pln_Res&#13;&#10;		ON Pr_Pln_Res.Key_Pln_Res= ISNULL(pr_pasp_rows.Key_Pln_ResUtv, P_VKZ_Oper.Key_Pln_Res)&#13;&#10;&#13;&#10;	INNER JOIN Pr_Pasp	&#13;&#10;		ON Pr_Pasp.Key_Pasport=pr_pasp_rows.Key_Pasport&#13;&#10;	INNER JOIN T_VPredm DSE&#13;&#10;		ON DSE.Key_Predm=Pr_Pasp.Key_Predm&#13;&#10;	LEFT JOIN&#13;&#10;	(&#13;&#10;		SELECT        Key_Pasp_Rows, Key_Sub_Ver, MIN(AC_Date) AS MinDT, MAX(AC_Date) AS MaxDT&#13;&#10;		FROM            Pr_Pasp_Ac&#13;&#10;		GROUP BY Key_Pasp_Rows, Key_Sub_Ver&#13;&#10;	) TDT&#13;&#10;	ON TDT.Key_Pasp_Rows=pr_pasp_rows.Key_Pasp_Rows&#13;&#10;&#13;&#10;	LEFT JOIN S_ALL_Sub&#13;&#10;		ON  S_ALL_Sub.Key_Sub_Ver=TDT.Key_Sub_Ver&#13;&#10;&#13;&#10;	LEFT JOIN P_VKZ PlnCr&#13;&#10;	ON PlnCr.Key_VKZ = P_VKZ_Zap.Key_VKZ_Izdel&#13;&#10;&#13;&#10;&#13;&#10;WHERE &#13;&#10;	(&#13;&#10; 	  (TDT.MaxDT BETWEEN @DateFrom AND @DateTo)&#13;&#10;	)&#13;&#10;	AND&#13;&#10;	Convert(Float,Pr_Pasp_Rows.DateVipUtv   -  TDT.MaxDT) &#62; @DayKolvo&#13;&#10;	AND Pr_Pln_Res.Name_Pln_Res like 'ÌÎ%'&#13;&#10;ORDER BY &#13;&#10;	S_ALL_Sub.F_Name_Sub, Name_Pln_Res, Dif DESC, pr_pasp_rows.DateVipUtv  " PropData="05704C65667402600470546F7002280A506172616D65746572730100"/>
+  </TfrxDataPage>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="20" Left="0" Top="18,89765" Width="718,1107"/>
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="20" Left="0" Top="185,19697" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="OperQRY" DataSetName="Îïåðàöèè" RowCount="0" Stretched="True">
+      <TfrxMemoView Name="Memo4" Left="0" Top="0" Width="113,3859" Height="18,89765" StretchMode="smMaxHeight" DataField="Cod_Zak" DataSet="OperQRY" DataSetName="Îïåðàöèè" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" ParentFont="False" Text="[ÐžÐ¿ÐµÑ€Ð°Ñ†Ð¸Ð¸.&#34;Cod_Zak&#34;]"/>
+      <TfrxMemoView Name="Memo5" Left="113,3859" Top="0" Width="287,24428" Height="18,89765" StretchMode="smMaxHeight" DataSet="OperQRY" DataSetName="Îïåðàöèè" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" ParentFont="False" Text="[ÐžÐ¿ÐµÑ€Ð°Ñ†Ð¸Ð¸.&#34;Cod_PRedm&#34;]&#13;&#10;[ÐžÐ¿ÐµÑ€Ð°Ñ†Ð¸Ð¸.&#34;Name_Predm&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo6" Left="472,44125" Top="0" Width="90,70872" Height="18,89765" StretchMode="smMaxHeight" DataSet="OperQRY" DataSetName="Îïåðàöèè" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haCenter" ParentFont="False" Text="[ÐžÐ¿ÐµÑ€Ð°Ñ†Ð¸Ð¸.&#34;AcDT&#34;]&#13;&#10;[ÐžÐ¿ÐµÑ€Ð°Ñ†Ð¸Ð¸.&#34;DateVipUtv&#34;]">
+        <Formats>
+          <item FormatStr="dd.mm.yyyy" Kind="fkDateTime"/>
+          <item FormatStr="dd.mm.yyyy" Kind="fkDateTime"/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo7" Left="563,14997" Top="0" Width="79,37013" Height="18,89765" StretchMode="smMaxHeight" DataField="Dif" DataSet="OperQRY" DataSetName="Îïåðàöèè" DisplayFormat.FormatStr="%2.0f" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haRight" ParentFont="False" Text="[ÐžÐ¿ÐµÑ€Ð°Ñ†Ð¸Ð¸.&#34;Dif&#34;]"/>
+      <TfrxMemoView Name="Memo8" Left="642,5201" Top="0" Width="75,5906" Height="18,89765" StretchMode="smMaxHeight" DataField="TSm" DataSet="OperQRY" DataSetName="Îïåðàöèè" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haRight" ParentFont="False" Text="[ÐžÐ¿ÐµÑ€Ð°Ñ†Ð¸Ð¸.&#34;TSm&#34;]"/>
+      <TfrxMemoView Name="Memo10" Left="400,63018" Top="0" Width="71,81107" Height="18,89765" StretchMode="smMaxHeight" DataSet="OperQRY" DataSetName="Îïåðàöèè" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HideZeros="True" ParentFont="False" Text="[ÐžÐ¿ÐµÑ€Ð°Ñ†Ð¸Ð¸.&#34;Date_Vip_DSE&#34;]&#13;&#10;[ÐžÐ¿ÐµÑ€Ð°Ñ†Ð¸Ð¸.&#34;DataVipIzdel&#34;]">
+        <Formats>
+          <item FormatStr="dd.mm.yyyy" Kind="fkDateTime"/>
+          <item FormatStr="dd.mm.yyyy" Kind="fkDateTime"/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="20" Left="0" Top="355,27582" Width="718,1107">
+      <TfrxMemoView Name="Memo1" Align="baRight" Left="642,5201" Top="0" Width="75,5906" Height="18,89765" HAlign="haRight" Text="[Page#]"/>
+    </TfrxPageFooter>
+    <TfrxGroupHeader Name="GroupHeader1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="22,67718" Left="0" Top="98,26778" Width="718,1107" Condition="Îïåðàöèè.&#34;F_Name_Sub&#34;">
+      <TfrxMemoView Name="Memo2" Align="baWidth" Left="0" Top="6,93889390390723E-18" Width="718,1107" Height="18,89765" DataField="F_Name_Sub" DataSet="OperQRY" DataSetName="Îïåðàöèè" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[ÐžÐ¿ÐµÑ€Ð°Ñ†Ð¸Ð¸.&#34;F_Name_Sub&#34;]"/>
+    </TfrxGroupHeader>
+    <TfrxGroupHeader Name="GroupHeader2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="18,89765" Left="0" Top="143,62214" Width="718,1107" Condition="Îïåðàöèè.&#34;Name_Pln_Res&#34;">
+      <TfrxMemoView Name="Memo3" Align="baWidth" Left="0" Top="0" Width="718,1107" Height="18,89765" DataField="Name_Pln_Res" DataSet="OperQRY" DataSetName="Îïåðàöèè" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[ÐžÐ¿ÐµÑ€Ð°Ñ†Ð¸Ð¸.&#34;Name_Pln_Res&#34;]"/>
+    </TfrxGroupHeader>
+    <TfrxGroupFooter Name="GroupFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="22,67718" Left="0" Top="272,12616" Width="718,1107"/>
+    <TfrxGroupFooter Name="GroupFooter2" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="22,67718" Left="0" Top="226,7718" Width="718,1107">
+      <TfrxMemoView Name="Memo9" Left="642,5201" Top="-1,38777878078145E-17" Width="75,5906" Height="18,89765" DataSet="OperQRY" DataSetName="Îïåðàöèè" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="15" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;ÐžÐ¿ÐµÑ€Ð°Ñ†Ð¸Ð¸.&#34;TSm&#34;&#62;,MasterData1)]"/>
+    </TfrxGroupFooter>
+  </TfrxReportPage>
+</TfrxReport>

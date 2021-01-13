@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Version="5.6.18" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="По умолчанию" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="43825,9716292245" ReportOptions.Description.Text="" ReportOptions.Name="Тест XML.fr3 Список Договоров" ReportOptions.LastChange="43830,0077652083" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;begin&#13;&#10;&#13;&#10;end." StoreInDFM="False">
+  <Datasets>
+    <item DataSet="ERQuery1" DataSetName="ERQuery1"/>
+    <item DataSet="MainFrxDS" DataSetName="SelDog"/>
+    <item DataSet="XMLDS1" DataSetName="XMLDS1"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000">
+    <TfrxXMLDS Name="XMLDS1" UserName="XMLDS1" CloseDataSource="True" FieldAliases.Text="" Master="ERQuery1" XMLField="XML" ProbeXML.Text="&#60;?xml version=&#34;1.0&#34; encoding =&#34;windows-1251&#34;?&#62;&#60;SPR&#62;&#60;T_SPRows Key_SPRow=&#34;43798&#34; Key_SP=&#34;14157&#34; SP_position=&#34;0&#34; Key_Predm=&#34;3826&#34; EdNorm=&#34;1&#34; Kolvo=&#34;3.129100000000000e+001&#34; Cod_Ed_Izm=&#34;166&#34; Cod_Zagotov=&#34;50&#34; Prof_Razm=&#34;690х545&#34; Massa_One=&#34;3.129100000000000e+001&#34; UseZagotov=&#34;3&#34; KolZag=&#34;1&#34; TS=&#34;AAAAAAB1coM=&#34;/&#62;&#60;/SPR&#62;" PropData="05704C65667403AC000470546F700220"/>
+    <TfrxERQuery Name="ERQuery1" UserName="ERQuery1" CloseDataSource="True" FieldAliases.Text="" BCDToCurrency="False" IgnoreDupParams="False" SQL.Text="select &#13;&#10;	Key_SP,&#13;&#10;	Convert(text, '&#60;?xml version=&#34;1.0&#34; encoding =&#34;windows-1251&#34;?&#62;' +&#13;&#10;	(&#13;&#10;		SELECT * &#13;&#10;		FROM T_SPRows &#13;&#10;		WHERE T_SPRows.Key_SP=T_SP.Key_SP&#13;&#10;		ORDER BY SP_position&#13;&#10;		FOR XML AUTO , ROOT('SPR' )&#13;&#10;	)) XML&#13;&#10;&#13;&#10;&#13;&#10; from T_SP&#13;&#10; WHERE Key_SP between 14157 AND 14357  " PropData="05704C65667402440470546F7002200A506172616D65746572730100"/>
+  </TfrxDataPage>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxReportTitle Name="ReportTitle1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="20" Left="0" Top="18,89765" Width="718,1107"/>
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="20" Left="0" Top="98,26778" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="ERQuery1" DataSetName="ERQuery1" RowCount="0" Stretched="True">
+      <TfrxMemoView Name="ERQuery1Key_SP" Left="37,7953" Top="0" Width="79,37013" Height="18,89765" DataField="Key_SP" DataSet="ERQuery1" DataSetName="ERQuery1" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Fill.BackColor="52479" ParentFont="False" Text="[ERQuery1.&#34;Key_SP&#34;]"/>
+    </TfrxMasterData>
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="20" Left="0" Top="219,21274" Width="718,1107">
+      <TfrxMemoView Name="Memo1" Left="642,5201" Top="0" Width="75,5906" Height="18,89765" HAlign="haRight" Text="[Page#]"/>
+    </TfrxPageFooter>
+    <TfrxDetailData Name="DetailData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="18,89765" Left="0" Top="139,84261" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="XMLDS1" DataSetName="XMLDS1" RowCount="0">
+      <TfrxMemoView Name="XMLDS1Key_SPRow" Left="75,5906" Top="0" Width="79,37013" Height="18,89765" DataField="Key_SPRow" DataSet="XMLDS1" DataSetName="XMLDS1" DisplayFormat.FormatStr="%2.2f" DisplayFormat.Kind="fkNumeric" Text="[XMLDS1.&#34;Key_SPRow&#34;]"/>
+      <TfrxMemoView Name="XMLDS1SP_position" Left="154,96073" Top="0" Width="79,37013" Height="18,89765" DataField="SP_position" DataSet="XMLDS1" DataSetName="XMLDS1" DisplayFormat.FormatStr="%2.2n" DisplayFormat.Kind="fkNumeric" Text="[XMLDS1.&#34;SP_position&#34;]"/>
+      <TfrxMemoView Name="XMLDS1Prof_Razm" Left="234,33086" Top="0" Width="219,21274" Height="18,89765" DataField="Prof_Razm" DataSet="XMLDS1" DataSetName="XMLDS1" Text="[XMLDS1.&#34;Prof_Razm&#34;]"/>
+      <TfrxMemoView Name="XMLDS1Cod_Zagotov" Left="453,5436" Top="0" Width="79,37013" Height="18,89765" DataField="Cod_Zagotov" DataSet="XMLDS1" DataSetName="XMLDS1" Text="[XMLDS1.&#34;Cod_Zagotov&#34;]"/>
+    </TfrxDetailData>
+  </TfrxReportPage>
+</TfrxReport>

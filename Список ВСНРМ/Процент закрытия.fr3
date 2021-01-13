@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Version="5.6.18" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="�� ���������" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="38513,0822621875" ReportOptions.Description.Text="" ReportOptions.Name="������� �������� ������. (ver. 01 � 08).fr3 ������ �����" ReportOptions.LastChange="43584,7923809028" ScriptLanguage="PascalScript" ScriptText.Text="USES 'CommonRU.pas', 'Reports.pas';&#13;&#10;&#13;&#10;var&#13;&#10;  clLight: TColor;&#13;&#10;  clDark:  TColor;&#13;&#10;  clGroup: TColor;&#13;&#10;  clSummary:  TColor;&#13;&#10;  sPercentSign11: Char;&#13;&#10;  sPercentSign12: Char;&#13;&#10;  sPercentSign13: Char;&#13;&#10;  sPercentSign21: Char;&#13;&#10;  sPercentSign22: Char;&#13;&#10;  sPercentSign23: Char;&#13;&#10;  sPercentSign31: Char;&#13;&#10;  sPercentSign32: Char;&#13;&#10;  sPercentSign33: Char;&#13;&#10;&#13;&#10;{&#13;&#10;function Percent001:double;&#13;&#10;begin&#13;&#10;  Result := 0;&#13;&#10;  if ( &#60;WSNRMQry.&#34;CntPosOM&#34;&#62; &#62; 0 ) then&#13;&#10;       Result := 100*(&#60;WSNRMQry.&#34;CntPosOM&#34;&#62; - &#60;WSNRMQry.&#34;CntPosOMNZRQ&#34;&#62; - &#60;WSNRMQry.&#34;CntPosOMNZPR&#34;&#62;) / &#60;WSNRMQry.&#34;CntPosOM&#34;&#62;;&#13;&#10;end;&#13;&#10; }&#13;&#10;&#13;&#10;function Percent2:double;&#13;&#10;begin&#13;&#10;  Result := 0;&#13;&#10;  if ( &#60;WSNRMQry.&#34;CntPosPrR&#34;&#62; &#62; 0 ) then&#13;&#10;  Result := 100*&#60;WSNRMQry.&#34;CntPosPrR&#34;&#62; / &#60;WSNRMQry.&#34;CntPosPr&#34;&#62;;&#13;&#10;end;&#13;&#10;&#13;&#10;function Percent002:double;&#13;&#10;begin&#13;&#10;  Result := 0;&#13;&#10;  if ( &#60;WSNRMQry.&#34;CntPosPrR&#34;&#62; &#62; 0 ) then&#13;&#10;  Result := 100*(&#60;WSNRMQry.&#34;CntPosPr&#34;&#62; - &#60;WSNRMQry.&#34;CntPosPrNZRQ&#34;&#62; -  &#60;WSNRMQry.&#34;CntPosPrNZPR&#34;&#62;) / &#60;WSNRMQry.&#34;CntPosPr&#34;&#62;;&#13;&#10;end;&#13;&#10;&#13;&#10;procedure MasterData1OnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;  if ((&#60;Line&#62; mod 2) = 1) then SetCellsColor(MasterData1, clLight) else SetCellsColor(MasterData1, clDark);&#13;&#10;&#13;&#10;  if &#60;WSNRMQry.&#34;CntPosOM&#34;&#62; = 0&#13;&#10;    then begin&#13;&#10;    sPercentSign11:='';&#13;&#10;    WSNRMQryCntPosOMR.HideZeros:=True;&#13;&#10;    Memo19.HideZeros:=True;&#13;&#10;    Memo1.HideZeros:=True;&#13;&#10;    Memo20.HideZeros:=True;&#13;&#10;    Memo21.HideZeros:=True;&#13;&#10;    Memo22.HideZeros:=True;&#13;&#10;    Memo23.HideZeros:=True;&#13;&#10;    Memo42.HideZeros:=True;&#13;&#10;    end&#13;&#10;    else begin&#13;&#10;    sPercentSign11:='%';&#13;&#10;    Memo19.HideZeros:=False;&#13;&#10;    WSNRMQryCntPosOMR.HideZeros:=False;&#13;&#10;    Memo1.HideZeros:=False;&#13;&#10;    Memo20.HideZeros:=False;&#13;&#10;    Memo21.HideZeros:=False;&#13;&#10;    Memo22.HideZeros:=False;&#13;&#10;    Memo23.HideZeros:=False;&#13;&#10;    Memo42.HideZeros:=False;&#13;&#10;    end;&#13;&#10;&#13;&#10;  if &#60;WSNRMQry.&#34;C_CntPosPr&#34;&#62; = 0&#13;&#10;    then begin&#13;&#10;    sPercentSign12:='';&#13;&#10;    Memo30.HideZeros:=True;&#13;&#10;    WSNRMQryCntPosPR.HideZeros:=True;&#13;&#10;    Memo2.HideZeros:=True;&#13;&#10;    Memo32.HideZeros:=True;&#13;&#10;    Memo33.HideZeros:=True;&#13;&#10;    Memo34.HideZeros:=True;&#13;&#10;    Memo35.HideZeros:=True;&#13;&#10;    Memo44.HideZeros:=True;&#13;&#10;    end&#13;&#10;    else begin&#13;&#10;    sPercentSign12:='%';&#13;&#10;    Memo30.HideZeros:=False;&#13;&#10;    WSNRMQryCntPosPR.HideZeros:=False;&#13;&#10;    Memo2.HideZeros:=False;&#13;&#10;    Memo32.HideZeros:=False;&#13;&#10;    Memo33.HideZeros:=False;&#13;&#10;    Memo34.HideZeros:=False;&#13;&#10;    Memo35.HideZeros:=False;&#13;&#10;    Memo44.HideZeros:=False;&#13;&#10;    end;&#13;&#10;&#13;&#10;  if &#60;WSNRMQry.&#34;T_CntPosPr&#34;&#62; = 0&#13;&#10;    then begin&#13;&#10;    sPercentSign13:='';&#13;&#10;    Memo125.HideZeros:=True;&#13;&#10;    Memo126.HideZeros:=True;&#13;&#10;    Memo127.HideZeros:=True;&#13;&#10;    Memo128.HideZeros:=True;&#13;&#10;    Memo129.HideZeros:=True;&#13;&#10;    Memo130.HideZeros:=True;&#13;&#10;    Memo131.HideZeros:=True;&#13;&#10;    Memo132.HideZeros:=True&#13;&#10;    end&#13;&#10;    else begin&#13;&#10;    sPercentSign13:='%';&#13;&#10;    Memo125.HideZeros:=False;&#13;&#10;    Memo126.HideZeros:=False;&#13;&#10;    Memo127.HideZeros:=False;&#13;&#10;    Memo128.HideZeros:=False;&#13;&#10;    Memo129.HideZeros:=False;&#13;&#10;    Memo130.HideZeros:=False;&#13;&#10;    Memo131.HideZeros:=False;&#13;&#10;    Memo132.HideZeros:=False&#13;&#10;    end;&#13;&#10;&#13;&#10;  if WSNRMQry.FieldByName('DataVip').IsNull&#13;&#10;    then WSNRMQryDataVip.Text:='� ��� �'&#13;&#10;    else WSNRMQryDataVip.Text:=FormatDateTime( 'dd.mm.yy', WSNRMQry.FieldByName('DataVip').AsDateTime)&#13;&#10;end;&#13;&#10;&#13;&#10;procedure SetColoredDesign;&#13;&#10;begin&#13;&#10;  clLight:=$00F7F7F7;&#13;&#10;  clDark:=$00D0D0D0;&#13;&#10;  clGroup:=$00D5D5C4;&#13;&#10;  clSummary:=$00C6D7C6;&#13;&#10;end;&#13;&#10;&#13;&#10;procedure SetBWDesign;&#13;&#10;begin&#13;&#10;  clLight:=$00FFFFFF;&#13;&#10;  clDark:=$00D0D0D0;&#13;&#10;  clGroup:=$00D0D0D0;&#13;&#10;  clSummary:=$00D0D0D0;&#13;&#10;end;&#13;&#10;&#13;&#10;procedure SetStaticColors;&#13;&#10;begin&#13;&#10;  SetCellsColor(ReportTitle1, clDark);&#13;&#10;  SetCellsColor(Header1, clDark);&#13;&#10;  SetCellsColor(GroupHeader1, clGroup);&#13;&#10;  SetCellsColor(GroupFooter1, clGroup);&#13;&#10;  SetCellsColor(ReportSummary1, clSummary);&#13;&#10;end;&#13;&#10;&#13;&#10;procedure DialogPage1OnDeactivate(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;  if rbColoredDesign.Checked then SetColoredDesign else SetBWDesign;&#13;&#10;end;&#13;&#10;&#13;&#10;procedure Page1OnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;  SetStaticColors;&#13;&#10;  sPercentSign11:='%';&#13;&#10;  sPercentSign12:='%';&#13;&#10;  sPercentSign13:='%';&#13;&#10;  sPercentSign21:='%';&#13;&#10;  sPercentSign22:='%';&#13;&#10;  sPercentSign23:='%';&#13;&#10;  sPercentSign31:='%';&#13;&#10;  sPercentSign32:='%';&#13;&#10;  sPercentSign33:='%';&#13;&#10;end;&#13;&#10;&#13;&#10;procedure GroupFooter1OnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;{* 01 *}&#13;&#10;  if SUM(&#60;WSNRMQry.&#34;CntPosOM&#34;&#62;) = 0&#13;&#10;    then begin&#13;&#10;      sPercentSign21:='';&#13;&#10;      Memo55.HideZeros:=True;&#13;&#10;      Memo50.HideZeros:=True;&#13;&#10;      Memo52.HideZeros:=True;&#13;&#10;      Memo56.HideZeros:=True;&#13;&#10;      Memo57.HideZeros:=True;&#13;&#10;      Memo58.HideZeros:=True;&#13;&#10;      Memo59.HideZeros:=True;&#13;&#10;      Memo65.HideZeros:=True&#13;&#10;    end&#13;&#10;    else begin&#13;&#10;      sPercentSign21:='%';&#13;&#10;      Memo55.HideZeros:=False;&#13;&#10;      Memo50.HideZeros:=False;&#13;&#10;      Memo52.HideZeros:=False;&#13;&#10;      Memo56.HideZeros:=False;&#13;&#10;      Memo57.HideZeros:=False;&#13;&#10;      Memo58.HideZeros:=False;&#13;&#10;      Memo59.HideZeros:=False;&#13;&#10;      Memo65.HideZeros:=False&#13;&#10;    end;&#13;&#10;{* 02 *}&#13;&#10;  if SUM(&#60;WSNRMQry.&#34;C_CntPosPr&#34;&#62;) = 0&#13;&#10;    then begin&#13;&#10;      sPercentSign22:='';&#13;&#10;      Memo60.HideZeros:=True;&#13;&#10;      Memo51.HideZeros:=True;&#13;&#10;      Memo53.HideZeros:=True;&#13;&#10;      Memo61.HideZeros:=True;&#13;&#10;      Memo62.HideZeros:=True;&#13;&#10;      Memo63.HideZeros:=True;&#13;&#10;      Memo64.HideZeros:=True;&#13;&#10;      Memo66.HideZeros:=True&#13;&#10;    end&#13;&#10;    else begin&#13;&#10;      sPercentSign22:='%';&#13;&#10;      Memo60.HideZeros:=False;&#13;&#10;      Memo51.HideZeros:=False;&#13;&#10;      Memo53.HideZeros:=False;&#13;&#10;      Memo61.HideZeros:=False;&#13;&#10;      Memo62.HideZeros:=False;&#13;&#10;      Memo63.HideZeros:=False;&#13;&#10;      Memo64.HideZeros:=False;&#13;&#10;      Memo66.HideZeros:=False&#13;&#10;    end;&#13;&#10;{* 03 *}&#13;&#10;  if SUM(&#60;WSNRMQry.&#34;T_CntPosPr&#34;&#62;) = 0&#13;&#10;    then begin&#13;&#10;      sPercentSign23:='';&#13;&#10;      Memo135.HideZeros:=True;&#13;&#10;      Memo134.HideZeros:=True;&#13;&#10;      Memo140.HideZeros:=True;&#13;&#10;      Memo136.HideZeros:=True;&#13;&#10;      Memo137.HideZeros:=True;&#13;&#10;      Memo138.HideZeros:=True;&#13;&#10;      Memo139.HideZeros:=True;&#13;&#10;      Memo141.HideZeros:=True&#13;&#10;    end&#13;&#10;    else begin&#13;&#10;      sPercentSign23:='%';&#13;&#10;      Memo135.HideZeros:=False;&#13;&#10;      Memo134.HideZeros:=False;&#13;&#10;      Memo140.HideZeros:=False;&#13;&#10;      Memo136.HideZeros:=False;&#13;&#10;      Memo137.HideZeros:=False;&#13;&#10;      Memo138.HideZeros:=False;&#13;&#10;      Memo139.HideZeros:=False;&#13;&#10;      Memo141.HideZeros:=False&#13;&#10;    end;&#13;&#10;&#13;&#10;  if WSNRMQry.FieldByName('DataVip').IsNull&#13;&#10;    then Memo67.Text:='�����, �� ��� ��������������� ����: '&#13;&#10;    else Memo67.Text:='�����, �� '+FormatDateTime( 'mmmm yyyy', WSNRMQry.FieldByName('DataVip').AsDateTime)+': ';&#13;&#10;end;&#13;&#10;&#13;&#10;procedure ReportSummary1OnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;{* 01 *}&#13;&#10;  if SUM(&#60;WSNRMQry.&#34;CntPosOM&#34;&#62;) = 0&#13;&#10;    then begin&#13;&#10;      sPercentSign31:='';&#13;&#10;      Memo78.HideZeros:=True;&#13;&#10;      Memo74.HideZeros:=True;&#13;&#10;      Memo76.HideZeros:=True;&#13;&#10;      Memo79.HideZeros:=True;&#13;&#10;      Memo80.HideZeros:=True;&#13;&#10;      Memo81.HideZeros:=True;&#13;&#10;      Memo82.HideZeros:=True;&#13;&#10;      Memo88.HideZeros:=True&#13;&#10;    end&#13;&#10;    else begin&#13;&#10;      sPercentSign31:='%';&#13;&#10;      Memo78.HideZeros:=False;&#13;&#10;      Memo74.HideZeros:=False;&#13;&#10;      Memo76.HideZeros:=False;&#13;&#10;      Memo79.HideZeros:=False;&#13;&#10;      Memo80.HideZeros:=False;&#13;&#10;      Memo81.HideZeros:=False;&#13;&#10;      Memo82.HideZeros:=False;&#13;&#10;      Memo88.HideZeros:=False&#13;&#10;    end;&#13;&#10;{* 02 *}&#13;&#10;  if SUM(&#60;WSNRMQry.&#34;C_CntPosPr&#34;&#62;) = 0&#13;&#10;    then begin&#13;&#10;      sPercentSign32:='';&#13;&#10;      Memo83.HideZeros:=True;&#13;&#10;      Memo75.HideZeros:=True;&#13;&#10;      Memo89.HideZeros:=True;&#13;&#10;      Memo84.HideZeros:=True;&#13;&#10;      Memo85.HideZeros:=True;&#13;&#10;      Memo86.HideZeros:=True;&#13;&#10;      Memo87.HideZeros:=True;&#13;&#10;      Memo90.HideZeros:=True&#13;&#10;    end&#13;&#10;    else begin&#13;&#10;      sPercentSign32:='%';&#13;&#10;      Memo83.HideZeros:=False;&#13;&#10;      Memo75.HideZeros:=False;&#13;&#10;      Memo89.HideZeros:=False;&#13;&#10;      Memo84.HideZeros:=False;&#13;&#10;      Memo85.HideZeros:=False;&#13;&#10;      Memo86.HideZeros:=False;&#13;&#10;      Memo87.HideZeros:=False;&#13;&#10;      Memo90.HideZeros:=False&#13;&#10;    end;&#13;&#10;{* 03 *}&#13;&#10;  if SUM(&#60;WSNRMQry.&#34;T_CntPosPr&#34;&#62;) = 0&#13;&#10;    then begin&#13;&#10;      sPercentSign33:='';&#13;&#10;      Memo153.HideZeros:=True;&#13;&#10;      Memo152.HideZeros:=True;&#13;&#10;      Memo158.HideZeros:=True;&#13;&#10;      Memo154.HideZeros:=True;&#13;&#10;      Memo155.HideZeros:=True;&#13;&#10;      Memo156.HideZeros:=True;&#13;&#10;      Memo157.HideZeros:=True;&#13;&#10;      Memo159.HideZeros:=True&#13;&#10;    end&#13;&#10;    else begin&#13;&#10;      sPercentSign33:='%';&#13;&#10;      Memo153.HideZeros:=False;&#13;&#10;      Memo152.HideZeros:=False;&#13;&#10;      Memo158.HideZeros:=False;&#13;&#10;      Memo154.HideZeros:=False;&#13;&#10;      Memo155.HideZeros:=False;&#13;&#10;      Memo156.HideZeros:=False;&#13;&#10;      Memo157.HideZeros:=False;&#13;&#10;      Memo159.HideZeros:=False&#13;&#10;    end;&#13;&#10;end;&#13;&#10;&#13;&#10;procedure GroupHeader1OnBeforePrint(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;  if WSNRMQry.FieldByName('DataVip').IsNull&#13;&#10;    then WSNRMQryDataVip1.Text:='���� ��� �� �����������'&#13;&#10;    else WSNRMQryDataVip1.Text:=FormatDateTime( 'mmmm yyyy', WSNRMQry.FieldByName('DataVip').AsDateTime)&#13;&#10;end;&#13;&#10;&#13;&#10;begin&#13;&#10;  SetColoredDesign;&#13;&#10;end." StoreInDFM="False">
+  <Datasets>
+    <item DataSet="MainFrxDS" DataSetName="MainDS"/>
+    <item DataSet="WSNRMQry" DataSetName="WSNRMQry"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000">
+    <TfrxERQuery Name="WSNRMQry" UserName="WSNRMQry" CloseDataSource="True" FieldAliases.Text="Key_WSNRM=Key_WSNRM&#13;&#10;Cod_WSNRM=Cod_WSNRM&#13;&#10;Name_WSNRM=Name_WSNRM&#13;&#10;Key_VKZ=Key_VKZ&#13;&#10;Cod_Predm=Cod_Predm&#13;&#10;Kolvo=Kolvo&#13;&#10;Cod_Zak=Cod_Zak&#13;&#10;Name_Predm=Name_Predm&#13;&#10;OrderCod_Predm=OrderCod_Predm&#13;&#10;DataVip=DataVip&#13;&#10;DataVipUtv=DataVipUtv&#13;&#10;CntAllPos=CntAllPos&#13;&#10;CntPosOM=CntPosOM&#13;&#10;CntPosOmZap=CntPosOmZap&#13;&#10;CntPosOMR=CntPosOMR&#13;&#10;CntPosOMNZ=CntPosOMNZ&#13;&#10;CntPosOMNZR=CntPosOMNZR&#13;&#10;CntPosOMNZPR=CntPosOMNZPR&#13;&#10;CntPosOMNZRQ=CntPosOMNZRQ&#13;&#10;C_CntPosPr=C_CntPosPr&#13;&#10;C_CntPosPrZap=C_CntPosPrZap&#13;&#10;C_CntPosPrR=C_CntPosPrR&#13;&#10;C_CntPosPrNZ=C_CntPosPrNZ&#13;&#10;C_CntPosPrNZR=C_CntPosPrNZR&#13;&#10;C_CntPosPrNZPR=C_CntPosPrNZPR&#13;&#10;C_CntPosPrNZRQ=C_CntPosPrNZRQ&#13;&#10;T_CntPosPr=T_CntPosPr&#13;&#10;T_CntPosPrZap=T_CntPosPrZap&#13;&#10;T_CntPosPrR=T_CntPosPrR&#13;&#10;T_CntPosPrNZ=T_CntPosPrNZ&#13;&#10;T_CntPosPrNZR=T_CntPosPrNZR&#13;&#10;T_CntPosPrNZPR=T_CntPosPrNZPR&#13;&#10;T_CntPosPrNZRQ=T_CntPosPrNZRQ" BCDToCurrency="False" IgnoreDupParams="False" SQL.Text="SELECT&#13;&#10;    P_WSNRM.Key_WSNRM, &#13;&#10;    P_WSNRM.Cod_WSNRM, &#13;&#10;    P_WSNRM.Name_WSNRM, &#13;&#10;    P_WSNRM_Izdel.Key_VKZ,&#13;&#10;    T_VPredm.Cod_Predm, &#13;&#10;    P_VKZ.Kolvo, &#13;&#10;    P_VKZ.Cod_Zak, &#13;&#10;    T_VPredm.Name_Predm, &#13;&#10;    T_VPredm.OrderCod_Predm,&#13;&#10;    P_VKZ.DataVip,  &#13;&#10;    P_VKZ.DataVipUtv,  &#13;&#10;            &#13;&#10;    TALL.CntAllPos, &#13;&#10;              &#13;&#10;    TOM.CntPosOM,&#13;&#10;    TOMZap.CntPosOmZap,&#13;&#10;    TOMR.CntPosOMR,&#13;&#10;          &#13;&#10;    TOMNZ.CntPosOMNZ,&#13;&#10;    TOMNZR.CntPosOMNZR,&#13;&#10;    TOMNZPR.CntPosOMNZPR,&#13;&#10;    TOMNZRQ.CntPosOMNZRQ,&#13;&#10;            &#13;&#10;    C_TPr.CntPosPr AS C_CntPosPr, &#13;&#10;    C_TPrZap.CntPosPrZap AS C_CntPosPrZap,&#13;&#10;    C_TPrR.CntPosPrR AS C_CntPosPrR,&#13;&#10;          &#13;&#10;    C_TPrNZ.CntPosPrNZ AS C_CntPosPrNZ,&#13;&#10;    C_TPrNZR.CntPosPrNZR AS C_CntPosPrNZR,&#13;&#10;    C_TPrNZPR.CntPosPrNZPR AS C_CntPosPrNZPR,&#13;&#10;    C_TPrNZRQ.CntPosPrNZRQ AS C_CntPosPrNZRQ,    &#13;&#10;            &#13;&#10;    T_TPr.CntPosPr AS T_CntPosPr, &#13;&#10;    T_TPrZap.CntPosPrZap AS T_CntPosPrZap,&#13;&#10;    T_TPrR.CntPosPrR AS T_CntPosPrR,&#13;&#10;          &#13;&#10;    T_TPrNZ.CntPosPrNZ AS T_CntPosPrNZ,&#13;&#10;    T_TPrNZR.CntPosPrNZR AS T_CntPosPrNZR,&#13;&#10;    T_TPrNZPR.CntPosPrNZPR AS T_CntPosPrNZPR,&#13;&#10;    T_TPrNZRQ.CntPosPrNZRQ AS T_CntPosPrNZRQ      &#13;&#10;  &#13;&#10;  FROM P_WSNRM &#13;&#10;    INNER JOIN P_WSNRM_Izdel &#13;&#10;            ON P_WSNRM.Key_WSNRM = P_WSNRM_Izdel.Key_WSNRM &#13;&#10;    INNER JOIN P_VKZ &#13;&#10;            ON P_WSNRM_Izdel.Key_VKZ = P_VKZ.Key_VKZ &#13;&#10;    INNER JOIN T_VPredm &#13;&#10;            ON P_VKZ.Key_Predm = T_VPredm.Key_Predm&#13;&#10;  &#13;&#10;LEFT JOIN&#13;&#10;  (SELECT&#13;&#10;      P_VMZ.Key_WSNRM,&#13;&#10;      P_VKZ_Zap.Key_VKZ_Izdel,&#13;&#10;      COUNT(P_VMZ.Key_VMZ) AS CntAllPos&#13;&#10;    FROM P_VMZ &#13;&#10;    INNER JOIN P_VKZ_Zap&#13;&#10;            ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;    INNER JOIN T_SPRows &#13;&#10;            ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;    GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel  &#13;&#10;  ) TALL       &#13;&#10;            ON  TALL.Key_WSNRM = P_WSNRM.Key_WSNRM AND    &#13;&#10;                TALL.Key_VKZ_Izdel = P_WSNRM_Izdel.Key_VKZ&#13;&#10;&#13;&#10;LEFT JOIN&#13;&#10;  (SELECT&#13;&#10;      P_VMZ.Key_WSNRM,&#13;&#10;      P_VKZ_Zap.Key_VKZ_Izdel,&#13;&#10;      COUNT(P_VMZ.Key_VMZ) AS CntPosOM&#13;&#10;  FROM P_VMZ &#13;&#10;    INNER JOIN P_VKZ_Zap&#13;&#10;            ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;    INNER JOIN T_SPRows &#13;&#10;            ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;  WHERE (T_SPRows.SP_position = 0)&#13;&#10;  GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel  &#13;&#10;  ) TOM             &#13;&#10;            ON TOM.Key_WSNRM = P_WSNRM.Key_WSNRM AND                                                &#13;&#10;               TOM.Key_VKZ_Izdel = P_WSNRM_Izdel.Key_VKZ&#13;&#10;&#13;&#10;LEFT JOIN&#13;&#10;(    &#13;&#10;SELECT P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, COUNT(P_VMZ.Key_VMZ) AS CntPosOmZap    &#13;&#10;FROM P_VMZ &#13;&#10;INNER JOIN P_VKZ_Zap&#13;&#10;ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;INNER JOIN T_SPRows &#13;&#10;ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;WHERE     (T_SPRows.SP_position = 0) AND (P_VMZ.VMZActive = 0)&#13;&#10;GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel&#13;&#10;) TOMZap &#13;&#10;ON	TOMZap.Key_WSNRM		= P_WSNRM.Key_WSNRM  &#13;&#10;AND TOMZap.Key_VKZ_Izdel	= P_WSNRM_Izdel.Key_VKZ&#13;&#10;&#13;&#10;LEFT JOIN&#13;&#10;(    &#13;&#10;SELECT P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, COUNT(P_VMZ.Key_VMZ) AS CntPosOMR    &#13;&#10;FROM P_VMZ &#13;&#10;INNER JOIN P_VKZ_Zap&#13;&#10;ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;INNER JOIN T_SPRows &#13;&#10;ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;LEFT JOIN&#13;&#10;(&#13;&#10;SELECT Key_VMZ, SUM(KolDT) AS Rezerv&#13;&#10;FROM A_Rezerv&#13;&#10;GROUP BY Key_VMZ&#13;&#10;) T01&#13;&#10;ON T01.Key_VMZ = P_VMZ.Key_VMZ&#13;&#10;&#13;&#10;WHERE     (T_SPRows.SP_position = 0)&#13;&#10;AND T01.Rezerv &#62;= P_VMZ.KolDSE&#13;&#10;GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, P_VKZ_Zap.Key_VKZ_Izdel&#13;&#10;) TOMR       &#13;&#10;ON  TOMR.Key_WSNRM = P_WSNRM.Key_WSNRM  &#13;&#10;AND TOMR.Key_VKZ_Izdel = P_WSNRM_Izdel.Key_VKZ&#13;&#10;&#13;&#10;LEFT JOIN&#13;&#10;(    &#13;&#10;SELECT P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, COUNT(P_VMZ.Key_VMZ) AS CntPosOMNZ    &#13;&#10;FROM P_VMZ &#13;&#10;INNER JOIN P_VKZ_Zap&#13;&#10;ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;INNER JOIN T_SPRows &#13;&#10;ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;WHERE     (T_SPRows.SP_position = 0) AND (P_VMZ.VMZActive=1)&#13;&#10;GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel  &#13;&#10;) TOMNZ             &#13;&#10;ON &#13;&#10;TOMNZ.Key_WSNRM = P_WSNRM.Key_WSNRM                                           &#13;&#10;AND TOMNZ.Key_VKZ_Izdel = P_WSNRM_Izdel.Key_VKZ&#13;&#10;&#13;&#10;LEFT JOIN&#13;&#10;(    &#13;&#10;SELECT P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, COUNT(P_VMZ.Key_VMZ) AS CntPosOMNZR    &#13;&#10;FROM P_VMZ&#13;&#10;INNER JOIN P_VKZ_Zap&#13;&#10;ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;INNER JOIN T_SPRows &#13;&#10;ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;LEFT JOIN&#13;&#10;(&#13;&#10;SELECT Key_VMZ, SUM(KolDT) AS Rezerv&#13;&#10;FROM A_Rezerv&#13;&#10;GROUP BY Key_VMZ&#13;&#10;) T01&#13;&#10;ON T01.Key_VMZ = P_VMZ.Key_VMZ&#13;&#10;&#13;&#10;WHERE (T_SPRows.SP_position = 0) AND (P_VMZ.VMZActive=1)&#13;&#10;AND T01.Rezerv &#62;= P_VMZ.KolDSE&#13;&#10;GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, P_VKZ_Zap.Key_VKZ_Izdel  &#13;&#10;) TOMNZR       &#13;&#10;ON  TOMNZR.Key_WSNRM = P_WSNRM.Key_WSNRM  &#13;&#10;AND TOMNZR.Key_VKZ_Izdel = P_WSNRM_Izdel.Key_VKZ&#13;&#10;&#13;&#10;LEFT JOIN&#13;&#10;(    &#13;&#10;SELECT P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, COUNT(P_VMZ.Key_VMZ) AS CntPosOMNZPR    &#13;&#10;FROM P_VMZ &#13;&#10;INNER JOIN P_VKZ_Zap&#13;&#10;ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;INNER JOIN T_SPRows &#13;&#10;ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;LEFT JOIN&#13;&#10;(&#13;&#10;SELECT Key_VMZ, SUM(KolDT) AS Rezerv&#13;&#10;FROM A_Rezerv&#13;&#10;GROUP BY Key_VMZ&#13;&#10;) T01&#13;&#10;ON T01.Key_VMZ = P_VMZ.Key_VMZ&#13;&#10;WHERE (T_SPRows.SP_position = 0) AND (P_VMZ.VMZActive=1) AND (Isnull(P_VMZ.DatePostav,GetDate()) &#62; GetDate() )&#13;&#10;AND Isnull(T01.Rezerv,0) &#60; P_VMZ.KolDSE&#13;&#10;GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, P_VKZ_Zap.Key_VKZ_Izdel  &#13;&#10;) TOMNZPR       &#13;&#10;ON  TOMNZPR.Key_WSNRM = P_WSNRM.Key_WSNRM  &#13;&#10;AND TOMNZPR.Key_VKZ_Izdel = P_WSNRM_Izdel.Key_VKZ&#13;&#10;&#13;&#10;LEFT JOIN&#13;&#10;(    &#13;&#10;SELECT P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, COUNT(P_VMZ.Key_VMZ) AS CntPosOMNZRQ &#13;&#10;FROM P_VMZ &#13;&#10;INNER JOIN P_VKZ_Zap&#13;&#10;ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;INNER JOIN T_SPRows &#13;&#10;ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;LEFT JOIN&#13;&#10;(&#13;&#10;SELECT Key_VMZ, SUM(KolDT) AS Rezerv&#13;&#10;FROM A_Rezerv&#13;&#10;GROUP BY Key_VMZ&#13;&#10;) T01&#13;&#10;ON T01.Key_VMZ = P_VMZ.Key_VMZ&#13;&#10;&#13;&#10;WHERE     (T_SPRows.SP_position = 0) AND (P_VMZ.VMZActive=1) AND (Isnull(P_VMZ.DatePostav,GetDate()) &#60;= GetDate() )&#13;&#10;AND Isnull(T01.Rezerv,0) &#60; P_VMZ.KolDSE&#13;&#10;GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, P_VKZ_Zap.Key_VKZ_Izdel&#13;&#10;) TOMNZRQ       &#13;&#10;ON  TOMNZRQ.Key_WSNRM = P_WSNRM.Key_WSNRM  &#13;&#10;AND TOMNZRQ.Key_VKZ_Izdel = P_WSNRM_Izdel.Key_VKZ&#13;&#10;&#13;&#10;LEFT JOIN&#13;&#10;(    &#13;&#10;SELECT P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, COUNT(P_VMZ.Key_VMZ) AS CntPosPr    &#13;&#10;FROM P_VMZ &#13;&#10;INNER JOIN P_VKZ_Zap&#13;&#10;ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;INNER JOIN T_SPRows &#13;&#10;ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;WHERE (T_SPRows.SP_position &#62; 0 AND T_SPRows.SP_position &#60; 1000)&#13;&#10;GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel &#13;&#10;) C_TPr           &#13;&#10;ON  C_TPr.Key_WSNRM = P_WSNRM.Key_WSNRM  &#13;&#10;AND C_TPr.Key_VKZ_Izdel = P_WSNRM_Izdel.Key_VKZ&#13;&#10;	&#13;&#10;LEFT JOIN&#13;&#10;(    &#13;&#10;SELECT P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, COUNT(P_VMZ.Key_VMZ) AS CntPosPr    &#13;&#10;FROM P_VMZ &#13;&#10;INNER JOIN P_VKZ_Zap&#13;&#10;ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;INNER JOIN T_SPRows &#13;&#10;ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;WHERE     (T_SPRows.SP_position &#62;= 1000 AND T_SPRows.SP_position &#60; 2000)&#13;&#10;GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel &#13;&#10;) T_TPr           &#13;&#10;ON  T_TPr.Key_WSNRM = P_WSNRM.Key_WSNRM  &#13;&#10;AND T_TPr.Key_VKZ_Izdel = P_WSNRM_Izdel.Key_VKZ	&#13;&#10;&#13;&#10;LEFT JOIN&#13;&#10;(    &#13;&#10;SELECT P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, COUNT(P_VMZ.Key_VMZ) AS CntPosPrZap    &#13;&#10;FROM P_VMZ &#13;&#10;INNER JOIN P_VKZ_Zap&#13;&#10;ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;INNER JOIN T_SPRows &#13;&#10;ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;WHERE (T_SPRows.SP_position &#62; 0 AND T_SPRows.SP_position &#60; 1000) AND (P_VMZ.VMZActive = 0)&#13;&#10;GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel&#13;&#10;) C_TPrZap &#13;&#10;ON	C_TPrZap.Key_WSNRM		= P_WSNRM.Key_WSNRM  &#13;&#10;AND C_TPrZap.Key_VKZ_Izdel	= P_WSNRM_Izdel.Key_VKZ&#13;&#10;&#13;&#10;LEFT JOIN&#13;&#10;(    &#13;&#10;SELECT P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, COUNT(P_VMZ.Key_VMZ) AS CntPosPrZap    &#13;&#10;FROM P_VMZ &#13;&#10;INNER JOIN P_VKZ_Zap&#13;&#10;ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;INNER JOIN T_SPRows &#13;&#10;ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;WHERE     (T_SPRows.SP_position &#62;= 1000 AND T_SPRows.SP_position &#60; 2000) AND (P_VMZ.VMZActive = 0)&#13;&#10;GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel&#13;&#10;) T_TPrZap &#13;&#10;ON	T_TPrZap.Key_WSNRM		= P_WSNRM.Key_WSNRM  &#13;&#10;AND T_TPrZap.Key_VKZ_Izdel	= P_WSNRM_Izdel.Key_VKZ&#13;&#10;&#13;&#10;LEFT JOIN&#13;&#10;(    &#13;&#10;SELECT P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, COUNT(P_VMZ.Key_VMZ) AS CntPosPrR    &#13;&#10;FROM P_VMZ &#13;&#10;INNER JOIN P_VKZ_Zap&#13;&#10;ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;INNER JOIN T_SPRows &#13;&#10;ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;LEFT JOIN&#13;&#10;(&#13;&#10;SELECT Key_VMZ, SUM(KolDT) AS Rezerv&#13;&#10;FROM A_Rezerv&#13;&#10;GROUP BY Key_VMZ&#13;&#10;) T01&#13;&#10;ON T01.Key_VMZ = P_VMZ.Key_VMZ&#13;&#10;&#13;&#10;WHERE (T_SPRows.SP_position &#62; 0 AND T_SPRows.SP_position &#60; 1000)&#13;&#10;AND T01.Rezerv &#62;= P_VMZ.KolDSE&#13;&#10;GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel  &#13;&#10;) C_TPrR       &#13;&#10;ON C_TPrR.Key_WSNRM = P_WSNRM.Key_WSNRM  &#13;&#10;AND C_TPrR.Key_VKZ_Izdel = P_WSNRM_Izdel.Key_VKZ&#13;&#10;&#13;&#10;LEFT JOIN&#13;&#10;(    &#13;&#10;SELECT P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, COUNT(P_VMZ.Key_VMZ) AS CntPosPrR    &#13;&#10;FROM P_VMZ &#13;&#10;INNER JOIN P_VKZ_Zap&#13;&#10;ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;INNER JOIN T_SPRows &#13;&#10;ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;LEFT JOIN&#13;&#10;(&#13;&#10;SELECT Key_VMZ, SUM(KolDT) AS Rezerv&#13;&#10;FROM A_Rezerv&#13;&#10;GROUP BY Key_VMZ&#13;&#10;) T01&#13;&#10;ON T01.Key_VMZ = P_VMZ.Key_VMZ&#13;&#10;&#13;&#10;WHERE (T_SPRows.SP_position &#62;= 1000 AND T_SPRows.SP_position &#60; 2000)&#13;&#10;AND T01.Rezerv &#62;= P_VMZ.KolDSE&#13;&#10;GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel  &#13;&#10;) T_TPrR       &#13;&#10;ON T_TPrR.Key_WSNRM = P_WSNRM.Key_WSNRM  &#13;&#10;AND T_TPrR.Key_VKZ_Izdel = P_WSNRM_Izdel.Key_VKZ&#13;&#10;&#13;&#10;LEFT JOIN&#13;&#10;(    &#13;&#10;SELECT P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, COUNT(P_VMZ.Key_VMZ) AS CntPosPrNZ    &#13;&#10;FROM P_VMZ &#13;&#10;INNER JOIN P_VKZ_Zap&#13;&#10;ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;INNER JOIN T_SPRows &#13;&#10;ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;WHERE     (T_SPRows.SP_position &#62; 0 AND T_SPRows.SP_position &#60; 1000) AND (P_VMZ.VMZActive=1)&#13;&#10;GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel  &#13;&#10;) C_TPrNZ             &#13;&#10;ON C_TPrNZ.Key_WSNRM = P_WSNRM.Key_WSNRM                                           &#13;&#10;AND C_TPrNZ.Key_VKZ_Izdel = P_WSNRM_Izdel.Key_VKZ&#13;&#10;	&#13;&#10;LEFT JOIN&#13;&#10;(    &#13;&#10;SELECT P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, COUNT(P_VMZ.Key_VMZ) AS CntPosPrNZ    &#13;&#10;FROM P_VMZ &#13;&#10;INNER JOIN P_VKZ_Zap&#13;&#10;ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;INNER JOIN T_SPRows &#13;&#10;ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;WHERE     (T_SPRows.SP_position &#62;= 1000 AND T_SPRows.SP_position &#60; 2000) AND (P_VMZ.VMZActive=1)&#13;&#10;GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel&#13;&#10;) T_TPrNZ             &#13;&#10;ON	T_TPrNZ.Key_WSNRM = P_WSNRM.Key_WSNRM                                           &#13;&#10;AND T_TPrNZ.Key_VKZ_Izdel = P_WSNRM_Izdel.Key_VKZ	&#13;&#10;&#13;&#10;LEFT JOIN&#13;&#10;(    &#13;&#10;SELECT P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, COUNT(P_VMZ.Key_VMZ) AS CntPosPrNZR    &#13;&#10;FROM P_VMZ&#13;&#10;INNER JOIN P_VKZ_Zap&#13;&#10;ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;INNER JOIN T_SPRows &#13;&#10;ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;LEFT JOIN&#13;&#10;(&#13;&#10;SELECT Key_VMZ, SUM(KolDT) AS Rezerv&#13;&#10;FROM A_Rezerv&#13;&#10;GROUP BY Key_VMZ&#13;&#10;) T01&#13;&#10;ON T01.Key_VMZ = P_VMZ.Key_VMZ&#13;&#10;&#13;&#10;WHERE (T_SPRows.SP_position &#62; 0 AND T_SPRows.SP_position &#60; 1000) AND (P_VMZ.VMZActive=1)&#13;&#10;AND T01.Rezerv &#62;= P_VMZ.KolDSE&#13;&#10;GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, P_VKZ_Zap.Key_VKZ_Izdel&#13;&#10;) C_TPrNZR       &#13;&#10;ON C_TPrNZR.Key_WSNRM = P_WSNRM.Key_WSNRM  &#13;&#10;AND C_TPrNZR.Key_VKZ_Izdel = P_WSNRM_Izdel.Key_VKZ&#13;&#10;&#13;&#10;LEFT JOIN&#13;&#10;(    &#13;&#10;SELECT P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, COUNT(P_VMZ.Key_VMZ) AS CntPosPrNZR    &#13;&#10;FROM P_VMZ&#13;&#10;INNER JOIN P_VKZ_Zap&#13;&#10;ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;INNER JOIN T_SPRows &#13;&#10;ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;LEFT JOIN&#13;&#10;(&#13;&#10;SELECT Key_VMZ, SUM(KolDT) AS Rezerv&#13;&#10;FROM A_Rezerv&#13;&#10;GROUP BY Key_VMZ&#13;&#10;) T01&#13;&#10;ON T01.Key_VMZ = P_VMZ.Key_VMZ&#13;&#10;&#13;&#10;WHERE (T_SPRows.SP_position &#62;= 1000 AND T_SPRows.SP_position &#60; 2000) AND (P_VMZ.VMZActive=1)&#13;&#10;AND T01.Rezerv &#62;= P_VMZ.KolDSE&#13;&#10;GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, P_VKZ_Zap.Key_VKZ_Izdel&#13;&#10;) T_TPrNZR       &#13;&#10;ON T_TPrNZR.Key_WSNRM = P_WSNRM.Key_WSNRM  &#13;&#10;AND T_TPrNZR.Key_VKZ_Izdel = P_WSNRM_Izdel.Key_VKZ&#13;&#10;&#13;&#10;LEFT JOIN&#13;&#10;(    &#13;&#10;SELECT P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, COUNT(P_VMZ.Key_VMZ) AS CntPosPrNZPR    &#13;&#10;FROM         &#13;&#10;P_VMZ &#13;&#10;INNER JOIN P_VKZ_Zap&#13;&#10;ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;INNER JOIN T_SPRows &#13;&#10;ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;LEFT JOIN&#13;&#10;(&#13;&#10;SELECT Key_VMZ, SUM(KolDT) AS Rezerv&#13;&#10;FROM A_Rezerv&#13;&#10;GROUP BY Key_VMZ&#13;&#10;) T01&#13;&#10;ON T01.Key_VMZ = P_VMZ.Key_VMZ&#13;&#10;&#13;&#10;WHERE (T_SPRows.SP_position &#62; 0 AND T_SPRows.SP_position &#60; 1000) AND (P_VMZ.VMZActive=1) AND (Isnull(P_VMZ.DatePostav,GetDate()) &#62; GetDate() )&#13;&#10;AND Isnull(T01.Rezerv,0) &#60; P_VMZ.KolDSE&#13;&#10;GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, P_VKZ_Zap.Key_VKZ_Izdel&#13;&#10;) C_TPrNZPR       &#13;&#10;ON  C_TPrNZPR.Key_WSNRM = P_WSNRM.Key_WSNRM  &#13;&#10;AND C_TPrNZPR.Key_VKZ_Izdel = P_WSNRM_Izdel.Key_VKZ&#13;&#10;	&#13;&#10;LEFT JOIN&#13;&#10;(    &#13;&#10;SELECT P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, COUNT(P_VMZ.Key_VMZ) AS CntPosPrNZPR    &#13;&#10;FROM         &#13;&#10;P_VMZ &#13;&#10;INNER JOIN P_VKZ_Zap&#13;&#10;ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;INNER JOIN T_SPRows &#13;&#10;ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;LEFT JOIN&#13;&#10;(&#13;&#10;SELECT Key_VMZ, SUM(KolDT) AS Rezerv&#13;&#10;FROM A_Rezerv&#13;&#10;GROUP BY Key_VMZ&#13;&#10;) T01&#13;&#10;ON T01.Key_VMZ = P_VMZ.Key_VMZ&#13;&#10;&#13;&#10;WHERE (T_SPRows.SP_position &#62;= 1000 AND T_SPRows.SP_position &#60; 2000) AND (P_VMZ.VMZActive=1) AND (Isnull(P_VMZ.DatePostav,GetDate()) &#62; GetDate() )&#13;&#10;AND Isnull(T01.Rezerv,0) &#60; P_VMZ.KolDSE&#13;&#10;GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, P_VKZ_Zap.Key_VKZ_Izdel&#13;&#10;) T_TPrNZPR       &#13;&#10;ON  T_TPrNZPR.Key_WSNRM = P_WSNRM.Key_WSNRM  &#13;&#10;AND T_TPrNZPR.Key_VKZ_Izdel = P_WSNRM_Izdel.Key_VKZ	&#13;&#10;&#13;&#10;LEFT JOIN&#13;&#10;(    &#13;&#10;SELECT P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, COUNT(P_VMZ.Key_VMZ) AS CntPosPrNZRQ &#13;&#10;FROM         &#13;&#10;P_VMZ &#13;&#10;INNER JOIN P_VKZ_Zap&#13;&#10;ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;INNER JOIN T_SPRows &#13;&#10;ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;LEFT JOIN&#13;&#10;(&#13;&#10;SELECT Key_VMZ, SUM(KolDT) AS Rezerv&#13;&#10;FROM         A_Rezerv&#13;&#10;GROUP BY Key_VMZ&#13;&#10;) T01&#13;&#10;ON T01.Key_VMZ = P_VMZ.Key_VMZ&#13;&#10;&#13;&#10;WHERE (T_SPRows.SP_position &#62; 0 AND T_SPRows.SP_position &#60; 1000) AND (P_VMZ.VMZActive=1) AND (Isnull(P_VMZ.DatePostav,GetDate()) &#60;= GetDate() )&#13;&#10;AND Isnull(T01.Rezerv,0) &#60; P_VMZ.KolDSE&#13;&#10;GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, P_VKZ_Zap.Key_VKZ_Izdel&#13;&#10;) C_TPrNZRQ       &#13;&#10;ON  C_TPrNZRQ.Key_WSNRM = P_WSNRM.Key_WSNRM  &#13;&#10;AND C_TPrNZRQ.Key_VKZ_Izdel = P_WSNRM_Izdel.Key_VKZ&#13;&#10;&#13;&#10;LEFT JOIN&#13;&#10;(    &#13;&#10;SELECT     P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, COUNT(P_VMZ.Key_VMZ) AS CntPosPrNZRQ &#13;&#10;FROM         &#13;&#10;P_VMZ &#13;&#10;INNER JOIN P_VKZ_Zap&#13;&#10;ON P_VKZ_Zap.Key_VKZ_Zap = P_VMZ.Key_VKZ_Zap&#13;&#10;INNER JOIN T_SPRows &#13;&#10;ON P_VMZ.Key_SPRow = T_SPRows.Key_SPRow&#13;&#10;LEFT JOIN&#13;&#10;(&#13;&#10;SELECT     Key_VMZ, SUM(KolDT) AS Rezerv&#13;&#10;FROM A_Rezerv&#13;&#10;GROUP BY Key_VMZ&#13;&#10;) T01&#13;&#10;ON T01.Key_VMZ = P_VMZ.Key_VMZ&#13;&#10;&#13;&#10;WHERE (T_SPRows.SP_position &#62;= 1000 AND T_SPRows.SP_position &#60; 2000) AND (P_VMZ.VMZActive=1) AND (Isnull(P_VMZ.DatePostav,GetDate()) &#60;= GetDate() )&#13;&#10;AND Isnull(T01.Rezerv,0) &#60; P_VMZ.KolDSE&#13;&#10;GROUP BY P_VMZ.Key_WSNRM, P_VKZ_Zap.Key_VKZ_Izdel, P_VKZ_Zap.Key_VKZ_Izdel&#13;&#10;) T_TPrNZRQ       &#13;&#10;ON  T_TPrNZRQ.Key_WSNRM = P_WSNRM.Key_WSNRM  &#13;&#10;AND T_TPrNZRQ.Key_VKZ_Izdel = P_WSNRM_Izdel.Key_VKZ&#13;&#10;   &#13;&#10;WHERE (P_VKZ.Cod_SosZ in ('�', '�'))&#13;&#10;         &#13;&#10;ORDER BY &#13;&#10;P_VKZ.DataVip, Key_WSNRM, P_VKZ.Cod_Zak, T_VPredm.OrderCod_Predm    " PropData="05704C656674023C0470546F7002280A506172616D65746572730100"/>
+  </TfrxDataPage>
+  <TfrxReportPage Name="Page1" Orientation="poLandscape" PaperWidth="420" PaperHeight="297" PaperSize="8" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="" OnBeforePrint="Page1OnBeforePrint">
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Height="37,79529024" Left="0" ParentFont="False" Top="325,03958" Width="1511,812" OnBeforePrint="MasterData1OnBeforePrint" ColumnWidth="0" ColumnGap="0" DataSet="WSNRMQry" DataSetName="WSNRMQry" RowCount="0" Stretched="True">
+      <TfrxMemoView Name="WSNRMQryCod_Predm" Left="105,82684" Top="0" Width="222,99212598" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" ParagraphGap="5" Text="[WSNRMQry.&#34;Cod_Predm&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="WSNRMQryKolvo" Left="328,8190026" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" Text="[WSNRMQry.&#34;Kolvo&#34;]"/>
+      <TfrxMemoView Name="WSNRMQryCntPos" Left="468,66172" Top="0" Width="45,35433071" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[WSNRMQry.&#34;CntPosOM&#34;]"/>
+      <TfrxMemoView Name="WSNRMQryCntPosP" Left="816,37848" Top="0" Width="45,35433071" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[WSNRMQry.&#34;C_CntPosPr&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="WSNRMQryCntPosOMR" Left="551,81138" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[WSNRMQry.&#34;CntPosOMR&#34;]"/>
+      <TfrxMemoView Name="WSNRMQryCntPosPR" Left="899,52814" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[WSNRMQry.&#34;C_CntPosPrR&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo1" Left="589,60668" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[fnPercentOf(&#60;WSNRMQry.&#34;CntPosOMR&#34;&#62;,&#60;WSNRMQry.&#34;CntPosOM&#34;&#62;)][&#60;sPercentSign11&#62;]">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo2" Left="937,32344" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[FnPercentOf(&#60;WSNRMQry.&#34;C_CntPosPrR&#34;&#62;,&#60;WSNRMQry.&#34;C_CntPosPr&#34;&#62;)][&#60;sPercentSign12&#62;]">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo15" Left="423,30736" Top="0" Width="45,35433071" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.RightLine.Color="8421504" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[WSNRMQry.&#34;CntAllPos&#34;]"/>
+      <TfrxMemoView Name="Memo19" Left="514,01608" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[WSNRMQry.&#34;CntPosOmZap&#34;]"/>
+      <TfrxMemoView Name="Memo20" Left="627,40198" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[WSNRMQry.&#34;CntPosOMNZ&#34;]"/>
+      <TfrxMemoView Name="Memo21" Left="665,19728" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[WSNRMQry.&#34;CntPosOMNZR&#34;]"/>
+      <TfrxMemoView Name="Memo22" Left="702,99258" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[WSNRMQry.&#34;CntPosOMNZPR&#34;]"/>
+      <TfrxMemoView Name="Memo23" Left="740,78788" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[WSNRMQry.&#34;CntPosOMNZRQ&#34;]"/>
+      <TfrxMemoView Name="Memo30" Left="861,73284" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[WSNRMQry.&#34;C_CntPosPrZap&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo32" Left="975,11874" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[WSNRMQry.&#34;C_CntPosPrNZ&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo33" Left="1012,91404" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[WSNRMQry.&#34;C_CntPosPrNZR&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo34" Left="1050,70934" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[WSNRMQry.&#34;C_CntPosPrNZPR&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo35" Left="1088,50464" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" HideZeros="True" ParentFont="False" Text="[WSNRMQry.&#34;C_CntPosPrNZRQ&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="WSNRMQryDataVip" Left="366,61439779" Top="0" Width="56,69291339" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haCenter" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo42" Left="778,58318" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.RightLine.Color="8421504" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[fnPercentOf(&#60;WSNRMQry.&#34;CntPosOM&#34;&#62; - &#60;WSNRMQry.&#34;CntPosOMNZRQ&#34;&#62; - &#60;WSNRMQry.&#34;CntPosOMNZPR&#34;&#62;, &#60;WSNRMQry.&#34;CntPosOM&#34;&#62;)][&#60;sPercentSign11&#62;]">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo46" Left="64,25201" Top="0" Width="41,57480315" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" Text="[WSNRMQry.&#34;Key_WSNRM&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="WSNRMQryCod_Zak" Left="0" Top="0" Width="64,2519685" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" ParagraphGap="5" Text="[WSNRMQry.&#34;Cod_Zak&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo44" Left="1126,29994" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.RightLine.Color="8421504" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[FnPercentOf(&#60;WSNRMQry.&#34;C_CntPosPr&#34;&#62; - &#60;WSNRMQry.&#34;C_CntPosPrNZRQ&#34;&#62; - &#60;WSNRMQry.&#34;C_CntPosPrNZPR&#34;&#62;, &#60;WSNRMQry.&#34;C_CntPosPr&#34;&#62;)][&#60;sPercentSign12&#62;]">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo124" Left="1164,09524" Top="0" Width="45,35433071" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[WSNRMQry.&#34;T_CntPosPr&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo125" Left="1247,2449" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[WSNRMQry.&#34;T_CntPosPrR&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo126" Left="1285,0402" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[FnPercentOf(&#60;WSNRMQry.&#34;T_CntPosPrR&#34;&#62;,&#60;WSNRMQry.&#34;T_CntPosPr&#34;&#62;)][&#60;sPercentSign13&#62;]">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo127" Left="1209,4496" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[WSNRMQry.&#34;T_CntPosPrZap&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo128" Left="1322,8355" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[WSNRMQry.&#34;T_CntPosPrNZ&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo129" Left="1360,6308" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[WSNRMQry.&#34;T_CntPosPrNZR&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo130" Left="1398,4261" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[WSNRMQry.&#34;T_CntPosPrNZPR&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo131" Left="1436,2214" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[WSNRMQry.&#34;T_CntPosPrNZRQ&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo132" Left="1474,0167" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="[FnPercentOf(&#60;WSNRMQry.&#34;T_CntPosPr&#34;&#62; - &#60;WSNRMQry.&#34;T_CntPosPrNZRQ&#34;&#62; - &#60;WSNRMQry.&#34;T_CntPosPrNZPR&#34;&#62;, &#60;WSNRMQry.&#34;T_CntPosPr&#34;&#62;)][&#60;sPercentSign13&#62;]">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxMasterData>
+    <TfrxHeader Name="Header1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Height="98,26778" Left="0" ParentFont="False" Top="143,62214" Width="1511,812" ReprintOnNewPage="True" Stretched="True">
+      <TfrxMemoView Name="Memo3" Left="105,82684" Top="0" Width="260,78743819" Height="30,23624" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Изделие"/>
+      <TfrxMemoView Name="Memo4" Left="328,8190026" Top="30,23624" Width="37,79527559" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="Кол-во"/>
+      <TfrxMemoView Name="Memo5" Left="0" Top="0" Width="64,2519685" Height="98,26778" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Заказ"/>
+      <TfrxMemoView Name="Memo6" Left="468,66172" Top="30,23626929" Width="45,35433071" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="поз."/>
+      <TfrxMemoView Name="Memo8" Left="551,81138" Top="30,23626929" Width="37,79527559" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="Резерв"/>
+      <TfrxMemoView Name="Memo10" Left="589,60668" Top="15,11811024" Width="37,79527559" Height="83,14966" DataSet="WSNRMQry" DataSetName="WSNRMQry" DisplayFormat.FormatStr="%2.1f" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="% рез."/>
+      <TfrxMemoView Name="Memo12" Left="468,66172" Top="0" Width="347,71676" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Frame.RightLine.Color="8421504" Fill.BackColor="13684944" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Основной металл"/>
+      <TfrxMemoView Name="Memo13" Left="105,82684" Top="30,23624" Width="222,99212598" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Обозначение"/>
+      <TfrxMemoView Name="Memo7" Left="816,37848" Top="30,23626929" Width="45,35433071" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="поз."/>
+      <TfrxMemoView Name="Memo9" Left="899,52814" Top="30,23626929" Width="37,79527559" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="Резерв"/>
+      <TfrxMemoView Name="Memo11" Left="937,32344" Top="15,11811024" Width="37,79527559" Height="83,14966" DataSet="WSNRMQry" DataSetName="WSNRMQry" DisplayFormat.FormatStr="%2.1f" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="% рез."/>
+      <TfrxMemoView Name="Memo14" Left="816,37848" Top="0" Width="347,71676" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Frame.RightLine.Color="8421504" Fill.BackColor="13684944" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Комплектующие"/>
+      <TfrxMemoView Name="Memo16" Left="423,30736" Top="0" Width="45,35433071" Height="98,26778" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.RightLine.Color="8421504" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="Поз. всего"/>
+      <TfrxMemoView Name="Memo17" Left="627,40198" Top="15,11811024" Width="151,1812" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Незапущеные"/>
+      <TfrxMemoView Name="Memo18" Left="514,01608" Top="30,23626929" Width="37,79527559" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="Зап."/>
+      <TfrxMemoView Name="Memo24" Left="627,40198" Top="30,23626929" Width="37,79527559" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="поз."/>
+      <TfrxMemoView Name="Memo25" Left="665,19728" Top="30,23626929" Width="37,79527559" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="Резерв"/>
+      <TfrxMemoView Name="Memo26" Left="702,99258" Top="30,23626929" Width="37,79527559" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="Прораб."/>
+      <TfrxMemoView Name="Memo27" Left="740,78788" Top="30,23626929" Width="37,79527559" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="Треб."/>
+      <TfrxMemoView Name="Memo28" Left="468,66172" Top="15,11811024" Width="120,94496" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="13684944" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Всего"/>
+      <TfrxMemoView Name="Memo29" Left="816,37848" Top="15,11811024" Width="120,94496" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="13684944" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Всего"/>
+      <TfrxMemoView Name="Memo31" Left="861,73284" Top="30,23626929" Width="37,79527559" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="Выд."/>
+      <TfrxMemoView Name="Memo36" Left="975,11874" Top="15,11811024" Width="151,1812" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Невыданные"/>
+      <TfrxMemoView Name="Memo37" Left="975,11874" Top="30,23626929" Width="37,79527559" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="поз."/>
+      <TfrxMemoView Name="Memo38" Left="1012,91404" Top="30,23626929" Width="37,79527559" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="Резерв"/>
+      <TfrxMemoView Name="Memo39" Left="1050,70934" Top="30,23626929" Width="37,79527559" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="Прораб."/>
+      <TfrxMemoView Name="Memo40" Left="1088,50464" Top="30,23626929" Width="37,79527559" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="Треб."/>
+      <TfrxMemoView Name="Memo41" Left="366,61439779" Top="0" Width="56,69291339" Height="98,26778" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" HAlign="haCenter" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="Дата отгрузки&#13;&#10;плановая"/>
+      <TfrxMemoView Name="Memo43" Left="778,58318" Top="15,11811024" Width="37,79527559" Height="83,14966" DataSet="WSNRMQry" DataSetName="WSNRMQry" DisplayFormat.FormatStr="%2.1f" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.RightLine.Color="8421504" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="% закр."/>
+      <TfrxMemoView Name="Memo45" Left="1126,29994" Top="15,11811024" Width="37,79527559" Height="83,14966" DataSet="WSNRMQry" DataSetName="WSNRMQry" DisplayFormat.FormatStr="%2.1f" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.RightLine.Color="8421504" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="% закр."/>
+      <TfrxMemoView Name="Memo47" Left="64,25201" Top="0" Width="41,57480315" Height="98,26778" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="№&#13;&#10;вснрм"/>
+      <TfrxMemoView Name="Memo112" Left="1164,09524" Top="30,23626929" Width="45,35433071" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="поз."/>
+      <TfrxMemoView Name="Memo113" Left="1247,2449" Top="30,23626929" Width="37,79527559" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="Резерв"/>
+      <TfrxMemoView Name="Memo114" Left="1285,0402" Top="15,1181102362205" Width="37,79527559" Height="83,14966" DataSet="WSNRMQry" DataSetName="WSNRMQry" DisplayFormat.FormatStr="%2.1f" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="% рез."/>
+      <TfrxMemoView Name="Memo115" Left="1164,09524" Top="0" Width="347,71676" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="13684944" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Технологические материалы"/>
+      <TfrxMemoView Name="Memo116" Left="1164,09524" Top="15,11811024" Width="120,94496" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="13684944" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Всего"/>
+      <TfrxMemoView Name="Memo117" Left="1209,4496" Top="30,23626929" Width="37,79527559" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="Выд."/>
+      <TfrxMemoView Name="Memo118" Left="1322,8355" Top="15,1181102362205" Width="151,1812" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="Невыданные"/>
+      <TfrxMemoView Name="Memo119" Left="1322,8355" Top="30,23626929" Width="37,79527559" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="поз."/>
+      <TfrxMemoView Name="Memo120" Left="1360,6308" Top="30,23626929" Width="37,79527559" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="Резерв"/>
+      <TfrxMemoView Name="Memo121" Left="1398,4261" Top="30,23626929" Width="37,79527559" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="Прораб."/>
+      <TfrxMemoView Name="Memo122" Left="1436,2214" Top="30,23626929" Width="37,79527559" Height="68,03151071" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="Треб."/>
+      <TfrxMemoView Name="Memo123" Left="1474,0167" Top="15,1181102362205" Width="37,79527559" Height="83,14966" DataSet="WSNRMQry" DataSetName="WSNRMQry" DisplayFormat.FormatStr="%2.1f" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapY="10" ParentFont="False" Rotation="90" VAlign="vaCenter" Text="% закр."/>
+    </TfrxHeader>
+    <TfrxGroupHeader Name="GroupHeader1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Height="22,67718" Left="0" ParentFont="False" Top="272,12616" Width="1511,812" OnBeforePrint="GroupHeader1OnBeforePrint" Condition="YearOf(&#60;WSNRMQry.&#34;DataVip&#34;&#62;)*100+MonthOf(&#60;WSNRMQry.&#34;DataVip&#34;&#62;)" ReprintOnNewPage="True">
+      <TfrxMemoView Name="WSNRMQryDataVip1" Left="0" Top="3,77953" Width="1511,812" Height="18,89765" DataSet="WSNRMQry" DataSetName="WSNRMQry" DisplayFormat.FormatStr="mmmm yyyy" DisplayFormat.Kind="fkDateTime" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="[WSNRMQry.&#34;DataVip&#34;]"/>
+    </TfrxGroupHeader>
+    <TfrxGroupFooter Name="GroupFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Height="30,23624" Left="0" ParentFont="False" Top="438,42548" Width="1511,812" OnBeforePrint="GroupFooter1OnBeforePrint">
+      <TfrxMemoView Name="Memo94" Left="0" Top="22,67718488" Width="1511,812" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="11" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text=""/>
+      <TfrxMemoView Name="Memo48" Left="468,66172" Top="0" Width="45,35433071" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;CntPosOM&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo49" Left="816,37848" Top="0" Width="45,35433071" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;C_CntPosPr&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo50" Left="551,81138" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;CntPosOMR&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo51" Left="899,52814" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;C_CntPosPrR&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo52" Left="589,60668" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[fnPercentOf(SUM(&#60;WSNRMQry.&#34;CntPosOMR&#34;&#62;),SUM(&#60;WSNRMQry.&#34;CntPosOM&#34;&#62;))][&#60;sPercentSign21&#62;]">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo54" Left="423,30736" Top="0" Width="45,35433071" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.RightLine.Color="8421504" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;CntAllPos&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo55" Left="514,01608" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;CntPosOmZap&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo56" Left="627,40198" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;CntPosOMNZ&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo57" Left="665,19728" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;CntPosOMNZR&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo58" Left="702,99258" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;CntPosOMNZPR&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo59" Left="740,78788" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;CntPosOMNZRQ&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo60" Left="861,73284" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;C_CntPosPrZap&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo61" Left="975,11874" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;C_CntPosPrNZ&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo62" Left="1012,91404" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;C_CntPosPrNZR&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo63" Left="1050,70934" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;C_CntPosPrNZPR&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo64" Left="1088,50464" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;C_CntPosPrNZRQ&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo65" Left="778,58318" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.RightLine.Color="8421504" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[fnPercentOf(SUM(&#60;WSNRMQry.&#34;CntPosOM&#34;&#62;) - SUM(&#60;WSNRMQry.&#34;CntPosOMNZRQ&#34;&#62;) - SUM(&#60;WSNRMQry.&#34;CntPosOMNZPR&#34;&#62;), SUM(&#60;WSNRMQry.&#34;CntPosOM&#34;&#62;))][&#60;sPercentSign21&#62;]">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo53" Left="937,32344" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[FnPercentOf(SUM(&#60;WSNRMQry.&#34;C_CntPosPrR&#34;&#62;), SUM(&#60;WSNRMQry.&#34;C_CntPosPr&#34;&#62;))][&#60;sPercentSign22&#62;]">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo66" Left="1126,29994" Top="0" Width="37,79527559" Height="15,11811024" AllowHTMLTags="True" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.RightLine.Color="8421504" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[FnPercentOf(SUM(&#60;WSNRMQry.&#34;C_CntPosPr&#34;&#62;) - SUM(&#60;WSNRMQry.&#34;C_CntPosPrNZRQ&#34;&#62;) -  SUM(&#60;WSNRMQry.&#34;C_CntPosPrNZPR&#34;&#62;), SUM(&#60;WSNRMQry.&#34;C_CntPosPr&#34;&#62;))][&#60;sPercentSign22&#62;]">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo67" Left="0" Top="0" Width="423,30731118" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="['Итого, за '][WSNRMQry.&#34;DataVip&#34;][': ']">
+        <Formats>
+          <item FormatStr="mmmm yyyy" Kind="fkDateTime"/>
+          <item FormatStr="mmmm yyyy" Kind="fkDateTime"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo68" Left="468,66172" Top="15,11812" Width="45,35433071" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo69" Left="816,37848" Top="15,11812" Width="45,35433071" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo70" Left="551,81138" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo71" Left="899,52814" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo96" Left="589,60668" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo97" Left="423,30736" Top="15,11812" Width="45,35433071" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Frame.RightLine.Color="8421504" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo98" Left="514,01608" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo99" Left="627,40198" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo100" Left="665,19728" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo101" Left="702,99258" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo102" Left="740,78788" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo103" Left="861,73284" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo104" Left="975,11874" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo105" Left="1012,91404" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo106" Left="1050,70934" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo107" Left="1088,50464" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo108" Left="778,58318" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Frame.RightLine.Color="8421504" Fill.BackColor="8421376" GapX="5" HAlign="haRight" HideZeros="True" ParentFont="False" Text="">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo109" Left="937,32344" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo110" Left="1126,29994" Top="15,11812" Width="37,79527559" Height="7,55905512" AllowHTMLTags="True" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Frame.RightLine.Color="8421504" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo111" Left="0" Top="15,11812" Width="423,30731118" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item FormatStr="mmmm yyyy" Kind="fkDateTime"/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo142" Left="1164,09524" Top="15,11812" Width="45,35433071" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo143" Left="1247,2449" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo144" Left="1209,4496" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo145" Left="1322,8355" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo146" Left="1360,6308" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo147" Left="1398,4261" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo148" Left="1436,2214" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo149" Left="1285,0402" Top="15,11812" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo150" Left="1474,0167" Top="15,11812" Width="37,79527559" Height="7,55905512" AllowHTMLTags="True" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo133" Left="1164,09524" Top="0" Width="45,35433071" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;T_CntPosPr&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo134" Left="1247,2449" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;T_CntPosPrR&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo135" Left="1209,4496" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;T_CntPosPrZap&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo136" Left="1322,8355" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;T_CntPosPrNZ&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo137" Left="1360,6308" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;T_CntPosPrNZR&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo138" Left="1398,4261" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;T_CntPosPrNZPR&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo139" Left="1436,2214" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;T_CntPosPrNZRQ&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo140" Left="1285,0402" Top="0" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[FnPercentOf(SUM(&#60;WSNRMQry.&#34;T_CntPosPrR&#34;&#62;), SUM(&#60;WSNRMQry.&#34;T_CntPosPr&#34;&#62;))][&#60;sPercentSign23&#62;]">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo141" Left="1474,0167" Top="0" Width="37,79527559" Height="15,11811024" AllowHTMLTags="True" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="8421376" GapX="5" HAlign="haRight" ParentFont="False" Text="[FnPercentOf(SUM(&#60;WSNRMQry.&#34;T_CntPosPr&#34;&#62;) - SUM(&#60;WSNRMQry.&#34;T_CntPosPrNZRQ&#34;&#62;) - SUM(&#60;WSNRMQry.&#34;T_CntPosPrNZPR&#34;&#62;), SUM(&#60;WSNRMQry.&#34;T_CntPosPr&#34;&#62;))][&#60;sPercentSign23&#62;]">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxGroupFooter>
+    <TfrxReportSummary Name="ReportSummary1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Height="109,60639197" Left="0" ParentFont="False" Top="536,69326" Width="1511,812" OnBeforePrint="ReportSummary1OnBeforePrint">
+      <TfrxMemoView Name="Memo91" Left="0" Top="7,55908685" Width="423,30731118" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" DisplayFormat.FormatStr="mmmm yyyy" DisplayFormat.Kind="fkDateTime" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="['Общий итог: ']"/>
+      <TfrxMemoView Name="Memo72" Left="468,66172" Top="7,55905512" Width="45,35433071" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;CntPosOM&#34;&#62;)]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo73" Left="816,37848" Top="7,55905512" Width="45,35433071" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;C_CntPosPr&#34;&#62;)]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo74" Left="551,81138" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;CntPosOMR&#34;&#62;)]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo75" Left="899,52814" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;C_CntPosPrR&#34;&#62;)]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo76" Left="589,60668" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[fnPercentOf(SUM(&#60;WSNRMQry.&#34;CntPosOMR&#34;&#62;),SUM(&#60;WSNRMQry.&#34;CntPosOM&#34;&#62;))][&#60;sPercentSign31&#62;]">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo77" Left="423,30736" Top="7,55905512" Width="45,35433071" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.RightLine.Color="8421504" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;CntAllPos&#34;&#62;)]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo78" Left="514,01608" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;CntPosOmZap&#34;&#62;)]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo79" Left="627,40198" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;CntPosOMNZ&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo80" Left="665,19728" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;CntPosOMNZR&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo81" Left="702,99258" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;CntPosOMNZPR&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo82" Left="740,78788" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;CntPosOMNZRQ&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo83" Left="861,73284" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;C_CntPosPrZap&#34;&#62;)]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo84" Left="975,11874" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;C_CntPosPrNZ&#34;&#62;)]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo85" Left="1012,91404" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;C_CntPosPrNZR&#34;&#62;)]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo86" Left="1050,70934" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;C_CntPosPrNZPR&#34;&#62;)]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo87" Left="1088,50464" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;C_CntPosPrNZRQ&#34;&#62;)]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo88" Left="778,58318" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.RightLine.Color="8421504" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[fnPercentOf(SUM(&#60;WSNRMQry.&#34;CntPosOM&#34;&#62;) - SUM(&#60;WSNRMQry.&#34;CntPosOMNZRQ&#34;&#62;) - SUM(&#60;WSNRMQry.&#34;CntPosOMNZPR&#34;&#62;), SUM(&#60;WSNRMQry.&#34;CntPosOM&#34;&#62;))][&#60;sPercentSign31&#62;]">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo89" Left="937,32344" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[FnPercentOf(SUM(&#60;WSNRMQry.&#34;C_CntPosPrR&#34;&#62;), SUM(&#60;WSNRMQry.&#34;C_CntPosPr&#34;&#62;))][&#60;sPercentSign32&#62;]">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo90" Left="1126,29994" Top="7,55905512" Width="37,79527559" Height="15,11811024" AllowHTMLTags="True" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.RightLine.Color="8421504" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[FnPercentOf(SUM(&#60;WSNRMQry.&#34;C_CntPosPr&#34;&#62;) - SUM(&#60;WSNRMQry.&#34;C_CntPosPrNZRQ&#34;&#62;) - SUM(&#60;WSNRMQry.&#34;C_CntPosPrNZPR&#34;&#62;), SUM(&#60;WSNRMQry.&#34;C_CntPosPr&#34;&#62;))][&#60;sPercentSign32&#62;]">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo95" Left="-3,77953" Top="56,69297685" Width="1511,812" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" DisplayFormat.FormatStr="mmmm yyyy" DisplayFormat.Kind="fkDateTime" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text=""/>
+      <TfrxMemoView Name="Memo160" Left="468,66172" Top="0" Width="45,35433071" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo161" Left="551,81138" Top="0" Width="37,79527559" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo162" Left="514,01608" Top="0" Width="37,79527559" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo163" Left="627,40198" Top="0" Width="37,79527559" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo164" Left="665,19728" Top="0" Width="37,79527559" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo165" Left="702,99258" Top="0" Width="37,79527559" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo166" Left="740,78788" Top="0" Width="37,79527559" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo167" Left="589,60668" Top="0" Width="37,79527559" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo168" Left="778,58318" Top="0" Width="37,79527559" Height="7,55905512" AllowHTMLTags="True" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.RightLine.Color="8421504" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo169" Left="423,30736" Top="0" Width="45,35433071" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.RightLine.Color="8421504" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo170" Left="816,37848" Top="0" Width="45,35433071" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo171" Left="899,52814" Top="0" Width="37,79527559" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo172" Left="861,73284" Top="0" Width="37,79527559" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo173" Left="975,11874" Top="0" Width="37,79527559" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo174" Left="1012,91404" Top="0" Width="37,79527559" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo175" Left="1050,70934" Top="0" Width="37,79527559" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo176" Left="1088,50464" Top="0" Width="37,79527559" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo177" Left="937,32344" Top="0" Width="37,79527559" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo178" Left="1126,29994" Top="0" Width="37,79527559" Height="7,55905512" AllowHTMLTags="True" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.RightLine.Color="8421504" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo179" Left="1164,09524" Top="0" Width="45,35433071" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo180" Left="1247,2449" Top="0" Width="37,79527559" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo181" Left="1209,4496" Top="0" Width="37,79527559" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo182" Left="1322,8355" Top="0" Width="37,79527559" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo183" Left="1360,6308" Top="0" Width="37,79527559" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo184" Left="1398,4261" Top="0" Width="37,79527559" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo185" Left="1436,2214" Top="0" Width="37,79527559" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo186" Left="1285,0402" Top="0" Width="37,79527559" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo187" Left="1474,0167" Top="0" Width="37,79527559" Height="7,55905512" AllowHTMLTags="True" DataSet="WSNRMQry" DataSetName="WSNRMQry" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text="">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo188" Left="0" Top="0" Width="423,30731118" Height="7,55905512" DataSet="WSNRMQry" DataSetName="WSNRMQry" DisplayFormat.FormatStr="mmmm yyyy" DisplayFormat.Kind="fkDateTime" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" Text=""/>
+      <TfrxMemoView Name="Memo151" Left="1164,09524" Top="7,55905512" Width="45,35433071" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;T_CntPosPr&#34;&#62;)]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo152" Left="1247,2449" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;T_CntPosPrR&#34;&#62;)]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo153" Left="1209,4496" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;T_CntPosPrZap&#34;&#62;)]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo154" Left="1322,8355" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;T_CntPosPrNZ&#34;&#62;)]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo155" Left="1360,6308" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;T_CntPosPrNZR&#34;&#62;)]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo156" Left="1398,4261" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;T_CntPosPrNZPR&#34;&#62;)]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo157" Left="1436,2214" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;WSNRMQry.&#34;T_CntPosPrNZRQ&#34;&#62;)]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo158" Left="1285,0402" Top="7,55905512" Width="37,79527559" Height="15,11811024" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[FnPercentOf(SUM(&#60;WSNRMQry.&#34;T_CntPosPrR&#34;&#62;), SUM(&#60;WSNRMQry.&#34;T_CntPosPr&#34;&#62;))][&#60;sPercentSign33&#62;]">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo159" Left="1474,0167" Top="7,55905512" Width="37,79527559" Height="15,11811024" AllowHTMLTags="True" DataSet="WSNRMQry" DataSetName="WSNRMQry" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="12639424" GapX="5" HAlign="haRight" ParentFont="False" Text="[FnPercentOf(SUM(&#60;WSNRMQry.&#34;T_CntPosPr&#34;&#62;) - SUM(&#60;WSNRMQry.&#34;T_CntPosPrNZRQ&#34;&#62;) - SUM(&#60;WSNRMQry.&#34;T_CntPosPrNZPR&#34;&#62;), SUM(&#60;WSNRMQry.&#34;T_CntPosPr&#34;&#62;))][&#60;sPercentSign33&#62;]">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxReportSummary>
+    <TfrxReportTitle Name="ReportTitle1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Height="56,69295" Left="0" ParentFont="False" Top="18,89765" Width="1511,812">
+      <TfrxMemoView Name="Memo92" Left="0" Top="0" Width="1511,812" Height="18,89765" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Width="0,1" HAlign="haCenter" ParentFont="False" Text="Процент закрытия ВСНРМ по плановым датам отгрузки, по состоянию на [Date]"/>
+    </TfrxReportTitle>
+    <TfrxFooter Name="Footer1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Height="15,11812" Left="0" ParentFont="False" Top="393,07112" Width="1511,812">
+      <TfrxMemoView Name="Memo93" Left="226,7718" Top="0" Width="37,79527559" Height="0" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo189" Left="0" Top="7,55906" Width="1511,812" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="11" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text=""/>
+      <TfrxMemoView Name="Memo190" Left="468,66172" Top="0" Width="45,35433071" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo191" Left="816,37848" Top="0" Width="45,35433071" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo192" Left="551,81138" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo193" Left="899,52814" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo194" Left="589,60668" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo195" Left="423,30736" Top="0" Width="45,35433071" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Frame.RightLine.Color="8421504" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo196" Left="514,01608" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo197" Left="627,40198" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo198" Left="665,19728" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo199" Left="702,99258" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo200" Left="740,78788" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo201" Left="861,73284" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo202" Left="975,11874" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo203" Left="1012,91404" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo204" Left="1050,70934" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo205" Left="1088,50464" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo206" Left="778,58318" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Frame.RightLine.Color="8421504" Fill.BackColor="13684944" GapX="5" HAlign="haRight" HideZeros="True" ParentFont="False" Text="">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo207" Left="937,32344" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo208" Left="1126,29994" Top="0" Width="37,79527559" Height="7,55905512" AllowHTMLTags="True" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Frame.RightLine.Color="8421504" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo209" Left="0" Top="0" Width="423,30731118" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item FormatStr="mmmm yyyy" Kind="fkDateTime"/>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo210" Left="1164,09524" Top="0" Width="45,35433071" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Frame.LeftLine.Color="8421504" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo211" Left="1247,2449" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo212" Left="1209,4496" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo213" Left="1322,8355" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo214" Left="1360,6308" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo215" Left="1398,4261" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo216" Left="1436,2214" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text=""/>
+      <TfrxMemoView Name="Memo217" Left="1285,0402" Top="0" Width="37,79527559" Height="7,55905512" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo218" Left="1474,0167" Top="0" Width="37,79527559" Height="7,55905512" AllowHTMLTags="True" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="7" Frame.Width="1,5" Fill.BackColor="13684944" GapX="5" HAlign="haRight" ParentFont="False" Text="">
+        <Formats>
+          <item FormatStr="%2.0f" Kind="fkNumeric"/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxFooter>
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Height="22,67717024" Left="0" ParentFont="False" Top="676,53587" Width="1511,812">
+      <TfrxMemoView Name="Memo219" Left="1322,8355" Top="7,55906" Width="188,9765" Height="15,11811024" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Width="1,5" HAlign="haRight" ParentFont="False" Text="Стр. [Page] из [TotalPages#]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo220" Left="661,41775" Top="7,55906" Width="188,9765" Height="15,11811024" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Width="1,5" HAlign="haCenter" ParentFont="False" Text="ООО &#34;АТОМСПЕЦСЕРВИС&#34;">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo221" Left="0" Top="7,55906" Width="188,9765" Height="15,11811024" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Width="1,5" HAlign="haCenter" ParentFont="False" Text="['Отчёт создан: '][Date][Time]">
+        <Formats>
+          <item/>
+          <item FormatStr="yy.mm.dd" Kind="fkDateTime"/>
+          <item/>
+          <item FormatStr="hh:mm:ss" Kind="fkDateTime"/>
+        </Formats>
+      </TfrxMemoView>
+    </TfrxPageFooter>
+  </TfrxReportPage>
+  <TfrxDialogPage Name="DialogPage1" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Tahoma" Font.Style="0" Height="200" ClientHeight="173" Left="589" Top="225" Width="300" ClientWidth="292" OnDeactivate="DialogPage1OnDeactivate">
+    <TfrxRadioButtonControl Name="rbColoredDesign" Left="8" Top="8" Width="149" Height="17" ShowHint="True" Caption="������� ����������" Checked="True" Color="-16777201"/>
+    <TfrxRadioButtonControl Name="rbBWDesign" Left="8" Top="36" Width="149" Height="17" ShowHint="True" Caption="׸���-����� ����������" TabStop="False" Color="-16777201"/>
+    <TfrxButtonControl Name="btOk" Left="208" Top="140" Width="75" Height="25" ShowHint="True" Caption="Ok" ModalResult="1"/>
+    <TfrxButtonControl Name="btCancel" Left="8" Top="140" Width="75" Height="25" ShowHint="True" Caption="������" ModalResult="2"/>
+  </TfrxDialogPage>
+</TfrxReport>

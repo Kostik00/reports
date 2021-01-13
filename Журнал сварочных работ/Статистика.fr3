@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Version="4.13.1" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="По умолчанию" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="38513,0822621875" ReportOptions.Description.Text="" ReportOptions.Name="Статистика.fr3 Журнал сварочных работ" ReportOptions.LastChange="41422,4761944329" ScriptLanguage="PascalScript" ScriptText.Text="//Test&#13;&#10;  &#13;&#10;begin&#13;&#10;&#13;&#10;end." StoreInDFM="False" PropData="044C65667403800203546F70022008446174617365747301010C2900000020446174615365743D224D61696E46727844532220446174615365744E616D653D224D61696E44532200010C2A00000020446174615365743D2245525175657279312220446174615365744E616D653D224552517565727931220000095661726961626C65730100055374796C650100">
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000">
+    <TfrxERQuery Name="ERQuery1" UserName="ERQuery1" CloseDataSource="True" FieldAliases.Text="" BCDToCurrency="False" IgnoreDupParams="False" SQL.Text="SELECT     DateSvr, COUNT(Key_PrSvr) AS Cnt , DatePart(mm, DateSvr) Mm       &#13;&#10;FROM         Pr_Svr&#13;&#10;GROUP BY DateSvr&#13;&#10;HAVING      (DateSvr &#62; CONVERT(DATETIME, '2013-03-01 00:00:00', 102))&#13;&#10;ORDER BY DateSvr  " PropData="05704C65667402340470546F7002380A506172616D65746572730100"/>
+  </TfrxDataPage>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxMasterData Name="MasterData1" Height="19,77953" Left="0" Top="64,25201" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="ERQuery1" DataSetName="ERQuery1" RowCount="0" Stretched="True">
+      <TfrxMemoView Name="ERQuery1DateSvr" Left="181,41744" Top="0" Width="158,74026" Height="18,89765" ShowHint="False" DataField="DateSvr" DataSet="ERQuery1" DataSetName="ERQuery1" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" Text="[ERQuery1.&#34;DateSvr&#34;]"/>
+      <TfrxMemoView Name="ERQuery1Cnt" Left="340,1577" Top="0" Width="64,25201" Height="18,89765" ShowHint="False" DataField="Cnt" DataSet="ERQuery1" DataSetName="ERQuery1" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" HAlign="haRight" ParentFont="False" Text="[ERQuery1.&#34;Cnt&#34;]"/>
+    </TfrxMasterData>
+    <TfrxGroupHeader Name="GroupHeader1" Height="22,67718" Left="0" Top="18,89765" Width="718,1107" Condition="ERQuery1.&#34;Mm&#34;" StartNewPage="True">
+      <TfrxMemoView Name="Memo1" Left="0" Top="0" Width="158,74026" Height="18,89765" ShowHint="False" DataField="DateSvr" DataSet="ERQuery1" DataSetName="ERQuery1" DisplayFormat.FormatStr="mmmm yyyy" DisplayFormat.Kind="fkDateTime" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="[ERQuery1.&#34;DateSvr&#34;]"/>
+    </TfrxGroupHeader>
+    <TfrxGroupFooter Name="GroupFooter1" Height="22,67718" Left="0" Top="105,82684" Width="718,1107">
+      <TfrxMemoView Name="Memo2" Left="340,1577" Top="0" Width="64,25201" Height="18,89765" ShowHint="False" DataSet="ERQuery1" DataSetName="ERQuery1" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="4" HAlign="haRight" ParentFont="False" Text="[SUM(&#60;ERQuery1.&#34;Cnt&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo3" Left="147,40167" Top="0" Width="192,75603" Height="18,89765" ShowHint="False" DataSet="ERQuery1" DataSetName="ERQuery1" DisplayFormat.FormatStr="mmmm yyyy" DisplayFormat.Kind="fkDateTime" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" Text="РС‚РѕРіРѕ: [ERQuery1.&#34;DateSvr&#34;]"/>
+    </TfrxGroupFooter>
+  </TfrxReportPage>
+</TfrxReport>

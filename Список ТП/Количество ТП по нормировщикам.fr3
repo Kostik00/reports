@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Version="5.5.2" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="По умолчанию" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="42831,608181169" ReportOptions.Description.Text="" ReportOptions.Name="Количество ТП по нормировщикам.fr3 Список ТП" ReportOptions.LastChange="42971,7624859375" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;begin&#13;&#10;&#13;&#10;end." StoreInDFM="False">
+  <Datasets>
+    <item DataSet="ERQuery1" DataSetName="Статистика"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000">
+    <TfrxERQuery Name="ERQuery1" UserName="Статистика" CloseDataSource="True" FieldAliases.Text="" BCDToCurrency="False" IgnoreDupParams="False" SQL.Text="SELECT T1.Name_Sub, DatePart(yy, T1.DT) Y, DatePart(MONTH, T1.DT)  M, DatePart(dd, T1.DT) D, COUNT(T1.Key_TP)   CNT                    &#13;&#10;FROM&#13;&#10;(&#13;&#10;SELECT        &#13;&#10;	T_TP.Key_TP, &#13;&#10;	T_TP.Norm_Date AS DT, &#13;&#10;	T_TP.Cod_TP, S_Subjects.Name_Sub&#13;&#10;FROM            T_TP INNER JOIN&#13;&#10;                         T_TP_CodeReg ON T_TP.Cod_TP = T_TP_CodeReg.TP_Code INNER JOIN&#13;&#10;                         S_SubVer ON T_TP.Key_Sub_Ver_Norm = S_SubVer.Key_Sub_Ver INNER JOIN&#13;&#10;                         S_Subjects ON S_SubVer.Key_Sub = S_Subjects.Key_Sub&#13;&#10;WHERE  T_TP.Norm_Date &#62; '20150101'&#13;&#10;) T1&#13;&#10;&#13;&#10;GROUP BY&#13;&#10;T1.Name_Sub,DatePart(yy, T1.DT) , DatePart(MONTH, T1.DT), DatePart(dd, T1.DT)     &#13;&#10;ORDER BY Y,M,D, Name_Sub    " PropData="05704C656674024C0470546F7002340A506172616D65746572730100"/>
+  </TfrxDataPage>
+  <TfrxReportPage Name="Page1" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" HGuides.Text="" VGuides.Text="">
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="20" Left="0" Top="60" Width="718,1107" ColumnWidth="0" ColumnGap="0" DataSet="ERQuery1" DataSetName="Статистика" RowCount="0">
+      <TfrxMemoView Name="Memo4" Left="321,26005" Top="0" Width="79,37013" Height="18,89765" DataField="CNT" DataSet="ERQuery1" DataSetName="Статистика" Text="[РЎС‚Р°С‚РёСЃС‚РёРєР°.&#34;CNT&#34;]"/>
+      <TfrxMemoView Name="Memo3" Left="37,7953" Top="0" Width="283,46475" Height="18,89765" DataField="Name_Sub" DataSet="ERQuery1" DataSetName="Статистика" Text="[РЎС‚Р°С‚РёСЃС‚РёРєР°.&#34;Name_Sub&#34;]"/>
+    </TfrxMasterData>
+    <TfrxGroupHeader Name="GroupHeader1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="22,67718" Left="0" Top="16" Width="718,1107" Condition="(&#60;Статистика.&#34;Y&#34;&#62;*100000+&#60;Статистика.&#34;M&#34;&#62;)*100 + &#60;Статистика.&#34;D&#34;&#62;">
+      <TfrxMemoView Name="Memo2" Left="0" Top="0" Width="113,3859" Height="18,89765" DataField="Y" DataSet="ERQuery1" DataSetName="Статистика" Text="[РЎС‚Р°С‚РёСЃС‚РёРєР°.&#34;Y&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo1" Left="113,3859" Top="0" Width="113,3859" Height="18,89765" DataField="M" DataSet="ERQuery1" DataSetName="Статистика" Text="[РЎС‚Р°С‚РёСЃС‚РёРєР°.&#34;M&#34;]">
+        <Formats>
+          <item/>
+          <item/>
+        </Formats>
+      </TfrxMemoView>
+      <TfrxMemoView Name="Memo5" Left="241,88992" Top="0" Width="79,37013" Height="18,89765" DataField="D" DataSet="ERQuery1" DataSetName="Статистика" Text="[РЎС‚Р°С‚РёСЃС‚РёРєР°.&#34;D&#34;]"/>
+    </TfrxGroupHeader>
+  </TfrxReportPage>
+</TfrxReport>

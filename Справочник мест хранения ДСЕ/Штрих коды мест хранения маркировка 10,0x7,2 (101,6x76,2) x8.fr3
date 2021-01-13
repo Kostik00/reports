@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TfrxReport Version="6.7" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="По умолчанию" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="41172,7219212269" ReportOptions.Description.Text="" ReportOptions.Name="Штрих коды мест хранения маркировка 10,0x7,2 (101,6x76,2) x4 (ver. 07).fr3 Справочник мест хранения ДСЕ" ReportOptions.LastChange="44110,3417556829" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;begin&#13;&#10;&#13;&#10;end." StoreInDFM="False">
+  <Datasets>
+    <item DataSet="MainFrxDS" DataSetName="MainDS"/>
+  </Datasets>
+  <TfrxDataPage Name="Data" Height="1000" Left="0" Top="0" Width="1000"/>
+  <TfrxReportPage Name="Page1" PaperWidth="100" PaperHeight="72" PaperSize="256" LeftMargin="1" RightMargin="1" TopMargin="1" BottomMargin="1" Columns="2" ColumnWidth="49" ColumnPositions.Text="0&#13;&#10;49" Frame.Typ="0" MirrorMode="0" HGuides.Text="" VGuides.Text="">
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="64,2519685" Left="0" Top="18,89765" Width="185,19697" Columns="1" ColumnWidth="188,976377952756" ColumnGap="0" DataSet="MainFrxDS" DataSetName="MainDS" KeepHeader="True" RowCount="0">
+      <TfrxMemoView Name="Memo2" AllowVectorExport="True" Left="0" Top="0" Width="185,19697" Height="56,69291339" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Style="fsDouble" Frame.Typ="15" Frame.Width="0,1" ParentFont="False" Text=""/>
+      <TfrxBarCodeView Name="BarCode2" AllowVectorExport="True" ShiftMode="smDontShift" Left="7,398485" Top="26,45669292" Width="170,4" Height="30,23622047" BarType="bcCode39" CalcCheckSum="True" Expression="'1 4 '+IntToStr(&#60;MainDS.&#34;Key_Pasp_Place&#34;&#62;)" Frame.Typ="0" HAlign="haCenter" Rotation="0" ShowText="False" TestLine="False" Text="12345678" WideBarRatio="2" Zoom="1,2" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ColorBar="0"/>
+      <TfrxMemoView Name="ERQuery1Cod_Pasp_Place" AllowVectorExport="True" Left="0" Top="0" Width="185,19697" Height="22,67716535" DataSetName="PrPaspPlace" Font.Charset="1" Font.Color="0" Font.Height="-16" Font.Name="Arial" Font.Style="1" Frame.Typ="0" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="[Trim(&#60;MainDS.&#34;Cod_Pasp_Place&#34;&#62;)]"/>
+      <TfrxMemoView Name="Memo1" AllowVectorExport="True" Left="0" Top="56,69295" Width="185,19697" Height="3,77952756" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Style="fsDot" Frame.Typ="15" Frame.Width="0,1" ParentFont="False" Text=""/>
+    </TfrxMasterData>
+  </TfrxReportPage>
+</TfrxReport>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TfrxReport Version="6.9.6" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="По умолчанию" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="38513,0822621875" ReportOptions.Description.Text="" ReportOptions.Name="Документ согласования.fr3 Документ на замену материалов" ReportOptions.LastChange="44259,7313586574" ScriptLanguage="PascalScript" ScriptText.Text="//Test&#13;&#10;&#13;&#10;begin&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;end." StoreInDFM="False">
+<TfrxReport Version="6.9.6" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="По умолчанию" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="38513,0822621875" ReportOptions.Description.Text="" ReportOptions.Name="Документ согласования.fr3 Документ на замену материалов" ReportOptions.LastChange="44259,7560273611" ScriptLanguage="PascalScript" ScriptText.Text="//Test&#13;&#10;&#13;&#10;begin&#13;&#10;&#13;&#10;&#13;&#10;&#13;&#10;end." StoreInDFM="False">
   <Datasets>
     <item DataSet="MainFrxDS" DataSetName="MainDS"/>
     <item DataSet="RQStrQRY" DataSetName="СтрокиЗапроса"/>
@@ -33,12 +33,7 @@
       </TfrxMemoView>
     </TfrxMasterData>
     <TfrxHeader Name="Header1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="39,68504059" Left="0" Top="18,89765" Width="699,21305" Stretched="True">
-      <TfrxMemoView Name="Memo5" AllowVectorExport="True" Left="0" Top="1,889765" Width="151,1812" Height="37,79527559" StretchMode="smMaxHeight" DataSet="RQStrQRY" DataSetName="СтрокиЗапроса" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="РћР±РѕР·РЅР°С‡РµРЅРёРµ Р”РЎР•&#13;&#10;(РЎР±РѕСЂРєРё)">
-        <Formats>
-          <item/>
-          <item/>
-        </Formats>
-      </TfrxMemoView>
+      <TfrxMemoView Name="Memo5" AllowVectorExport="True" Left="0" Top="1,889765" Width="151,1812" Height="37,79527559" StretchMode="smMaxHeight" DataSet="RQStrQRY" DataSetName="СтрокиЗапроса" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="РћР±РѕР·РЅР°С‡РµРЅРёРµ Р”РЎР•"/>
       <TfrxMemoView Name="Memo6" AllowVectorExport="True" Left="151,1812" Top="1,889765" Width="207,87401575" Height="37,79527559" StretchMode="smMaxHeight" AllowHTMLTags="True" DataSet="RQStrQRY" DataSetName="СтрокиЗапроса" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="РњР°С‚РµСЂРёР°Р» РїРѕ С‡РµСЂС‚РµР¶Сѓ">
         <Formats>
           <item/>

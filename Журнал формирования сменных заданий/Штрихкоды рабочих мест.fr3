@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TfrxReport Version="6.9.6" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.AllowEdit="False" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="По умолчанию" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="41172,7219212269" ReportOptions.Description.Text="" ReportOptions.Name="Штрихкоды рабочих мест.fr3 Журнал формирования сменных заданий" ReportOptions.LastChange="44312,4099763773" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;begin&#13;&#10;&#13;&#10;end." StoreInDFM="False">
+<TfrxReport Version="6.9.6" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.AllowEdit="False" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="По умолчанию" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="41172,7219212269" ReportOptions.Description.Text="" ReportOptions.Name="Штрихкоды рабочих мест.fr3 Журнал формирования сменных заданий" ReportOptions.LastChange="44315,5821441204" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;begin&#13;&#10;&#13;&#10;end." StoreInDFM="False">
   <Datasets>
     <item DataSet="ERQuery1" DataSetName="ERQuery1"/>
   </Datasets>
@@ -7,26 +7,28 @@
     <TfrxERQuery Name="ERQuery1" UserName="ERQuery1" CloseDataSource="True" FieldAliases.Text="" BCDToCurrency="False" IgnoreDupParams="False" SQL.Text="SELECT        &#13;&#10;	Pr_Tabel_Sub_Podr.Cod_Sub_Podr, &#13;&#10;	Pr_Tabel_Sub_Podr.Key_Sub_Ver, &#13;&#10;	Pr_Tabel_Sub_Podr.Sub_Podr_Name, &#13;&#10;	Pr_Tabel_Sub_Podr.Key_Pasp_Place, &#13;&#10;	Pr_Tabel_Sub_Podr.Key_Sub_Podr, &#13;&#10;	S_ALL_Sub.Name_Sub, &#13;&#10;	S_ALL_Sub.F_Name_Sub&#13;&#10;FROM            Pr_Tabel_Sub_Podr INNER JOIN&#13;&#10;                         S_ALL_Sub ON Pr_Tabel_Sub_Podr.Key_Sub_Ver = S_ALL_Sub.Key_Sub_Ver&#13;&#10;&#13;&#10;WHERE S_ALL_Sub.Name_Sub like '1%'                                   &#13;&#10;ORDER BY &#13;&#10;	S_ALL_Sub.Name_Sub, &#13;&#10;	S_ALL_Sub.F_Name_Sub ,&#13;&#10; Pr_Tabel_Sub_Podr.Sub_Podr_Name    " PropData="05704C65667402480470546F7002400A506172616D65746572730100"/>
   </TfrxDataPage>
   <TfrxReportPage Name="Page1" HGuides.Text="" VGuides.Text="" PaperWidth="210" PaperHeight="297" PaperSize="9" LeftMargin="10" RightMargin="10" TopMargin="10" BottomMargin="10" ColumnWidth="0" ColumnPositions.Text="" Frame.Typ="0" MirrorMode="0">
-    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="57,7953" Left="0" Top="72" Width="718,1107" Columns="1" ColumnWidth="188,976377952756" ColumnGap="0" DataSet="ERQuery1" DataSetName="ERQuery1" RowCount="0">
+    <TfrxMasterData Name="MasterData1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="57,7953" Left="0" Top="79,37013" Width="718,1107" Columns="1" ColumnWidth="188,976377952756" ColumnGap="0" DataSet="ERQuery1" DataSetName="ERQuery1" RowCount="0">
       <TfrxBarCodeView Name="BarCode1" AllowVectorExport="True" Left="379,57514" Top="0" Width="143" Height="45,35436" BarType="bcCode39" CalcCheckSum="True" Expression="'1 A '+IntToStr(&#60;ERQuery1.&#34;Key_Sub_Podr&#34;&#62;)" Frame.Typ="0" Rotation="0" TestLine="False" Text="12345678" WideBarRatio="2" Zoom="1" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ColorBar="0"/>
       <TfrxMemoView Name="ERQuery1F_Name_Sub" AllowVectorExport="True" Left="75,5906" Top="0" Width="302,3624" Height="45,35436" DataField="Sub_Podr_Name" DataSet="ERQuery1" DataSetName="ERQuery1" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" VAlign="vaCenter" Text="[ERQuery1.&#34;Sub_Podr_Name&#34;]"/>
       <TfrxMemoView Name="Memo2" AllowVectorExport="True" Left="3,77953" Top="0" Width="71,81107" Height="41,57483" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[Line]"/>
     </TfrxMasterData>
-    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="20" Left="0" Top="148" Width="718,1107">
-      <TfrxMemoView Name="Memo1" Align="baRight" AllowVectorExport="True" Left="642,5201" Top="0" Width="75,5906" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="0" HAlign="haRight" ParentFont="False" Text="[Page]">
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="35,905535" Left="0" Top="198,425325" Width="718,1107">
+      <TfrxMemoView Name="Memo1" Align="baRight" AllowVectorExport="True" Left="642,5201" Top="9,448825" Width="75,5906" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="0" HAlign="haRight" ParentFont="False" Text="[Page]">
         <Formats>
           <item/>
           <item/>
         </Formats>
       </TfrxMemoView>
-      <TfrxMemoView Name="Memo3" Align="baLeft" AllowVectorExport="True" Left="0" Top="0" Width="75,5906" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[Page#]">
+      <TfrxMemoView Name="Memo3" Align="baLeft" AllowVectorExport="True" Left="0" Top="9,448825" Width="75,5906" Height="18,89765" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="0" ParentFont="False" Text="[Page#]">
         <Formats>
           <item/>
           <item/>
         </Formats>
       </TfrxMemoView>
+      <TfrxBarCodeView Name="BarCode2" AllowVectorExport="True" Left="107,716605" Top="1,889765" Width="143" Height="30,23624" BarType="bcCode39" CalcCheckSum="True" Expression="'1 B'" Frame.Typ="0" Rotation="0" ShowText="False" TestLine="False" Text="12345678" WideBarRatio="2" Zoom="1" Font.Charset="1" Font.Color="0" Font.Height="-12" Font.Name="Arial" Font.Style="0" ColorBar="0"/>
+      <TfrxMemoView Name="Memo4" AllowVectorExport="True" Left="260,78757" Top="7,55906" Width="279,68522" Height="18,89765" Frame.Typ="0" Text="- РЎРѕР·РґР°С‚СЊ РЅРѕРІРѕРµ Р·Р°РґР°РЅРёРµ"/>
     </TfrxPageFooter>
-    <TfrxGroupHeader Name="GroupHeader1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="37,7953" Left="0" Top="16" Width="718,1107" Condition="ERQuery1.&#34;F_Name_Sub&#34;" ReprintOnNewPage="True" ResetPageNumbers="True" StartNewPage="True">
+    <TfrxGroupHeader Name="GroupHeader1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="37,7953" Left="0" Top="18,89765" Width="718,1107" Condition="ERQuery1.&#34;F_Name_Sub&#34;" ReprintOnNewPage="True" ResetPageNumbers="True" StartNewPage="True">
       <TfrxMemoView Name="ERQuery1Name_Sub" AllowVectorExport="True" Left="0" Top="0" Width="718,1107" Height="34,01577" DataSet="ERQuery1" DataSetName="ERQuery1" Font.Charset="1" Font.Color="-16777208" Font.Height="-19" Font.Name="Arial" Font.Style="1" Frame.Typ="0" ParentFont="False" VAlign="vaCenter" Text="[ERQuery1.&#34;F_Name_Sub&#34;]"/>
     </TfrxGroupHeader>
   </TfrxReportPage>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style Name="">
+  <item Name="Header" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="2" Fill.BackColor="15000804"/>
+  <item Name="MasterData" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Arial" Font.Style="0" Frame.Color="16777215" Frame.Typ="15" Frame.Width="2" Fill.BackColor="15790320"/>
+  <item Name="DetailData" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Courier New" Font.Style="0" Frame.Color="536870911" Frame.Typ="0" Frame.Width="0,1"/>
+  <item Name="SubDetailData" Font.Charset="1" Font.Color="0" Font.Height="-11" Font.Name="Courier New" Font.Style="0" Frame.Color="536870911" Frame.Typ="0" Frame.Width="0,1"/>
+  <item Name="Pallet" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Style="fsDot" Frame.Typ="8" Frame.Width="0,1"/>
+  <item Name="ReportHeader" Font.Charset="1" Font.Color="0" Font.Height="-19" Font.Name="Arial" Font.Style="1" Frame.Color="16777215" Frame.Typ="15" Frame.Width="2" Fill.BackColor="15000804"/>
+  <item Name="LZKPallet" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Style="fsDot" Frame.Typ="8" Frame.Width="0,1" ApplyFont="False"/>
+  <item Name="DETPallet" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Style="fsDot" Frame.Typ="8" Frame.Width="0,1" ApplyFont="False"/>
+  <item Name="CONSPallet" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Style="fsDot" Frame.Typ="8" Frame.Width="0,1" ApplyFont="False"/>
+</style>

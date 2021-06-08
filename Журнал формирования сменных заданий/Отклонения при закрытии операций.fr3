@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TfrxReport Version="6.9.6" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.AllowEdit="False" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="По умолчанию" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="40707,9786105671" ReportOptions.Description.Text="" ReportOptions.Name="Отклонения при закрытии операций.fr3 Журнал формирования сменных заданий" ReportOptions.LastChange="44315,4188708681" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;&#13;&#10;&#13;&#10;procedure CheckBox1OnClick(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;&#13;&#10;end;&#13;&#10;&#13;&#10;begin&#13;&#10;  DateFrom.Date:=Date;&#13;&#10;  DateTo.Date:=Date;&#13;&#10;end." StoreInDFM="False">
+<TfrxReport Version="6.9.6" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.AllowEdit="False" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="По умолчанию" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="40707,9786105671" ReportOptions.Description.Text="" ReportOptions.Name="Отклонения при закрытии операций.fr3 Журнал формирования сменных заданий" ReportOptions.LastChange="44354,4400627778" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;&#13;&#10;&#13;&#10;procedure CheckBox1OnClick(Sender: TfrxComponent);&#13;&#10;begin&#13;&#10;&#13;&#10;end;&#13;&#10;&#13;&#10;begin&#13;&#10;  DateFrom.Date:=Date;&#13;&#10;  DateTo.Date:=Date;&#13;&#10;end." StoreInDFM="False">
   <Datasets>
     <item DataSet="MainFrxDS" DataSetName="MainDS"/>
     <item DataSet="SMZData" DataSetName="SMZData"/>
@@ -19,7 +19,7 @@
       <TfrxMemoView Name="Memo11" Align="baClient" AllowVectorExport="True" Left="0" Top="0" Width="1046,92981" Height="49,13389" Font.Charset="1" Font.Color="-16777208" Font.Height="-21" Font.Name="Arial" Font.Style="0" Frame.Typ="0" HAlign="haCenter" ParentFont="False" VAlign="vaCenter" Text="РћС‚РєР»РѕРЅРµРЅРёСЏ РїСЂРё СѓС‡РµС‚Рµ РІС‹СЂР°Р±РѕС‚РєРё Р·Р° РїРµСЂРёРѕРґ  [DateFrom.Date] РїРѕ [DateTo.Date]">
         <Formats>
           <item FormatStr="dd.mm.yyyy" Kind="fkDateTime"/>
-          <item/>
+          <item FormatStr="dd.mm.yyyy" Kind="fkDateTime"/>
         </Formats>
       </TfrxMemoView>
     </TfrxReportTitle>
@@ -59,7 +59,7 @@
       <TfrxMemoView Name="Memo18" AllowVectorExport="True" Left="0" Top="0" Width="971,33921" Height="18,89765" StretchMode="smMaxHeight" DataSet="SMZData" DataSetName="SMZData" Font.Charset="1" Font.Color="-16777208" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" Fill.BackColor="13296895" HAlign="haRight" ParentFont="False" VAlign="vaCenter" Text="РС‚РѕРіРѕ РѕС‚РєР»РѕРЅРµРЅРёРµ  Р·Р° РїРµСЂРёРѕРґ c [DateFrom.Date #ddd.mm.yyyy] РїРѕ [DateTo.Date #ddd.mm.yyyy]"/>
     </TfrxFooter>
     <TfrxChild Name="Child1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Frame.Typ="0" Height="18,89765" Left="0" Top="287,24428" Width="1046,92981" Stretched="True" ToNRows="0" ToNRowsMode="rmCount">
-      <TfrxMemoView Name="SMZDataName_AdTrud" IndexTag="1" AllowVectorExport="True" Left="0" Top="0" Width="340,1577" Height="18,89765" StretchMode="smActualHeight" DataSet="SMZData" DataSetName="SMZData" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" Text="[SMZData.&#34;Name_AdTrud&#34;]"/>
+      <TfrxMemoView Name="SMZDataName_AdTrud" IndexTag="1" AllowVectorExport="True" Left="0" Top="0" Width="340,1577" Height="18,89765" StretchMode="smMaxHeight" DataSet="SMZData" DataSetName="SMZData" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" Text="[SMZData.&#34;Name_AdTrud&#34;]"/>
       <TfrxMemoView Name="SMZDataAdTrudInfo" IndexTag="1" AllowVectorExport="True" Left="340,1577" Top="0" Width="706,77211" Height="18,89765" StretchMode="smActualHeight" DataField="AdTrudInfo" DataSet="SMZData" DataSetName="SMZData" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" Text="[SMZData.&#34;AdTrudInfo&#34;]"/>
     </TfrxChild>
   </TfrxReportPage>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TfrxReport Version="5.6.18" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.AllowEdit="False" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="По умолчанию" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="43685,6514840509" ReportOptions.Description.Text="" ReportOptions.Name="Контроль выполнения заданий.fr3 Журнал пооперационного учета" ReportOptions.LastChange="43685,6755324884" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;begin&#13;&#10;&#13;&#10;end." StoreInDFM="False">
+<TfrxReport Version="5.6.18" DotMatrixReport="False" IniFile="\Software\Fast Reports" PreviewOptions.AllowEdit="False" PreviewOptions.Buttons="2047" PreviewOptions.Zoom="1" PrintOptions.Printer="По умолчанию" PrintOptions.PrintOnSheet="0" ReportOptions.CreateDate="43685,6514840509" ReportOptions.Description.Text="" ReportOptions.Name="Контроль выполнения заданий.fr3 Журнал пооперационного учета" ReportOptions.LastChange="43685,6685573727" ScriptLanguage="PascalScript" ScriptText.Text="&#13;&#10;begin&#13;&#10;&#13;&#10;end." StoreInDFM="False">
   <Datasets>
     <item DataSet="ListQRY" DataSetName="Список"/>
     <item DataSet="ZQry" DataSetName="Задания"/>
@@ -17,7 +17,7 @@
       <TfrxMemoView Name="Memo7" Left="827,71707" Top="0" Width="56,69295" Height="18,89765" StretchMode="smMaxHeight" DataField="Tsm" DataSet="ListQRY" DataSetName="Список" DisplayFormat.FormatStr="%2.2f" DisplayFormat.Kind="fkNumeric" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" HAlign="haRight" ParentFont="False" VAlign="vaCenter" Text="[РЎРїРёСЃРѕРє.&#34;Tsm&#34;]"/>
       <TfrxMemoView Name="Memo8" Left="113,3859" Top="0" Width="340,1577" Height="18,89765" StretchMode="smMaxHeight" DataSet="ListQRY" DataSetName="Список" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" Frame.Typ="15" ParentFont="False" SuppressRepeated="True" Text="[РЎРїРёСЃРѕРє.&#34;Cod_Predm&#34;] [РЎРїРёСЃРѕРє.&#34;Name_Predm&#34;]"/>
     </TfrxMasterData>
-    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="20" Left="0" Top="355,27582" Width="1046,92981">
+    <TfrxPageFooter Name="PageFooter1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="20" Left="0" Top="309,92146" Width="1046,92981">
       <TfrxMemoView Name="Memo1" Align="baRight" Left="971,33921" Top="0" Width="75,5906" Height="18,89765" HAlign="haRight" Text="[Page#]"/>
     </TfrxPageFooter>
     <TfrxGroupHeader Name="GroupHeader1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="22,67718" Left="0" Top="98,26778" Width="1046,92981" Condition="Список.&#34;Name_Sub&#34;" OutlineText="Список.&#34;Name_Sub&#34;">
@@ -32,8 +32,5 @@
       <TfrxMemoView Name="Memo11" Left="188,9765" Top="0" Width="147,40167" Height="22,67718" DataField="Date_Tabel" DataSet="ZQry" DataSetName="Задания" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="0" ParentFont="False" VAlign="vaCenter" Text="[Р—Р°РґР°РЅРёСЏ.&#34;Date_Tabel&#34;]"/>
       <TfrxMemoView Name="Memo12" Left="680,3154" Top="0" Width="79,37013" Height="22,67718" DataField="Tzap" DataSet="ZQry" DataSetName="Задания" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" ParentFont="False" VAlign="vaCenter" Text="[Р—Р°РґР°РЅРёСЏ.&#34;Tzap&#34;]"/>
     </TfrxDetailData>
-    <TfrxFooter Name="Footer1" FillType="ftBrush" FillGap.Top="0" FillGap.Left="0" FillGap.Bottom="0" FillGap.Right="0" Height="22,67718" Left="0" Top="272,12616" Width="1046,92981">
-      <TfrxMemoView Name="Memo13" Left="680,3154" Top="0" Width="79,37013" Height="22,67718" DataSet="ZQry" DataSetName="Задания" Font.Charset="1" Font.Color="0" Font.Height="-13" Font.Name="Arial" Font.Style="1" Fill.BackColor="16774348" ParentFont="False" VAlign="vaCenter" Text="[SUM(&#60;Р—Р°РґР°РЅРёСЏ.&#34;Tzap&#34;&#62;)]"/>
-    </TfrxFooter>
   </TfrxReportPage>
 </TfrxReport>

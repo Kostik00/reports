@@ -21,7 +21,7 @@
     <item DataSet="SvrQry" DataSetName="Сварка"/>
   </Datasets>
   <TfrxDataPage Name="Data" HGuides.Text="" VGuides.Text="" Height="1000" Left="0" Top="0" Width="1000">
-    <TfrxERQuery Name="TPQry" UserName="Техпроцесс" CloseDataSource="True" BCDToCurrency="False" DataSetOptions="0" Master="MainFrxDS" Left="168" Top="164" IgnoreDupParams="False" SQL.Text="EXEC dbo.Pr_GetPaspTPRows2&#13;&#10;    @Key_Pasport = :Key_Pasport,&#13;&#10;    @PrintOper = :PrintOper,&#13;&#10;    @FlPlan = :FlPlan;">
+    <TfrxERQuery Name="TPQry" UserName="Техпроцесс" CloseDataSource="True" BCDToCurrency="False" DataSetOptions="0" Master="MainFrxDS" Left="168" Top="164" IgnoreDupParams="False" SQL.Text="EXEC dbo.Pr_GetPaspTPRows&#13;&#10;    @Key_Pasport = :Key_Pasport,&#13;&#10;    @PrintOper = :PrintOper,&#13;&#10;    @FlPlan = :FlPlan;">
       <FieldDefs>
         <item FieldName="Key_Pasport" FieldAlias="Key_Pasport"/>
         <item FieldName="Key_TPRows" FieldAlias="Key_TPRows"/>
